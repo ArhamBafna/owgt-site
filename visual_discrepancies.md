@@ -1,29 +1,42 @@
-# Visual Inspection Report: Local HTML vs Live Wix Site
+# Visual Inspection Report: Local HTML vs Live Wix Site (Updated)
 
-After performing a side-by-side visual inspection using `agent-browser` full-page screenshots and analyzing the static HTML structure, I've identified several discrepancies and broken elements in the current local `index.html` compared to the live Wix site (`https://owgtofficial.wixstudio.com/owgt`).
+You were absolutely right. My previous inspection only captured the initial, un-hydrated state of the live site. Because Wix aggressively lazy-loads almost all of its content based on scroll position, a simple screenshot of the top of the page missed everything that appears further down.
 
-Because the local HTML was obtained via `ctrl+u` (View Source), it only captured the initial server-side rendered (SSR) state. Wix heavily relies on its proprietary React-based rendering engine (Thunderbolt) and client-side JavaScript for interactivity, styling, and animations. 
+After writing a custom Playwright script to slowly scroll down the entire live page—forcing Wix to trigger its intersection observers, load images, and run animations—the **massive** differences between the `ctrl+u` local HTML and the actual live site became obvious.
 
-Here are the key mismatches and UI errors:
+Because you copied the site using `ctrl+u`, you only grabbed the empty placeholder structure that Wix sends before the user scrolls. 
 
-## 1. Top Banner & Marquee Animation
-* **Wix Attribution Banner**: The live site has a "Built on WIX STUDIO" banner at the very top. This is correctly missing from the local site (likely removed intentionally).
-* **Broken Marquee**: The red "Empowering Through Technology 🏆" banner is statically rendered in the local HTML. On the live site, this is likely a scrolling marquee driven by CSS animations or JS. In the local version, it will remain completely static and may overflow incorrectly on different screen sizes.
+Here are the critical missing elements and discrepancies in your current local HTML:
 
-## 2. Broken Interactivity & Hover States
-* **Navigation Links**: The links in the header (`Welcome`, `Join`, `Chapter`, `RSVP`) will not smooth-scroll to their respective sections. Wix uses JS to handle anchor scrolling, which is missing in the static HTML.
-* **Button Hover Effects**: The red `RSVP` button and other interactive elements will lack their hover state transitions (e.g., color darkening, scaling) because the specific state classes or JS event listeners are not present.
+## 1. Missing "Events" Box
+* **Live Site**: Right beneath the main "OneWorld GreaterTogether" hero text, there is a light blue box titled **"Events Coming Soon"**. It contains a red button ("To Be Determined") and a black button ("RSVP").
+* **Local HTML**: This entire box is completely **missing**.
 
-## 3. Scroll Animations & Intersections
-* **Missing Fade/Slide-ins**: Wix typically applies entrance animations (fade-in, slide-up) as you scroll down the page. The local HTML has the initial pre-animation state (often `opacity: 0` or transformed). If the `index.html` was captured while elements were hidden, they might stay hidden permanently, or if they were visible, they will just appear abruptly without the smooth scroll animations.
+## 2. Empty "Application Steps" Section
+* **Live Site**: The large red "Application Steps" box actually contains content! 
+  * A white card for **Step 1** ("Fill out this form") alongside a pixel-art email icon.
+  * A white card for **Step 2** ("Wait 1 to 2 weeks for an email... You will be asked to join a meeting...").
+* **Local HTML**: The red box is completely **empty**.
 
-## 4. Responsive Layout Issues
-* **Hardcoded Viewport Classes**: The `ctrl+u` source captures the HTML exactly as it was requested for that specific viewport (desktop). Wix's CSS relies on specific DOM structures and classes injected dynamically for mobile breakpoints. The local version will likely break, scale poorly, or overlap when viewed on a mobile device or a very narrow window.
-* **Grid and Flexbox Sizing**: Some CSS grids in the "Board" section might not reflow correctly on smaller screens without the accompanying responsive JS logic.
+## 3. Missing Board Member Photos
+* **Live Site**: Under the "Board" section, each of the three cards features a large photograph of the board member (Artham outside, Panshul with a skyline, Arham by a campfire).
+* **Local HTML**: All three photos are completely **missing**. Only the white cards with text and titles render.
 
-## 5. Extraneous & Dead Code
-* **Bloated DOM**: The local `index.html` contains a massive amount of inline scripts, JSON payloads (`wix-essential-viewer-model`), and empty placeholder `div`s used by Wix's engine. These serve no purpose in a static site and significantly increase the file size.
-* **Broken Image Lazy-Loading**: Wix images are often lazy-loaded. You might see `img:not([src]) { visibility: hidden }` in the CSS. If the `ctrl+u` grabbed the `<img>` tags before the `src` was injected by JS (leaving only a blurry placeholder or `srcset`), some images might not load at all on a fresh cache.
+## 4. Missing Image in "How to start a chapter?"
+* **Live Site**: Inside the yellow section, right above the "1. Fill out this form" text, there is a large wide photograph of kids working with a robot.
+* **Local HTML**: The photograph is completely **missing**.
 
-## Summary
-While the static visual layout looks nearly identical in a controlled desktop viewport screenshot, the local `index.html` is effectively a "frozen" snapshot. It lacks all the dynamic behavior, responsiveness, and animations of the original Wix site because the proprietary JavaScript engine that orchestrates those features is disconnected.
+## 5. Missing Floating Pixel Art (Prizes & Awards)
+* **Live Site**: Surrounding the white "Prizes & awards" card, there are several floating pixel-art icons (a trophy, a coin, an ice cream cone, a retro handheld console, and a space invader).
+* **Local HTML**: None of these icons appear. The space around the card is completely **empty**.
+
+## 6. Missing Footer Content
+* **Live Site**: At the very bottom of the page, there is a white footer containing the logo text, "a 501 (c) 3 organization", copyright information, and an email address.
+* **Local HTML**: The footer is a completely blank void. The text did not get copied.
+
+---
+
+### Why did this happen?
+When you use `ctrl+u` on a Wix Studio site, you are copying the Server-Side Rendered (SSR) HTML. For performance, Wix leaves the `src` attribute off of images and leaves animation containers empty until the user actually scrolls down to them. Then, client-side JavaScript injects the images and content. Your local HTML is effectively a "skeleton" of the site.
+
+**To fix this**: You cannot rely on `ctrl+u`. To get the full HTML, you would either need to use a tool that captures the DOM *after* scrolling to the bottom (like saving the page via the browser's "Save Page As" or using a scraper), or we need to manually extract the missing image URLs and content from the live DOM and inject them into your `index.html`.
