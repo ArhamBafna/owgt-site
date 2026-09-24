@@ -85,46 +85,46 @@ export default function Home() {
 
   return (
     <div className="min-h-screen sm:h-screen w-full flex flex-col justify-between sm:justify-center p-6 sm:p-8 md:p-12 relative overflow-x-hidden sm:overflow-hidden bg-white">
-      {/* OWGT Identity - Top Left */}
-      <header className="sm:absolute sm:top-8 sm:left-8 md:top-10 md:left-10 z-10 mb-6 sm:mb-0">
-        <div className="flex flex-col">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-owgt-blue leading-none tracking-tight">
+      {/* OWGT Identity - Centered */}
+      <header className="w-full text-center flex flex-col items-center justify-center sm:absolute sm:top-8 md:top-10 sm:left-0 sm:right-0 sm:mx-auto z-10 mb-6 sm:mb-0">
+        <div className="flex flex-col items-center text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-owgt-blue leading-none tracking-tight text-center">
             OWGT
           </h1>
-          <p className="text-xs sm:text-sm font-medium text-owgt-blue mt-1">
+          <p className="text-xs sm:text-sm font-medium text-owgt-blue mt-1 text-center">
             OneWorldGreaterTogether
           </p>
         </div>
       </header>
 
       {/* Main Content - Centered */}
-      <main className="flex-1 sm:flex-none flex items-center justify-center max-w-xl mx-auto w-full my-auto">
-        <div className="w-full space-y-5 sm:space-y-6">
+      <main className="flex-1 sm:flex-none flex items-center justify-center max-w-xl mx-auto w-full my-auto text-center">
+        <div className="w-full space-y-5 sm:space-y-6 text-center flex flex-col items-center">
           {!isSubmitted ? (
             <>
               {/* Headline */}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight tracking-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight tracking-tight text-center">
                 Oh... you found us early.
               </h2>
 
               {/* Supporting Copy */}
-              <p className="text-base sm:text-lg md:text-xl text-black/80 leading-relaxed max-w-lg">
+              <p className="text-base sm:text-lg md:text-xl text-black/80 leading-relaxed max-w-lg mx-auto text-center">
                 We're building something new to empower students through technology, STEM, and education.
               </p>
 
               {/* Transition Text */}
-              <div className="pt-1">
+              <div className="pt-1 flex justify-center w-full">
                 <DrawablyUnderline className="inline-block">
-                  <span className="text-lg sm:text-xl md:text-2xl font-medium text-black">
+                  <span className="text-lg sm:text-xl md:text-2xl font-medium text-black text-center">
                     Be part of it.
                   </span>
                 </DrawablyUnderline>
               </div>
 
               {/* Signup Form */}
-              <form onSubmit={handleSubmit} className="space-y-4 pt-2" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-4 pt-2 w-full flex flex-col items-center" noValidate>
                 {/* Checkbox */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center gap-3">
                   <DrawablyCheckbox
                     id="early-access"
                     checked={wantsEarlyAccess}
@@ -133,14 +133,14 @@ export default function Home() {
                   />
                   <label 
                     htmlFor="early-access" 
-                    className="text-base sm:text-lg text-black cursor-pointer select-none leading-none"
+                    className="text-base sm:text-lg text-black cursor-pointer select-none leading-none text-center"
                   >
                     I want VERY early special access
                   </label>
                 </div>
 
                 {/* Email Input */}
-                <div className="space-y-2">
+                <div className="space-y-2 w-full max-w-lg mx-auto flex flex-col items-center">
                   <DrawablyInput
                     type="email"
                     id="email"
@@ -151,39 +151,41 @@ export default function Home() {
                     aria-label="Email address"
                     aria-invalid={emailError ? "true" : "false"}
                     aria-describedby={emailError ? "email-error" : undefined}
-                    className="w-full text-base sm:text-lg"
+                    className="w-full text-base sm:text-lg text-center"
                     style={{ minHeight: "48px" }}
                   />
                   {emailError && (
-                    <p id="email-error" className="text-sm font-medium text-owgt-red" role="alert">
+                    <p id="email-error" className="text-sm font-medium text-owgt-red text-center" role="alert">
                       {emailError}
                     </p>
                   )}
                 </div>
 
                 {/* Submit Button */}
-                <DrawablyButton
-                  type="submit"
-                  variant="solid"
-                  disabled={!email || !!emailError}
-                  aria-label="Count me in"
-                  className="text-base sm:text-lg font-medium"
-                  style={{ 
-                    minHeight: "48px",
-                    minWidth: "160px",
-                  }}
-                >
-                  Count me in →
-                </DrawablyButton>
+                <div className="flex justify-center w-full">
+                  <DrawablyButton
+                    type="submit"
+                    variant="solid"
+                    disabled={!email || !!emailError}
+                    aria-label="Count me in"
+                    className="text-base sm:text-lg font-medium"
+                    style={{ 
+                      minHeight: "48px",
+                      minWidth: "160px",
+                    }}
+                  >
+                    Count me in →
+                  </DrawablyButton>
+                </div>
               </form>
 
               {/* Secondary CTA - Newsletter Link */}
-              <div className="pt-2">
+              <div className="pt-2 flex justify-center w-full text-center">
                 <a
                   href="https://owgt-newsletter-rewards.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-block text-sm sm:text-base text-black/75 hover:text-black transition-colors"
+                  className="group inline-block text-sm sm:text-base text-black/75 hover:text-black transition-colors text-center"
                 >
                   <DrawablyUnderline className="[&_.drawably-svg]:opacity-0 group-hover:[&_.drawably-svg]:opacity-100 [&_.drawably-svg]:transition-opacity">
                     Can't wait? Check out the newsletter →
@@ -194,17 +196,17 @@ export default function Home() {
           ) : (
             <>
               {/* Success State */}
-              <div className="space-y-5 sm:space-y-6">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight tracking-tight">
+              <div className="space-y-5 sm:space-y-6 text-center flex flex-col items-center w-full">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight tracking-tight text-center">
                   You're in.
                 </h2>
                 
-                <p className="text-lg sm:text-xl md:text-2xl text-black/80">
+                <p className="text-lg sm:text-xl md:text-2xl text-black/80 text-center">
                   Good timing.
                 </p>
 
                 {/* Share Button */}
-                <div className="pt-2">
+                <div className="pt-2 flex justify-center w-full">
                   <DrawablyButton
                     onClick={handleShare}
                     variant="outline"
@@ -223,7 +225,7 @@ export default function Home() {
                 {/* Share Confirmation Message */}
                 {shareMessage && (
                   <p 
-                    className="text-sm sm:text-base font-medium text-owgt-blue"
+                    className="text-sm sm:text-base font-medium text-owgt-blue text-center"
                     role="status"
                     aria-live="polite"
                   >
