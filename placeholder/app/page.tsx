@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Image from "next/image";
 import { DrawablyButton, DrawablyCheckbox, DrawablyInput, DrawablyUnderline } from "drawably/react";
 
 export default function Home() {
@@ -10,42 +11,38 @@ export default function Home() {
   const [emailError, setEmailError] = useState("");
   const [shareMessage, setShareMessage] = useState("");
 
-  const validateEmail = (value: string): boolean => {
-    // Basic email validation: must contain @ and .
-    const hasAt = value.includes("@");
-    const hasDot = value.includes(".");
-    const isValid = hasAt && hasDot && value.length > 3;
-    
-    if (!isValid && value.length > 0) {
-      setEmailError("Please enter a valid email address");
-    } else {
-      setEmailError("");
-    }
-    
-    return isValid;
+  const validateEmailFormat = (value: string): boolean => {
+    const trimmed = value.trim();
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(trimmed);
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
-    if (value.length > 0) {
-      validateEmail(value);
-    } else {
+    if (emailError) {
       setEmailError("");
     }
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    
-    if (!validateEmail(email)) {
+
+    const trimmed = email.trim();
+    if (!trimmed) {
+      setEmailError("Please enter your email first");
+      return;
+    }
+
+    if (!validateEmailFormat(trimmed)) {
       setEmailError("Please enter a valid email address");
       return;
     }
 
+    setEmailError("");
     // Dummy submission - no backend yet
-    console.log("Signup:", { email, wantsEarlyAccess });
-    
+    console.log("Signup:", { email: trimmed, wantsEarlyAccess });
+
     // Transition to success state
     setIsSubmitted(true);
   };
@@ -84,39 +81,44 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen sm:h-screen w-full flex flex-col justify-between sm:justify-center p-6 sm:p-8 md:p-12 relative overflow-x-hidden sm:overflow-hidden bg-white">
+    <div className="min-h-screen w-full flex flex-col justify-between items-center p-6 sm:p-8 md:p-10 relative overflow-x-hidden bg-white">
       {/* OWGT Identity - Centered */}
-      <header className="w-full text-center flex flex-col items-center justify-center sm:absolute sm:top-8 md:top-10 sm:left-0 sm:right-0 sm:mx-auto z-10 mb-6 sm:mb-0">
+      <header className="w-full text-center flex flex-col items-center justify-center pt-2 sm:pt-4 z-10 mb-4 sm:mb-6">
         <div className="flex flex-col items-center text-center">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-owgt-blue leading-none tracking-tight text-center">
-            OWGT
-          </h1>
-          <p className="text-xs sm:text-sm font-medium text-owgt-blue mt-1 text-center">
+          <Image
+            src="/owgt-logo.png"
+            alt="OWGT Logo"
+            width={112}
+            height={112}
+            priority
+            className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain"
+          />
+          <h1 className="text-xs sm:text-sm font-semibold tracking-wide text-owgt-blue mt-1 text-center">
             OneWorldGreaterTogether
-          </p>
+          </h1>
         </div>
       </header>
 
       {/* Main Content - Centered */}
-      <main className="flex-1 sm:flex-none flex items-center justify-center max-w-xl mx-auto w-full my-auto text-center">
+      <main className="flex-1 flex flex-col items-center justify-center max-w-xl mx-auto w-full my-auto text-center py-4">
         <div className="w-full space-y-5 sm:space-y-6 text-center flex flex-col items-center">
           {!isSubmitted ? (
             <>
               {/* Headline */}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight tracking-tight text-center">
-                Oh... you found us early.
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-owgt-red leading-tight tracking-tight text-center">
+                oh... you found us early.
               </h2>
 
               {/* Supporting Copy */}
               <p className="text-base sm:text-lg md:text-xl text-black/80 leading-relaxed max-w-lg mx-auto text-center">
-                We're building something new to empower students through technology, STEM, and education.
+                we're building something new to empower students through education in technology and stem.
               </p>
 
               {/* Transition Text */}
               <div className="pt-1 flex justify-center w-full">
                 <DrawablyUnderline className="inline-block">
                   <span className="text-lg sm:text-xl md:text-2xl font-medium text-black text-center">
-                    Be part of it.
+                    be part of it.
                   </span>
                 </DrawablyUnderline>
               </div>
@@ -129,13 +131,13 @@ export default function Home() {
                     id="early-access"
                     checked={wantsEarlyAccess}
                     onChange={(e) => setWantsEarlyAccess(e.target.checked)}
-                    aria-label="I want VERY early special access"
+                    aria-label="I want special access"
                   />
-                  <label 
-                    htmlFor="early-access" 
+                  <label
+                    htmlFor="early-access"
                     className="text-base sm:text-lg text-black cursor-pointer select-none leading-none text-center"
                   >
-                    I want VERY early special access
+                    I want special access
                   </label>
                 </div>
 
@@ -147,7 +149,6 @@ export default function Home() {
                     value={email}
                     onChange={handleEmailChange}
                     placeholder="your@email.com"
-                    required
                     aria-label="Email address"
                     aria-invalid={emailError ? "true" : "false"}
                     aria-describedby={emailError ? "email-error" : undefined}
@@ -166,10 +167,9 @@ export default function Home() {
                   <DrawablyButton
                     type="submit"
                     variant="solid"
-                    disabled={!email || !!emailError}
                     aria-label="Count me in"
-                    className="text-base sm:text-lg font-medium"
-                    style={{ 
+                    className="text-base sm:text-lg font-medium cursor-pointer"
+                    style={{
                       minHeight: "48px",
                       minWidth: "160px",
                     }}
@@ -200,7 +200,7 @@ export default function Home() {
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight tracking-tight text-center">
                   You're in.
                 </h2>
-                
+
                 <p className="text-lg sm:text-xl md:text-2xl text-black/80 text-center">
                   Good timing.
                 </p>
@@ -213,7 +213,7 @@ export default function Home() {
                     tone="neutral"
                     aria-label="Share OWGT"
                     className="text-base sm:text-lg font-medium"
-                    style={{ 
+                    style={{
                       minHeight: "48px",
                       minWidth: "160px",
                     }}
@@ -224,7 +224,7 @@ export default function Home() {
 
                 {/* Share Confirmation Message */}
                 {shareMessage && (
-                  <p 
+                  <p
                     className="text-sm sm:text-base font-medium text-owgt-blue text-center"
                     role="status"
                     aria-live="polite"

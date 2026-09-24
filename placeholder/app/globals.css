@@ -29,6 +29,11 @@ select,
   font-family: "Drawably Pen", var(--font-inter), 'Inter', sans-serif !important;
 }
 
+button,
+.drawably-button {
+  cursor: pointer;
+}
+
 .drawably-inputbox input,
 .drawably-inputbox input::placeholder {
   text-align: center;
