@@ -178,19 +178,16 @@ export default function Home() {
               </form>
 
               {/* Secondary CTA - Newsletter Link */}
-              <div className="pt-4 sm:pt-6">
+              <div className="pt-2 sm:pt-3">
                 <a
                   href="https://owgt-newsletter-rewards.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-sm sm:text-base text-black/70 hover:text-black transition-colors group"
+                  className="group inline-block text-sm sm:text-base text-black/75 hover:text-black transition-colors"
                 >
-                  <DrawablyUnderline className="inline-block opacity-0 group-hover:opacity-100 transition-opacity">
+                  <DrawablyUnderline className="[&_.drawably-svg]:opacity-0 group-hover:[&_.drawably-svg]:opacity-100 [&_.drawably-svg]:transition-opacity">
                     Can't wait? Check out the newsletter →
                   </DrawablyUnderline>
-                  <span className="group-hover:hidden">
-                    Can't wait? Check out the newsletter →
-                  </span>
                 </a>
               </div>
             </>
