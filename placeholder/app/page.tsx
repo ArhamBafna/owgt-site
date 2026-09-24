@@ -88,10 +88,10 @@ export default function Home() {
           <Image
             src="/owgt-logo.png"
             alt="OWGT Logo"
-            width={176}
-            height={176}
+            width={128}
+            height={128}
             priority
-            className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-contain"
+            className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain"
           />
           <h1 className="text-xs sm:text-sm font-semibold tracking-wide text-owgt-blue mt-1 text-center">
             OneWorldGreaterTogether
@@ -122,7 +122,7 @@ export default function Home() {
               <div className="pt-1 flex justify-center w-full">
                 <DrawablyUnderline className="inline-block">
                   <span className="text-lg sm:text-xl md:text-2xl font-medium text-black text-center">
-                    be part of it.
+                    be part of it!
                   </span>
                 </DrawablyUnderline>
               </div>
@@ -135,13 +135,13 @@ export default function Home() {
                     id="early-access"
                     checked={wantsEarlyAccess}
                     onChange={(e) => setWantsEarlyAccess(e.target.checked)}
-                    aria-label="i want special access"
+                    aria-label="i want special early access"
                   />
                   <label
                     htmlFor="early-access"
-                    className="text-base sm:text-lg text-black cursor-pointer select-none leading-none text-center"
+                    className="text-sm sm:text-base text-black cursor-pointer select-none leading-none text-center"
                   >
-                    i want special access
+                    i want special early access
                   </label>
                 </div>
 
