@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "app/layout.tsx": {
-    "mtime": 1790289085.6246915,
-    "seen": 1790289463.5484064,
-    "ast_hash": "e17986b8bb811a425ffd0e09a4ded4ec",
+    "mtime": 1790293880.810287,
+    "seen": 1790293913.0207381,
+    "ast_hash": "0248d68894b74f5a57b8f6abeb3868da",
     "semantic_hash": ""
   },
   "app/page.tsx": {
@@ -69,18 +69,6 @@
     "mtime": 1790279098.116322,
     "seen": 1790289074.0458007,
     "ast_hash": "9745afed2f509c1869d601d605bc656f",
-    "semantic_hash": ""
-  },
-  "app/icon.png": {
-    "mtime": 1790288931.2419305,
-    "seen": 1790289074.0458026,
-    "ast_hash": "1a6e38add189538b8c0c2e8c98cfef67",
-    "semantic_hash": ""
-  },
-  "public/favicon.png": {
-    "mtime": 1790288931.2338853,
-    "seen": 1790289074.0458038,
-    "ast_hash": "1a6e38add189538b8c0c2e8c98cfef67",
     "semantic_hash": ""
   },
   "public/owgt-logo.png": {

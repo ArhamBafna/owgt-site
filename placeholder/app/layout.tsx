@@ -12,11 +12,7 @@ export const metadata: Metadata = {
   title: "OWGT",
   description: "We're building something new to empower students through technology, STEM, and education.",
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon.png", type: "image/png" },
-    ],
-    apple: "/favicon.png",
+    icon: "/favicon.ico",
   },
 };
 
