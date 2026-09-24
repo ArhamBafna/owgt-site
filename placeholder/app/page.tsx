@@ -206,16 +206,15 @@ export default function Home() {
                     type="submit"
                     variant="solid"
                     disabled={isSubmitting}
-                    aria-label="Count me in"
+                    state={isSubmitting ? "loading" : "idle"}
+                    aria-label={isSubmitting ? "saving..." : "count me in!"}
                     className="text-base sm:text-lg font-medium cursor-pointer"
                     style={{
                       minHeight: "48px",
                       minWidth: "160px",
-                      opacity: isSubmitting ? 0.7 : 1,
-                      pointerEvents: isSubmitting ? "none" : "auto",
                     }}
                   >
-                    {isSubmitting ? "Saving..." : "Count me in →"}
+                    <span>{isSubmitting ? "saving..." : "count me in!"}</span>
                   </DrawablyButton>
                 </div>
               </form>
