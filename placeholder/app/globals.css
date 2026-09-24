@@ -14,9 +14,9 @@
   --drawably-width: 2;
 }
 
-/* Checked checkbox stroke uses OWGT Red per spec */
+/* Checked checkbox stroke uses green */
 .drawably-checkbox[data-checked] .drawably-check {
-  stroke: #EF4444;
+  stroke: #16A34A;
 }
 
 body,
