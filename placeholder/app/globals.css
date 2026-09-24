@@ -9,7 +9,8 @@
 
 :root {
   --drawably-stroke: #000000;
-  --drawably-fill: #EF4444; /* OWGT Red for primary interactions */
+  --drawably-fill: #EF4444;
+  /* OWGT Red for primary interactions */
   --drawably-paper: #ffffff;
   --drawably-width: 2;
 }
@@ -17,6 +18,15 @@
 /* Checked checkbox stroke uses green */
 .drawably-checkbox[data-checked] .drawably-check {
   stroke: #16A34A;
+}
+
+/* Drawably highlight customization */
+.drawably-highlight {
+  --drawably-wash-opacity: 0.30;
+}
+
+.drawably-highlight .drawably-wash {
+  stroke-opacity: var(--drawably-wash-opacity, 0.45) !important;
 }
 
 /* Green Drawably button */
@@ -56,6 +66,7 @@ body {
 
 /* Ensure minimum touch targets on mobile */
 @media (max-width: 768px) {
+
   button,
   a,
   input[type="checkbox"] {
@@ -65,6 +76,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -76,12 +88,16 @@ body {
 
 /* Hand-drawn boil animation matching Drawably 3-frame 1200ms cycle */
 @keyframes drawably-text-boil {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0px, 0px) rotate(0deg);
   }
+
   33.33% {
     transform: translate(-0.3px, 0.25px) rotate(-0.08deg);
   }
+
   66.67% {
     transform: translate(0.25px, -0.2px) rotate(0.08deg);
   }

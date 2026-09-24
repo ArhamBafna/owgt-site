@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, FormEvent } from "react";
 import Image from "next/image";
-import { DrawablyButton, DrawablyCheckbox, DrawablyInput, DrawablyUnderline } from "drawably/react";
+import { DrawablyButton, DrawablyCheckbox, DrawablyHighlight, DrawablyInput, DrawablyUnderline } from "drawably/react";
 
 function RandomBoilText({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -99,13 +99,15 @@ export default function Home() {
           <Image
             src="/owgt-logo.png"
             alt="OWGT Logo"
-            width={176}
-            height={176}
+            width={144}
+            height={144}
             priority
-            className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-contain"
+            className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 object-contain"
           />
-          <h1 className="text-xs sm:text-sm font-semibold tracking-wide text-owgt-blue mt-1 text-center">
-            OneWorldGreaterTogether
+          <h1 className="text-lg sm:text-xl font-bold tracking-wide text-owgt-blue mt-1 text-center">
+            <DrawablyHighlight className="inline-block px-1.5 py-0.5">
+              OneWorldGreaterTogether
+            </DrawablyHighlight>
           </h1>
         </div>
       </header>
