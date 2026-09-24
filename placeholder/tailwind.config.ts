@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'owgt-blue': '#2563EB',
+        'owgt-blue': '#0345AA',
         'owgt-red': '#EF4444',
       },
     },

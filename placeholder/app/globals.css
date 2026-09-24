@@ -3,7 +3,7 @@
 @import "drawably/font.css";
 
 @theme {
-  --color-owgt-blue: #2563EB;
+  --color-owgt-blue: #0345AA;
   --color-owgt-red: #EF4444;
 }
 
@@ -14,9 +14,12 @@
   --drawably-width: 2;
 }
 
-/* Checked checkbox stroke uses OWGT Red per spec */
+/* Checkbox and checked checkmark stroke use OWGT Blue */
+.drawably-checkbox .drawably-svg path {
+  stroke: var(--color-owgt-blue);
+}
 .drawably-checkbox[data-checked] .drawably-check {
-  stroke: #EF4444;
+  stroke: var(--color-owgt-blue);
 }
 
 body,
