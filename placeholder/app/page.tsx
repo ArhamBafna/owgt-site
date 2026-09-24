@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, FormEvent } from "react";
 import Image from "next/image";
-import { DrawablyButton, DrawablyCheckbox, DrawablyHighlight, DrawablyInput, DrawablyUnderline } from "drawably/react";
+import { DrawablyButton, DrawablyCheckbox, DrawablyInput, DrawablyUnderline } from "drawably/react";
 
 function RandomBoilText({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -40,6 +40,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [wantsEarlyAccess, setWantsEarlyAccess] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
@@ -57,7 +58,7 @@ export default function Home() {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     const trimmed = email.trim();
@@ -72,11 +73,33 @@ export default function Home() {
     }
 
     setEmailError("");
-    // Dummy submission - no backend yet
-    console.log("Signup:", { email: trimmed, wantsEarlyAccess });
+    setIsSubmitting(true);
 
-    // Transition to success state
-    setIsSubmitted(true);
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: trimmed,
+          early_access: wantsEarlyAccess,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setEmailError(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setIsSubmitted(true);
+    } catch {
+      setEmailError("Network error. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleShare = async () => {
@@ -105,9 +128,7 @@ export default function Home() {
             className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 object-contain"
           />
           <h1 className="text-lg sm:text-xl font-bold tracking-wide text-owgt-blue mt-1 text-center">
-            <DrawablyHighlight className="inline-block px-1.5 py-0.5">
-              OneWorldGreaterTogether
-            </DrawablyHighlight>
+            OneWorldGreaterTogether
           </h1>
         </div>
       </header>
@@ -184,14 +205,17 @@ export default function Home() {
                   <DrawablyButton
                     type="submit"
                     variant="solid"
+                    disabled={isSubmitting}
                     aria-label="Count me in"
                     className="text-base sm:text-lg font-medium cursor-pointer"
                     style={{
                       minHeight: "48px",
                       minWidth: "160px",
+                      opacity: isSubmitting ? 0.7 : 1,
+                      pointerEvents: isSubmitting ? "none" : "auto",
                     }}
                   >
-                    Count me in →
+                    {isSubmitting ? "Saving..." : "Count me in →"}
                   </DrawablyButton>
                 </div>
               </form>

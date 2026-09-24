@@ -1,0 +1,92 @@
+{
+  ".eslintrc.json": {
+    "mtime": 1790279748.0137863,
+    "seen": 1790289074.0457718,
+    "ast_hash": "9b8be5ef96ddd69ecd1ddc1554c61a88",
+    "semantic_hash": ""
+  },
+  "app/api/subscribe/route.ts": {
+    "mtime": 1790288330.762922,
+    "seen": 1790289074.0457819,
+    "ast_hash": "2b81624d6006982cf2a9d9b93e5773a0",
+    "semantic_hash": ""
+  },
+  "app/layout.tsx": {
+    "mtime": 1790288368.197417,
+    "seen": 1790289074.045786,
+    "ast_hash": "8356d3fbc1ddd79e9f65f5fc4045c3df",
+    "semantic_hash": ""
+  },
+  "app/page.tsx": {
+    "mtime": 1790288353.26263,
+    "seen": 1790289074.0457878,
+    "ast_hash": "6ea0764569cbb958e8e50b0121ece46c",
+    "semantic_hash": ""
+  },
+  "next.config.ts": {
+    "mtime": 1790279745.2828465,
+    "seen": 1790289074.04579,
+    "ast_hash": "9b77af189a21a7a64e4bd7a426f64176",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1790279939.4490426,
+    "seen": 1790289074.0457911,
+    "ast_hash": "ffced21dcb6b7c0979a8ffa61a89a240",
+    "semantic_hash": ""
+  },
+  "postcss.config.mjs": {
+    "mtime": 1790279944.8488574,
+    "seen": 1790289074.0457933,
+    "ast_hash": "b2f5d23a090943dc40e19a92862cc2c1",
+    "semantic_hash": ""
+  },
+  "tailwind.config.ts": {
+    "mtime": 1790284120.641391,
+    "seen": 1790289074.0457947,
+    "ast_hash": "58fa0597ac6467528c8bb853648294af",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1790279954.6544378,
+    "seen": 1790289074.0457964,
+    "ast_hash": "701d94282762685a48ca77258568187e",
+    "semantic_hash": ""
+  },
+  "vercel.json": {
+    "mtime": 1790279873.9585843,
+    "seen": 1790289074.0457973,
+    "ast_hash": "89e71812b74932f1d22cf57ff85df996",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1790279890.8707142,
+    "seen": 1790289074.045799,
+    "ast_hash": "b33d053ba3a4d36c18a73b2993383164",
+    "semantic_hash": ""
+  },
+  "docs/owgt-placeholder-spec.md": {
+    "mtime": 1790279098.116322,
+    "seen": 1790289074.0458007,
+    "ast_hash": "9745afed2f509c1869d601d605bc656f",
+    "semantic_hash": ""
+  },
+  "app/icon.png": {
+    "mtime": 1790288931.2419305,
+    "seen": 1790289074.0458026,
+    "ast_hash": "1a6e38add189538b8c0c2e8c98cfef67",
+    "semantic_hash": ""
+  },
+  "public/favicon.png": {
+    "mtime": 1790288931.2338853,
+    "seen": 1790289074.0458038,
+    "ast_hash": "1a6e38add189538b8c0c2e8c98cfef67",
+    "semantic_hash": ""
+  },
+  "public/owgt-logo.png": {
+    "mtime": 1790284092.0726013,
+    "seen": 1790289074.045805,
+    "ast_hash": "1a0c6c25a9443ddda08c4ba4840c6a18",
+    "semantic_hash": ""
+  }
+}

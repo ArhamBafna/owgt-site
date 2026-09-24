@@ -20,15 +20,6 @@
   stroke: #16A34A;
 }
 
-/* Drawably highlight customization */
-.drawably-highlight {
-  --drawably-wash-opacity: 0.30;
-}
-
-.drawably-highlight .drawably-wash {
-  stroke-opacity: var(--drawably-wash-opacity, 0.45) !important;
-}
-
 /* Green Drawably button */
 .drawably-button--green {
   --drawably-stroke: #16A34A !important;

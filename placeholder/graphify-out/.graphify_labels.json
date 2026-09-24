@@ -1,0 +1,19 @@
+{
+  "0": "compilerOptions",
+  "1": "dependencies",
+  "2": "OWGT Placeholder / Coming Soon Page",
+  "3": "devDependencies",
+  "4": "Implementation Decisions",
+  "5": "package.json",
+  "6": "OWGT Placeholder / Coming Soon Page",
+  "7": "include",
+  "8": "Further Notes",
+  "9": "vercel.json",
+  "10": "layout.tsx",
+  "11": "page.tsx",
+  "12": ".eslintrc.json",
+  "13": "postcss.config.mjs",
+  "14": "route.ts",
+  "15": "next.config.ts",
+  "16": "tailwind.config.ts"
+}
