@@ -1,7 +1,10 @@
+@import "tailwindcss";
 @import "drawably/style.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@theme {
+  --color-owgt-blue: #2563EB;
+  --color-owgt-red: #EF4444;
+}
 
 :root {
   --drawably-stroke: #000000;
