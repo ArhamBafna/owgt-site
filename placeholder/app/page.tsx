@@ -136,11 +136,10 @@ export default function Home() {
                     checked={wantsEarlyAccess}
                     onChange={(e) => setWantsEarlyAccess(e.target.checked)}
                     aria-label="i want special access"
-                    stroke="var(--color-owgt-blue)"
                   />
                   <label
                     htmlFor="early-access"
-                    className="text-base sm:text-lg text-owgt-blue cursor-pointer select-none leading-none text-center"
+                    className="text-base sm:text-lg text-black cursor-pointer select-none leading-none text-center"
                   >
                     i want special access
                   </label>
