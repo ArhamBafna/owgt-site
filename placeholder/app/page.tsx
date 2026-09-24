@@ -106,7 +106,7 @@ export default function Home() {
             <>
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-owgt-red leading-tight tracking-tight text-center">
-                oh... you found us early.
+                <span className="drawably-text-boil">oh... you found us early.</span>
               </h2>
 
               {/* Supporting Copy */}

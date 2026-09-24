@@ -65,3 +65,22 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Hand-drawn boil animation matching Drawably 3-frame 1200ms cycle */
+@keyframes drawably-text-boil {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  33.33% {
+    transform: translate(-0.7px, 0.5px) rotate(-0.35deg);
+  }
+  66.67% {
+    transform: translate(0.7px, -0.5px) rotate(0.35deg);
+  }
+}
+
+.drawably-text-boil {
+  display: inline-block;
+  animation: drawably-text-boil 1200ms step-end infinite;
+  transform-origin: center center;
+}
