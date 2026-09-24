@@ -84,45 +84,45 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen sm:h-screen w-full flex flex-col justify-between sm:justify-center p-6 sm:p-8 md:p-12 relative overflow-x-hidden sm:overflow-hidden bg-white">
       {/* OWGT Identity - Top Left */}
-      <div className="fixed top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 z-10">
+      <header className="sm:absolute sm:top-8 sm:left-8 md:top-10 md:left-10 z-10 mb-6 sm:mb-0">
         <div className="flex flex-col">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-owgt-blue leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-owgt-blue leading-none tracking-tight">
             OWGT
           </h1>
-          <p className="text-xs sm:text-sm text-owgt-blue mt-0.5">
+          <p className="text-xs sm:text-sm font-medium text-owgt-blue mt-1">
             OneWorldGreaterTogether
           </p>
         </div>
-      </div>
+      </header>
 
       {/* Main Content - Centered */}
-      <main className="flex-1 flex items-center justify-center max-w-2xl mx-auto w-full pt-20 sm:pt-0">
-        <div className="w-full space-y-6 sm:space-y-8">
+      <main className="flex-1 sm:flex-none flex items-center justify-center max-w-xl mx-auto w-full my-auto">
+        <div className="w-full space-y-5 sm:space-y-6">
           {!isSubmitted ? (
             <>
               {/* Headline */}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight tracking-tight">
                 Oh... you found us early.
               </h2>
 
               {/* Supporting Copy */}
-              <p className="text-lg sm:text-xl text-black/80 leading-relaxed max-w-xl">
+              <p className="text-base sm:text-lg md:text-xl text-black/80 leading-relaxed max-w-lg">
                 We're building something new to empower students through technology, STEM, and education.
               </p>
 
               {/* Transition Text */}
-              <div className="pt-2">
+              <div className="pt-1">
                 <DrawablyUnderline className="inline-block">
-                  <span className="text-xl sm:text-2xl font-medium text-black">
+                  <span className="text-lg sm:text-xl md:text-2xl font-medium text-black">
                     Be part of it.
                   </span>
                 </DrawablyUnderline>
               </div>
 
               {/* Signup Form */}
-              <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 pt-4" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-4 pt-2" noValidate>
                 {/* Checkbox */}
                 <div className="flex items-center gap-3">
                   <DrawablyCheckbox
@@ -155,7 +155,7 @@ export default function Home() {
                     style={{ minHeight: "48px" }}
                   />
                   {emailError && (
-                    <p id="email-error" className="text-sm text-owgt-red" role="alert">
+                    <p id="email-error" className="text-sm font-medium text-owgt-red" role="alert">
                       {emailError}
                     </p>
                   )}
@@ -167,7 +167,7 @@ export default function Home() {
                   variant="solid"
                   disabled={!email || !!emailError}
                   aria-label="Count me in"
-                  className="text-base sm:text-lg"
+                  className="text-base sm:text-lg font-medium"
                   style={{ 
                     minHeight: "48px",
                     minWidth: "160px",
@@ -178,7 +178,7 @@ export default function Home() {
               </form>
 
               {/* Secondary CTA - Newsletter Link */}
-              <div className="pt-2 sm:pt-3">
+              <div className="pt-2">
                 <a
                   href="https://owgt-newsletter-rewards.vercel.app/"
                   target="_blank"
@@ -194,22 +194,23 @@ export default function Home() {
           ) : (
             <>
               {/* Success State */}
-              <div className="space-y-6 sm:space-y-8">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-black leading-tight">
+              <div className="space-y-5 sm:space-y-6">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight tracking-tight">
                   You're in.
                 </h2>
                 
-                <p className="text-xl sm:text-2xl text-black/80">
+                <p className="text-lg sm:text-xl md:text-2xl text-black/80">
                   Good timing.
                 </p>
 
                 {/* Share Button */}
-                <div className="pt-4">
+                <div className="pt-2">
                   <DrawablyButton
                     onClick={handleShare}
                     variant="outline"
+                    tone="neutral"
                     aria-label="Share OWGT"
-                    className="text-base sm:text-lg"
+                    className="text-base sm:text-lg font-medium"
                     style={{ 
                       minHeight: "48px",
                       minWidth: "160px",
@@ -222,7 +223,7 @@ export default function Home() {
                 {/* Share Confirmation Message */}
                 {shareMessage && (
                   <p 
-                    className="text-sm sm:text-base text-owgt-blue"
+                    className="text-sm sm:text-base font-medium text-owgt-blue"
                     role="status"
                     aria-live="polite"
                   >
