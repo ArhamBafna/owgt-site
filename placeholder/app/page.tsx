@@ -118,7 +118,12 @@ export default function Home() {
     <div className="min-h-screen w-full flex flex-col items-center p-6 sm:p-8 md:p-10 relative overflow-x-hidden bg-white">
       {/* OWGT Identity - Centered */}
       <header className="w-full text-center flex flex-col items-center justify-center pt-2 sm:pt-4 z-10 mb-2 sm:mb-3">
-        <div className="flex flex-col items-center text-center">
+        <a
+          href="https://linktr.ee/owgt"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex flex-col items-center text-center cursor-pointer group focus:outline-none"
+        >
           <Image
             src="/owgt-logo.png"
             alt="OWGT Logo"
@@ -128,9 +133,11 @@ export default function Home() {
             className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 object-contain"
           />
           <h1 className="text-lg sm:text-xl font-bold tracking-wide text-owgt-blue mt-1 text-center">
-            OneWorldGreaterTogether
+            <DrawablyUnderline className="inline-block">
+              OneWorldGreaterTogether
+            </DrawablyUnderline>
           </h1>
-        </div>
+        </a>
       </header>
 
       {/* Main Content - Centered */}

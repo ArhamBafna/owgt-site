@@ -38,3 +38,6 @@ next-env.d.ts
 # generated agent rules
 AGENTS.md
 CLAUDE.md
+
+.vercel
+.env*
