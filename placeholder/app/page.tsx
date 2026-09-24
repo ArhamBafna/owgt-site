@@ -88,10 +88,10 @@ export default function Home() {
           <Image
             src="/owgt-logo.png"
             alt="OWGT Logo"
-            width={112}
-            height={112}
+            width={176}
+            height={176}
             priority
-            className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain"
+            className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-contain"
           />
           <h1 className="text-xs sm:text-sm font-semibold tracking-wide text-owgt-blue mt-1 text-center">
             OneWorldGreaterTogether
