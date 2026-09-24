@@ -110,8 +110,12 @@ export default function Home() {
               </h2>
 
               {/* Supporting Copy */}
-              <p className="text-base sm:text-lg md:text-xl text-black/80 leading-relaxed max-w-lg mx-auto text-center">
-                we're building something new to empower students through education in technology and stem.
+              <p className="text-base sm:text-lg md:text-xl font-bold text-black/90 leading-relaxed max-w-xl mx-auto text-center">
+                we're building something new to{" "}
+                <span className="text-owgt-blue">empower</span>{" "}
+                <span className="text-owgt-blue">students</span> through education in{" "}
+                <span className="text-owgt-blue">technology</span> and{" "}
+                <span className="text-owgt-blue">stem</span>.
               </p>
 
               {/* Transition Text */}
@@ -131,13 +135,14 @@ export default function Home() {
                     id="early-access"
                     checked={wantsEarlyAccess}
                     onChange={(e) => setWantsEarlyAccess(e.target.checked)}
-                    aria-label="I want special access"
+                    aria-label="i want special access"
+                    stroke="var(--color-owgt-blue)"
                   />
                   <label
                     htmlFor="early-access"
-                    className="text-base sm:text-lg text-black cursor-pointer select-none leading-none text-center"
+                    className="text-base sm:text-lg text-owgt-blue cursor-pointer select-none leading-none text-center"
                   >
-                    I want special access
+                    i want special access
                   </label>
                 </div>
 
@@ -188,7 +193,7 @@ export default function Home() {
                   className="group inline-block text-sm sm:text-base text-black/75 hover:text-black transition-colors text-center"
                 >
                   <DrawablyUnderline className="[&_.drawably-svg]:opacity-0 group-hover:[&_.drawably-svg]:opacity-100 [&_.drawably-svg]:transition-opacity">
-                    Can't wait? Check out the newsletter →
+                    can't wait?
                   </DrawablyUnderline>
                 </a>
               </div>
