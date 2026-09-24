@@ -19,6 +19,14 @@
   stroke: #16A34A;
 }
 
+/* Green Drawably button */
+.drawably-button--green {
+  --drawably-stroke: #16A34A !important;
+  --drawably-ink: #16A34A !important;
+  --drawably-fill: #16A34A !important;
+  color: #16A34A !important;
+}
+
 body,
 button,
 input,

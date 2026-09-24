@@ -1,15 +1,47 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useRef, useEffect, FormEvent } from "react";
 import Image from "next/image";
 import { DrawablyButton, DrawablyCheckbox, DrawablyInput, DrawablyUnderline } from "drawably/react";
+
+function RandomBoilText({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    let timer: NodeJS.Timeout;
+
+    const tick = () => {
+      if (ref.current) {
+        const x = (Math.random() * 0.9 - 0.45).toFixed(2);
+        const y = (Math.random() * 0.9 - 0.45).toFixed(2);
+        const r = (Math.random() * 0.24 - 0.12).toFixed(2);
+        ref.current.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
+      }
+      const nextDelay = 220 + Math.random() * 230;
+      timer = setTimeout(tick, nextDelay);
+    };
+
+    tick();
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <span ref={ref} className={`inline-block will-change-transform ${className}`}>
+      {children}
+    </span>
+  );
+}
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [wantsEarlyAccess, setWantsEarlyAccess] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [emailError, setEmailError] = useState("");
-  const [shareMessage, setShareMessage] = useState("");
+  const [isCopied, setIsCopied] = useState(false);
 
   const validateEmailFormat = (value: string): boolean => {
     const trimmed = value.trim();
@@ -48,50 +80,29 @@ export default function Home() {
   };
 
   const handleShare = async () => {
-    const shareData = {
-      title: "OWGT - Coming Soon",
-      text: "Check out OWGT - empowering students through technology, STEM, and education!",
-      url: window.location.href,
-    };
-
-    // Try Web Share API first (mobile)
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-        setShareMessage("Thanks for sharing!");
-        setTimeout(() => setShareMessage(""), 3000);
-      } catch (err) {
-        // User cancelled or error occurred
-        if ((err as Error).name !== "AbortError") {
-          console.error("Share failed:", err);
-        }
-      }
-    } else {
-      // Fallback to clipboard (desktop)
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        setShareMessage("Link copied to clipboard!");
-        setTimeout(() => setShareMessage(""), 3000);
-      } catch (err) {
-        console.error("Copy failed:", err);
-        setShareMessage("Unable to copy link");
-        setTimeout(() => setShareMessage(""), 3000);
-      }
+    try {
+      await navigator.clipboard.writeText("https://owgt.org");
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2500);
+    } catch (err) {
+      console.error("Copy failed:", err);
     }
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col justify-between items-center p-6 sm:p-8 md:p-10 relative overflow-x-hidden bg-white">
+    <div className="min-h-screen w-full flex flex-col items-center p-6 sm:p-8 md:p-10 relative overflow-x-hidden bg-white">
       {/* OWGT Identity - Centered */}
-      <header className="w-full text-center flex flex-col items-center justify-center pt-2 sm:pt-4 z-10 mb-4 sm:mb-6">
+      <header className="w-full text-center flex flex-col items-center justify-center pt-2 sm:pt-4 z-10 mb-2 sm:mb-3">
         <div className="flex flex-col items-center text-center">
           <Image
             src="/owgt-logo.png"
             alt="OWGT Logo"
-            width={128}
-            height={128}
+            width={176}
+            height={176}
             priority
-            className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain"
+            className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-contain"
           />
           <h1 className="text-xs sm:text-sm font-semibold tracking-wide text-owgt-blue mt-1 text-center">
             OneWorldGreaterTogether
@@ -100,13 +111,13 @@ export default function Home() {
       </header>
 
       {/* Main Content - Centered */}
-      <main className="flex-1 flex flex-col items-center justify-center max-w-xl mx-auto w-full my-auto text-center py-4">
+      <main className="flex-1 flex flex-col items-center justify-start max-w-xl mx-auto w-full mt-2 sm:mt-4 mb-auto text-center py-2 sm:py-4">
         <div className="w-full space-y-5 sm:space-y-6 text-center flex flex-col items-center">
           {!isSubmitted ? (
             <>
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-owgt-red leading-tight tracking-tight text-center">
-                <span className="drawably-text-boil">oh... you found us early.</span>
+                <RandomBoilText>oh... you found us early.</RandomBoilText>
               </h2>
 
               {/* Supporting Copy */}
@@ -139,7 +150,7 @@ export default function Home() {
                   />
                   <label
                     htmlFor="early-access"
-                    className="text-sm sm:text-base text-black cursor-pointer select-none leading-none text-center"
+                    className="text-base sm:text-lg text-black cursor-pointer select-none leading-none text-center"
                   >
                     i want special early access
                   </label>
@@ -201,41 +212,47 @@ export default function Home() {
             <>
               {/* Success State */}
               <div className="space-y-5 sm:space-y-6 text-center flex flex-col items-center w-full">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight tracking-tight text-center">
-                  You're in.
-                </h2>
+                <div className="space-y-1 sm:space-y-1.5 text-center">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-owgt-red leading-tight tracking-tight text-center">
+                    you're in.
+                  </h2>
 
-                <p className="text-lg sm:text-xl md:text-2xl text-black/80 text-center">
-                  Good timing.
-                </p>
+                  <p className="text-lg sm:text-xl md:text-2xl text-black/80 text-center">
+                    great timing.
+                  </p>
+                </div>
 
                 {/* Share Button */}
                 <div className="pt-2 flex justify-center w-full">
                   <DrawablyButton
                     onClick={handleShare}
                     variant="outline"
-                    tone="neutral"
-                    aria-label="Share OWGT"
-                    className="text-base sm:text-lg font-medium"
+                    aria-label="Share"
+                    className="drawably-button--green font-medium cursor-pointer"
                     style={{
                       minHeight: "48px",
                       minWidth: "160px",
                     }}
                   >
-                    Share OWGT →
+                    <span className={isCopied ? "text-sm sm:text-base text-center" : "text-base sm:text-lg text-center"}>
+                      {isCopied ? "link copied!" : "Share"}
+                    </span>
                   </DrawablyButton>
                 </div>
 
-                {/* Share Confirmation Message */}
-                {shareMessage && (
-                  <p
-                    className="text-sm sm:text-base font-medium text-owgt-blue text-center"
-                    role="status"
-                    aria-live="polite"
+                {/* Secondary CTA - Newsletter Link */}
+                <div className="pt-2 flex justify-center w-full text-center">
+                  <a
+                    href="https://owgt-newsletter-rewards.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-block text-sm sm:text-base text-black/75 hover:text-black transition-colors text-center"
                   >
-                    {shareMessage}
-                  </p>
-                )}
+                    <DrawablyUnderline className="[&_.drawably-svg]:opacity-0 group-hover:[&_.drawably-svg]:opacity-100 [&_.drawably-svg]:transition-opacity">
+                      can't wait?
+                    </DrawablyUnderline>
+                  </a>
+                </div>
               </div>
             </>
           )}
