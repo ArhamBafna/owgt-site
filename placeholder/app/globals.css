@@ -72,10 +72,10 @@ body {
     transform: translate(0px, 0px) rotate(0deg);
   }
   33.33% {
-    transform: translate(-0.7px, 0.5px) rotate(-0.35deg);
+    transform: translate(-0.3px, 0.25px) rotate(-0.08deg);
   }
   66.67% {
-    transform: translate(0.7px, -0.5px) rotate(0.35deg);
+    transform: translate(0.25px, -0.2px) rotate(0.08deg);
   }
 }
 
