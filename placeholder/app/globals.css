@@ -103,7 +103,7 @@ body {
 }
 
 .header-title-link:hover {
-  transform: scale(1.02);
+  transform: scale(1.012);
   --drawably-stroke: #000000;
   --drawably-ink: #000000;
 }
@@ -117,7 +117,22 @@ body {
 }
 
 .header-title-link:active {
-  transform: scale(0.98);
+  transform: scale(0.99);
+  transition-duration: 80ms;
+}
+
+.early-access-label {
+  display: inline-block;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.early-access-label:hover {
+  transform: scale(1.012);
+}
+
+.early-access-label:active {
+  transform: scale(0.99);
   transition-duration: 80ms;
 }
 

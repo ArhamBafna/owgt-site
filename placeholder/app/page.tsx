@@ -157,7 +157,7 @@ export default function Home() {
                   />
                   <label
                     htmlFor="early-access"
-                    className="text-base sm:text-lg text-black cursor-pointer select-none leading-none text-center"
+                    className="early-access-label text-base sm:text-lg text-black cursor-pointer select-none leading-none text-center"
                   >
                     i want special early access
                   </label>
