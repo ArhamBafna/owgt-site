@@ -109,7 +109,7 @@ export default function Home() {
           className="header-title-link cursor-pointer focus:outline-none mt-1"
           aria-label="OWGT Linktree - OneWorldGreaterTogether"
         >
-          <h1 className="text-lg sm:text-xl font-bold tracking-wide text-owgt-blue text-center">
+          <h1 className="text-lg sm:text-xl font-bold tracking-wide text-owgt-blue transition-colors duration-200 text-center">
             <DrawablyUnderline className="inline-block">
               OneWorldGreaterTogether
             </DrawablyUnderline>
