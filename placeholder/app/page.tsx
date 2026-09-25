@@ -4,38 +4,6 @@ import { useState, useRef, useEffect, FormEvent } from "react";
 import Image from "next/image";
 import { DrawablyButton, DrawablyCheckbox, DrawablyInput, DrawablyUnderline } from "drawably/react";
 
-function RandomBoilText({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
-    let timer: NodeJS.Timeout;
-
-    const tick = () => {
-      if (ref.current) {
-        const x = (Math.random() * 0.9 - 0.45).toFixed(2);
-        const y = (Math.random() * 0.9 - 0.45).toFixed(2);
-        const r = (Math.random() * 0.24 - 0.12).toFixed(2);
-        ref.current.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
-      }
-      const nextDelay = 220 + Math.random() * 230;
-      timer = setTimeout(tick, nextDelay);
-    };
-
-    tick();
-    return () => clearTimeout(timer);
-  }, []);
-
-  return (
-    <span ref={ref} className={`inline-block will-change-transform ${className}`}>
-      {children}
-    </span>
-  );
-}
-
 export default function Home() {
   const [email, setEmail] = useState("");
   const [wantsEarlyAccess, setWantsEarlyAccess] = useState(false);
@@ -122,7 +90,8 @@ export default function Home() {
           href="https://linktr.ee/owgt"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex flex-col items-center text-center cursor-pointer group focus:outline-none"
+          className="header-logo-link cursor-pointer focus:outline-none"
+          aria-label="OWGT Linktree - Logo"
         >
           <Image
             src="/owgt-logo.png"
@@ -130,9 +99,17 @@ export default function Home() {
             width={144}
             height={144}
             priority
-            className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 object-contain"
+            className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 object-contain header-logo-img"
           />
-          <h1 className="text-lg sm:text-xl font-bold tracking-wide text-owgt-blue mt-1 text-center">
+        </a>
+        <a
+          href="https://linktr.ee/owgt"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="header-title-link cursor-pointer focus:outline-none mt-1"
+          aria-label="OWGT Linktree - OneWorldGreaterTogether"
+        >
+          <h1 className="text-lg sm:text-xl font-bold tracking-wide text-owgt-blue text-center">
             <DrawablyUnderline className="inline-block">
               OneWorldGreaterTogether
             </DrawablyUnderline>
@@ -147,7 +124,7 @@ export default function Home() {
             <>
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-owgt-red leading-tight tracking-tight text-center">
-                <RandomBoilText>oh... you found us early.</RandomBoilText>
+                oh... you found us early.
               </h2>
 
               {/* Supporting Copy */}

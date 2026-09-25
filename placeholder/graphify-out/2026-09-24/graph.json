@@ -25,6 +25,18 @@
       "file_type": "code",
       "norm_label": "home()",
       "source_file": "app/page.tsx",
+      "source_location": "L39"
+    },
+    {
+      "id": "app_page_randomboiltext",
+      "label": "RandomBoilText()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "page.tsx",
+      "file_type": "code",
+      "norm_label": "randomboiltext()",
+      "source_file": "app/page.tsx",
       "source_location": "L7"
     },
     {
@@ -1934,6 +1946,17 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/page.tsx",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "app_page",
+      "target": "app_page_randomboiltext",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/page.tsx",
       "source_location": "L7",
       "weight": 1.0
     },
@@ -3026,5 +3049,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "d7a519c0e678dae8a74a45bd1bc65faede94db7b"
+  "built_at_commit": "879004b76a8a3d84f73c660785f24ea22be4cd79"
 }

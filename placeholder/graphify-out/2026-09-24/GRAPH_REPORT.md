@@ -1,16 +1,16 @@
 # Graph Report - placeholder  (2026-09-24)
 
 ## Corpus Check
-- 12 files · ~7,345 words
+- 12 files · ~7,435 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 140 nodes · 128 edges · 17 communities (12 shown, 5 thin omitted)
+- 141 nodes · 129 edges · 17 communities (12 shown, 5 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d7a519c0`
+- Built from commit: `879004b7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -102,7 +102,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `dependencies` connect `dependencies` to `package.json`?**
   _High betweenness centrality (0.053) - this node is a cross-community bridge._
 - **Why does `devDependencies` connect `devDependencies` to `package.json`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+  _High betweenness centrality (0.042) - this node is a cross-community bridge._
 - **Why does `compilerOptions` connect `compilerOptions` to `include`?**
   _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **What connects `extends`, `next/core-web-vitals`, `inter` to the rest of the system?**
