@@ -129,8 +129,26 @@ body {
   will-change: transform;
 }
 
+.early-access-group label {
+  transition: color 180ms ease;
+}
+
+.early-access-group .drawably-checkbox .drawably-svg path {
+  transition: stroke 180ms ease;
+}
+
 .early-access-group:hover {
   transform: scale(1.012);
+  --drawably-stroke: #16A34A;
+  --drawably-ink: #16A34A;
+}
+
+.early-access-group:hover label {
+  color: #16A34A !important;
+}
+
+.early-access-group:hover .drawably-checkbox .drawably-svg path {
+  stroke: #16A34A !important;
 }
 
 .early-access-group:active {
