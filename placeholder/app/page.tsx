@@ -148,7 +148,7 @@ export default function Home() {
               {/* Signup Form */}
               <form onSubmit={handleSubmit} className="space-y-4 pt-2 w-full flex flex-col items-center" noValidate>
                 {/* Checkbox */}
-                <div className="flex items-center justify-center gap-3">
+                <div className="early-access-group flex items-center justify-center gap-3 cursor-pointer select-none">
                   <DrawablyCheckbox
                     id="early-access"
                     checked={wantsEarlyAccess}
@@ -157,7 +157,7 @@ export default function Home() {
                   />
                   <label
                     htmlFor="early-access"
-                    className="early-access-label text-base sm:text-lg text-black cursor-pointer select-none leading-none text-center"
+                    className="text-base sm:text-lg text-black cursor-pointer select-none leading-none text-center"
                   >
                     i want special early access
                   </label>

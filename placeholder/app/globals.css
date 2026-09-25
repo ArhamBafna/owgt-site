@@ -121,17 +121,19 @@ body {
   transition-duration: 80ms;
 }
 
-.early-access-label {
-  display: inline-block;
+.early-access-group {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
-.early-access-label:hover {
+.early-access-group:hover {
   transform: scale(1.012);
 }
 
-.early-access-label:active {
+.early-access-group:active {
   transform: scale(0.99);
   transition-duration: 80ms;
 }
