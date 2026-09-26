@@ -493,7 +493,7 @@ a {
    ========================================================================== */
 .application-section {
     background-color: var(--clr-red-accent);
-    padding: 6.5rem 1.5rem;
+    padding: 8.5rem 1.5rem 6.5rem;
     width: 100%;
 }
 
@@ -516,7 +516,7 @@ a {
 
 .app-title-col {
     position: sticky;
-    top: 100px;
+    top: 124px;
 }
 
 .app-heading {
@@ -980,7 +980,7 @@ a {
    ========================================================================== */
 .newsletter-section {
     background-color: var(--clr-bg-page);
-    padding: 2.25rem 1.5rem;
+    padding: 8rem 1.5rem 3.5rem;
     width: 100%;
     position: relative;
     text-align: center;
@@ -1733,13 +1733,16 @@ a {
     }
 
     .volunteer-section,
-    .application-section,
     .chapter-section {
         padding: 3.5rem 1.25rem;
     }
 
+    .application-section {
+        padding: 6rem 1.25rem 3.5rem;
+    }
+
     .newsletter-section {
-        padding: 1.5rem 1.25rem;
+        padding: 6rem 1.25rem 2rem;
     }
 
     .volunteer-container,
