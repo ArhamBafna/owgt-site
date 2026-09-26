@@ -1391,6 +1391,200 @@ a {
 }
 
 /* ==========================================================================
+   11.1 RSVP POPUP MODAL
+   ========================================================================== */
+.rsvp-modal-hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.rsvp-modal-visible {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+#rsvp-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    padding: 1.5rem;
+}
+
+.rsvp-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+}
+
+.rsvp-modal-content {
+    position: relative;
+    z-index: 1;
+    background-color: var(--clr-white);
+    border-radius: 16px;
+    padding: 2.5rem 2.2rem 2.2rem;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    animation: toast-slide-up 0.25s ease forwards;
+}
+
+.rsvp-close-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    line-height: 1;
+    color: #888888;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 6px;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.rsvp-close-icon:hover {
+    color: #111111;
+    transform: scale(1.1);
+}
+
+.rsvp-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--clr-black);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.1;
+}
+
+.rsvp-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: #555555;
+    margin: 0 0 1.6rem 0;
+    line-height: 1.45;
+}
+
+.rsvp-input-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.rsvp-email-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.85rem 1rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #111111;
+    background-color: #f7fafc;
+    border: 1.5px solid #d3dce6;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rsvp-email-input:focus {
+    border-color: #0f9992;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(15, 153, 146, 0.15);
+}
+
+.rsvp-error-text {
+    font-size: 0.85rem;
+    color: #d93025;
+    margin-top: 0.4rem;
+    font-weight: 600;
+}
+
+.rsvp-submit-btn {
+    width: 100%;
+    padding: 0.85rem 1.5rem;
+    background-color: #0f9992;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.rsvp-submit-btn:hover {
+    background-color: #0b7c76;
+    transform: translateY(-1px);
+}
+
+.rsvp-submit-btn:active {
+    transform: translateY(0);
+}
+
+.rsvp-btn-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: rsvp-spin 0.6s linear infinite;
+}
+
+@keyframes rsvp-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rsvp-success-icon-wrap {
+    margin-bottom: 1rem;
+}
+
+.rsvp-success-svg {
+    width: 52px;
+    height: 52px;
+    color: #0f9992;
+}
+
+.rsvp-success-title {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #085229;
+    margin: 0 0 1.5rem 0;
+}
+
+.rsvp-close-btn {
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 0.65rem 2.2rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.rsvp-close-btn:hover {
+    background-color: #333333;
+    transform: scale(1.04);
+}
+
+/* ==========================================================================
    12. RESPONSIVENESS & BREAKPOINTS
    ========================================================================== */
 @media (max-width: 1024px) {

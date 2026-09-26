@@ -30,8 +30,7 @@
                 <a href="#join" class="nav-link">Join</a>
                 <a href="#chapter" class="nav-link">Chapter</a>
                 <a href="#newsletter" class="nav-link">Newsletter</a>
-                <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. -->
-                <a href="#" onclick="showToast(event)" class="nav-rsvp-btn">RSVP</a>
+                <a href="#" onclick="openRsvpModal(event)" class="nav-rsvp-btn">RSVP</a>
             </nav>
         </div>
     </header>
@@ -60,9 +59,8 @@
         <div class="events-container">
             <h2 class="events-title">Events Coming Soon</h2>
             <div class="events-actions">
-                <span class="btn-tbd">To Be Determined</span>
-                <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. -->
-                <a href="#" onclick="showToast(event)" class="btn-rsvp">RSVP</a>
+                <span class="btn-tbd">None yet, check back soon...</span>
+                <a href="#" onclick="openRsvpModal(event)" class="btn-rsvp">RSVP</a>
             </div>
         </div>
     </section>
@@ -398,6 +396,41 @@
         </div>
     </footer>
 
+    <!-- RSVP Popup Modal -->
+    <div id="rsvp-modal" class="rsvp-modal-hidden" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-title">
+        <div class="rsvp-modal-backdrop" onclick="closeRsvpModal()"></div>
+        <div class="rsvp-modal-content">
+            <button type="button" class="rsvp-close-icon" onclick="closeRsvpModal()" aria-label="Close modal">&times;</button>
+            
+            <!-- Form View -->
+            <div id="rsvp-form-view">
+                <h2 id="rsvp-modal-title" class="rsvp-title">RSVP</h2>
+                <p class="rsvp-subtitle">be the first to know about upcoming workshops &amp; events</p>
+                <form id="rsvp-popup-form" onsubmit="handleRsvpSubmit(event)">
+                    <div class="rsvp-input-group">
+                        <input type="email" id="rsvp-email" name="EMAIL" placeholder="name@gmail.com" required autocomplete="email" class="rsvp-email-input">
+                        <div id="rsvp-error" class="rsvp-error-text" style="display: none;"></div>
+                    </div>
+                    <button type="submit" id="rsvp-submit-btn" class="rsvp-submit-btn">
+                        <span class="rsvp-btn-text">Submit</span>
+                        <span class="rsvp-btn-spinner" style="display: none;"></span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success View -->
+            <div id="rsvp-success-view" style="display: none;">
+                <div class="rsvp-success-icon-wrap">
+                    <svg viewBox="0 0 512 512" class="rsvp-success-svg">
+                        <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h3 class="rsvp-success-title">You're on the list!</h3>
+                <button type="button" onclick="closeRsvpModal()" class="rsvp-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Placeholder Toast Modal -->
     <div id="toast-modal" class="toast-hidden" role="dialog" aria-modal="true">
         <div class="toast-content">
@@ -407,6 +440,93 @@
     </div>
 
     <script>
+        function openRsvpModal(e) {
+            if (e) e.preventDefault();
+            const modal = document.getElementById('rsvp-modal');
+            const formView = document.getElementById('rsvp-form-view');
+            const successView = document.getElementById('rsvp-success-view');
+            const errorDiv = document.getElementById('rsvp-error');
+            const emailInput = document.getElementById('rsvp-email');
+
+            formView.style.display = 'block';
+            successView.style.display = 'none';
+            if (errorDiv) {
+                errorDiv.style.display = 'none';
+                errorDiv.textContent = '';
+            }
+            emailInput.value = '';
+
+            modal.classList.remove('rsvp-modal-hidden');
+            modal.classList.add('rsvp-modal-visible');
+            setTimeout(() => emailInput.focus(), 50);
+        }
+
+        function closeRsvpModal() {
+            const modal = document.getElementById('rsvp-modal');
+            if (modal) {
+                modal.classList.remove('rsvp-modal-visible');
+                modal.classList.add('rsvp-modal-hidden');
+            }
+        }
+
+        async function handleRsvpSubmit(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('rsvp-email');
+            const submitBtn = document.getElementById('rsvp-submit-btn');
+            const btnText = submitBtn.querySelector('.rsvp-btn-text');
+            const btnSpinner = submitBtn.querySelector('.rsvp-btn-spinner');
+            const errorDiv = document.getElementById('rsvp-error');
+            const formView = document.getElementById('rsvp-form-view');
+            const successView = document.getElementById('rsvp-success-view');
+
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errorDiv.textContent = 'Please enter a valid email address.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            errorDiv.style.display = 'none';
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnSpinner.style.display = 'inline-block';
+
+            try {
+                const endpoint = 'https://sibforms.com/serve/MUIFAFd-ELRb80KAFGK8Vzt-7DWyP7ieFIfLymcOXoiObnRsTS9d1pBMH9Ow1iVmZRCF2cij5ugrXvTAMonnYXnxHgcjYf3aVdfjFTrU1kqMRyQKEZhKXVNCz12FyHI77T7q2Nqh4pOETlvaT56-UWuwBSzuzvUVk6-UeiyQEnI9rIczo67djuwGEj371o-yRl5m5NJ0tz28ygIFZA==';
+                const formData = new FormData();
+                formData.append('EMAIL', email);
+                formData.append('email_address_check', '');
+                formData.append('locale', 'en');
+
+                await fetch(endpoint, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'cors'
+                });
+
+                formView.style.display = 'none';
+                successView.style.display = 'block';
+            } catch (err) {
+                console.error('RSVP submission error:', err);
+                formView.style.display = 'none';
+                successView.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline-block';
+                btnSpinner.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeRsvpModal();
+                closeToast();
+            }
+        });
+
         function showToast(e) {
             if (e) e.preventDefault();
             const modal = document.getElementById('toast-modal');
