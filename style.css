@@ -962,7 +962,7 @@ a {
 }
 
 .newsletter-container {
-    max-width: 600px;
+    max-width: 720px;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -985,9 +985,117 @@ a {
 
 .newsletter-section #sib-container {
     width: 100%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    padding: 2rem 2.2rem;
+    max-width: 720px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
     box-sizing: border-box;
+}
+
+/* Widen headline so 'you' stays on the same line */
+.newsletter-headline-text {
+    margin: 0;
+    font-size: 29px;
+    font-weight: 700;
+    color: #fd0009;
+    font-family: Trebuchet MS, sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+@media (min-width: 580px) {
+    .newsletter-headline-text {
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 579px) {
+    .newsletter-headline-text {
+        font-size: clamp(1.35rem, 6vw, 1.75rem);
+        text-wrap: balance;
+    }
+}
+
+/* Custom Checkbox matching OWGT theme */
+.newsletter-checkbox-block {
+    padding: 12px 0 6px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.custom-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'Familjen Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--clr-black);
+    transition: var(--transition);
+}
+
+.custom-checkbox-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.custom-checkbox-box {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    border: 2px solid var(--clr-black);
+    border-radius: 6px;
+    background-color: var(--clr-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-checkbox-icon {
+    width: 13px;
+    height: 13px;
+    color: var(--clr-white);
+    stroke-dasharray: 20;
+    stroke-dashoffset: 20;
+    transform: scale(0.6);
+    transition: stroke-dashoffset 0.2s ease, transform 0.2s ease;
+}
+
+.custom-checkbox-label:hover .custom-checkbox-box {
+    border-color: var(--clr-red-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(230, 59, 46, 0.18);
+}
+
+.custom-checkbox-input:checked + .custom-checkbox-box {
+    background-color: var(--clr-black);
+    border-color: var(--clr-black);
+}
+
+.custom-checkbox-input:checked + .custom-checkbox-box .custom-checkbox-icon {
+    stroke-dashoffset: 0;
+    transform: scale(1);
+}
+
+.custom-checkbox-input:focus-visible + .custom-checkbox-box {
+    outline: 2px solid var(--clr-red-accent);
+    outline-offset: 2px;
+}
+
+.custom-checkbox-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111111;
+    letter-spacing: -0.01em;
 }
 
 :where(.sib-form-message-panel) {
@@ -1022,20 +1130,40 @@ a {
     color: #2BB2FC;
 }
 
-.newsletter-section .entry__field input {
+.newsletter-section .entry__field input.input {
     width: 100%;
+    padding: 14px 18px;
+    font-family: 'Familjen Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--clr-black);
+    background-color: var(--clr-white);
+    border: 2px solid rgba(0, 0, 0, 0.14);
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     box-sizing: border-box;
     outline: none;
+    transition: var(--transition);
+}
+
+.newsletter-section .entry__field input.input:focus {
+    border-color: var(--clr-black);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .newsletter-section .sib-form-block__button {
     cursor: pointer;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    padding: 12px 36px;
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+    padding: 13px 48px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 4px 14px rgba(15, 153, 146, 0.3);
 }
 
 .newsletter-section .sib-form-block__button:hover {
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(15, 153, 146, 0.4);
     opacity: 0.95;
 }
 
