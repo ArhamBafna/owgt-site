@@ -30,6 +30,8 @@
 
     <!-- Main Hero Section -->
     <section id="welcome" class="hero-section">
+        <div class="hero-bg-base"></div>
+        <div class="hero-bg-spotlight"></div>
         <div class="hero-bg-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">
@@ -224,6 +226,29 @@
             const modal = document.getElementById('toast-modal');
             modal.classList.remove('toast-visible');
             modal.classList.add('toast-hidden');
+        }
+
+        // Hero Spotlight Effect
+        const heroSection = document.getElementById('welcome');
+        const spotlightLayer = document.querySelector('.hero-bg-spotlight');
+
+        if (heroSection && spotlightLayer) {
+            heroSection.addEventListener('mousemove', (e) => {
+                const rect = heroSection.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                spotlightLayer.style.setProperty('--x', `${x}px`);
+                spotlightLayer.style.setProperty('--y', `${y}px`);
+            });
+            
+            heroSection.addEventListener('mouseenter', () => {
+                heroSection.classList.add('is-hovered');
+            });
+            
+            heroSection.addEventListener('mouseleave', () => {
+                heroSection.classList.remove('is-hovered');
+            });
         }
     </script>
 </body>

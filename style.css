@@ -174,10 +174,51 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 12rem 1.5rem 5rem;
+    overflow: hidden;
+}
+
+.hero-bg-base {
+    position: absolute;
+    inset: 0;
     background-image: url('assets/images/hero_bg.png');
     background-size: cover;
     background-position: center;
-    padding: 12rem 1.5rem 5rem;
+    filter: grayscale(100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-bg-spotlight {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/images/hero_bg.png');
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+    z-index: 1;
+    
+    --x: 50%;
+    --y: 50%;
+    --spotlight-radius: 220px;
+    
+    -webkit-mask-image: radial-gradient(circle var(--spotlight-radius) at var(--x) var(--y), black 0%, transparent 100%);
+    mask-image: radial-gradient(circle var(--spotlight-radius) at var(--x) var(--y), black 0%, transparent 100%);
+    
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.hero-section.is-hovered .hero-bg-spotlight {
+    opacity: 1;
+}
+
+@media (hover: none) {
+    .hero-bg-spotlight {
+        opacity: 1;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
 }
 
 .hero-bg-overlay {
@@ -185,6 +226,7 @@ a {
     inset: 0;
     background: radial-gradient(circle at center, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
     pointer-events: none;
+    z-index: 1;
 }
 
 .hero-content {
