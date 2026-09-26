@@ -238,22 +238,53 @@
             const ctx = canvas.getContext('2d');
             let isPainted = false;
             
+            // Preload the image
+            const bgImg = new Image();
+            bgImg.src = 'assets/images/hero_bg.png';
+            
+            function drawImageCover() {
+                const canvasRatio = canvas.width / canvas.height;
+                const imgRatio = bgImg.width / bgImg.height;
+                let sWidth, sHeight, sX, sY;
+
+                if (imgRatio > canvasRatio) {
+                    sHeight = bgImg.height;
+                    sWidth = bgImg.height * canvasRatio;
+                    sX = (bgImg.width - sWidth) / 2;
+                    sY = 0;
+                } else {
+                    sWidth = bgImg.width;
+                    sHeight = bgImg.width / canvasRatio;
+                    sX = 0;
+                    sY = (bgImg.height - sHeight) / 2;
+                }
+                
+                ctx.globalCompositeOperation = 'source-over';
+                // Darken heavily (40%) and make greyscale so the full color underneath pops
+                ctx.filter = 'grayscale(100%) brightness(40%)';
+                ctx.drawImage(bgImg, sX, sY, sWidth, sHeight, 0, 0, canvas.width, canvas.height);
+                ctx.filter = 'none';
+            }
+            
+            function fillGreyscale() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (bgImg.complete && bgImg.naturalWidth !== 0) {
+                    drawImageCover();
+                } else {
+                    bgImg.onload = drawImageCover;
+                }
+                isPainted = false;
+                resetBtn.classList.remove('is-visible');
+            }
+            
             function resizeCanvas() {
                 canvas.width = canvas.offsetWidth;
                 canvas.height = canvas.offsetHeight;
                 fillGreyscale();
             }
             
-            function fillGreyscale() {
-                ctx.globalCompositeOperation = 'source-over';
-                ctx.fillStyle = '#ffffff'; // white + mix-blend-mode: color = greyscale
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                isPainted = false;
-                resetBtn.classList.remove('is-visible');
-            }
-            
             window.addEventListener('resize', resizeCanvas);
-            resizeCanvas(); // initial fill
+            resizeCanvas(); // initial setup
             
             heroSection.addEventListener('mousemove', (e) => {
                 // Skip if mobile/touch device
@@ -263,7 +294,7 @@
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 
-                // Erase white fill to reveal true color underneath
+                // Erase dark layer to reveal true color underneath
                 ctx.globalCompositeOperation = 'destination-out';
                 
                 const gradient = ctx.createRadialGradient(x, y, 0, x, y, 150);
