@@ -215,12 +215,13 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1300px;
+    width: 100%;
 }
 
 .hero-title {
     font-family: 'crave-fine', Georgia, serif;
-    font-size: clamp(3.2rem, 9vw, 8.5rem);
+    font-size: clamp(3.5rem, 11.5vw, 11rem);
     font-weight: 700;
     line-height: 0.92;
     letter-spacing: -0.05em;
@@ -234,7 +235,7 @@ a {
     position: absolute;
     right: 21%;
     bottom: 27%;
-    width: clamp(2.4rem, 5.2vw, 4.8rem);
+    width: clamp(2.5rem, 6vw, 5.8rem);
     height: auto;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     animation: trophy-bounce 3s ease-in-out infinite;
