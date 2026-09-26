@@ -168,7 +168,7 @@ a {
    ========================================================================== */
 .hero-section {
     position: relative;
-    min-height: 86vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -177,7 +177,7 @@ a {
     background-image: url('assets/images/hero_bg.png');
     background-size: cover;
     background-position: center;
-    padding: 9.5rem 1.5rem 3rem;
+    padding: 12rem 1.5rem 5rem;
 }
 
 .hero-bg-overlay {
