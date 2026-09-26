@@ -40,10 +40,18 @@
 
     --transition: all 0.25s ease;
 
-    /* Hero Title O Logo Controls */
-    --logo-rotate: 0deg;
-    --logo-zoom: 1;
-    --logo-x: 0px;
+    /* ========================================================
+       HERO LOGO MANUAL CONTROLS:
+       Edit numbers below to adjust the robot inside 'O'!
+
+       - ROTATION: angle (e.g. 0deg, 15deg, -15deg)
+       - ZOOM:     1 = normal, 1.1 = 10% bigger, 0.9 = 10% smaller
+       - LEFT/RIGHT (X): 0px = center, 5px = right, -5px = left
+       - UP/DOWN (Y):    0px = center, -5px = up, 5px = down
+       ======================================================== */
+    --logo-rotate: 102deg;
+    --logo-zoom: 0.1;
+    --logo-x: 10px;
     --logo-y: 0px;
 }
 
@@ -202,20 +210,6 @@ a {
 }
 
 .hero-title-o {
-    /* ========================================================
-       MANUAL LOGO CONTROLS:
-       Change any number below to adjust the robot inside 'O'!
-
-       - ROTATION:  angle (e.g. 10deg, -10deg, 0deg)
-       - ZOOM:      1 = 100%, 1.1 = 10% bigger, 0.9 = 10% smaller
-       - LEFT/RIGHT (X): 0px = center, 2px = right, -2px = left
-       - UP/DOWN (Y):    0px = center, -2px = up, 2px = down
-       ======================================================== */
-    --logo-rotate: -10deg;
-    --logo-zoom: 1;
-    --logo-x: 0px;
-    --logo-y: 0px;
-
     position: relative;
     display: inline-block;
 }
@@ -246,9 +240,7 @@ a {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(calc(-50% + var(--logo-x, 0px)), calc(-48.5% + var(--logo-y, 0px)))
-               rotate(var(--logo-rotate, 0deg))
-               scale(var(--logo-zoom, var(--logo-scale, 1)));
+    transform: translate(calc(-50% + var(--logo-x, 0px)), calc(-48.5% + var(--logo-y, 0px))) rotate(var(--logo-rotate, 0deg)) scale(var(--logo-zoom, var(--logo-scale, 1)));
     transform-origin: center center;
     width: 250%;
     max-width: none;
