@@ -632,17 +632,17 @@ a {
 }
 
 /* Three distinct staggered alignment columns matching live Wix */
-.row-arham {
+.row-artham {
     justify-content: flex-start;
     z-index: 20;
 }
 
-.row-artham {
+.row-panshul {
     justify-content: center;
     z-index: 25;
 }
 
-.row-panshul {
+.row-arham {
     justify-content: flex-end;
     z-index: 30;
 }
