@@ -29,10 +29,12 @@
     --font-heading: 'Familjen Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-body: 'Familjen Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-    --radius-sm: 8px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
-    --radius-pill: 999px;
+    --radius-sm: 7px;
+    --radius-md: 12px;
+    --radius-card: 14px;
+    --radius-prizes: 17px;
+    --radius-events: 19px;
+    --radius-pill: 300px;
 
     --transition: all 0.25s ease;
 }
@@ -110,29 +112,34 @@ a {
 }
 
 /* ==========================================================================
-   2. NAVBAR
+   2. NAVBAR (Floating Frosted Glass Navbar)
    ========================================================================== */
 .navbar {
     position: sticky;
-    top: 0;
+    top: 14px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    height: 64px;
-    display: flex;
-    align-items: center;
+    pointer-events: none;
+    padding: 0 1.5rem;
+    margin-bottom: -72px; /* Pulls hero section upward so navbar floats seamlessly over the hero clouds/sky */
 }
 
 .nav-container {
     width: 100%;
     max-width: 1380px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0.65rem 1.8rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    pointer-events: auto;
+    transition: var(--transition);
 }
 
 .nav-logo a {
@@ -140,6 +147,7 @@ a {
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--clr-black);
+    white-space: nowrap;
 }
 
 .nav-links {
@@ -152,6 +160,8 @@ a {
     font-size: 0.95rem;
     font-weight: 600;
     color: #222222;
+    padding: 0.35rem 0.6rem;
+    border-radius: var(--radius-sm);
     transition: var(--transition);
 }
 
@@ -160,7 +170,7 @@ a {
 }
 
 .nav-rsvp-btn {
-    background-color: var(--clr-red-accent);
+    background-color: #F73D18;
     color: var(--clr-white);
     padding: 0.45rem 1.4rem;
     border-radius: var(--radius-pill);
@@ -170,7 +180,7 @@ a {
 }
 
 .nav-rsvp-btn:hover {
-    background-color: var(--clr-red-dark);
+    background-color: #000000;
     transform: scale(1.04);
 }
 
@@ -179,7 +189,7 @@ a {
    ========================================================================== */
 .hero-section {
     position: relative;
-    min-height: 82vh;
+    min-height: 84vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -188,7 +198,7 @@ a {
     background-image: url('assets/images/hero_bg.png');
     background-size: cover;
     background-position: center;
-    padding: 4rem 1.5rem 2rem;
+    padding: 7rem 1.5rem 2.5rem;
 }
 
 .hero-bg-overlay {
@@ -263,7 +273,7 @@ a {
    ========================================================================== */
 .events-section {
     width: 100%;
-    padding: 3rem 1.5rem;
+    padding: 3.5rem 1.5rem;
     display: flex;
     justify-content: center;
     background-color: transparent;
@@ -273,7 +283,7 @@ a {
     background-color: var(--clr-blue-box);
     width: 100%;
     max-width: 480px;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-events); /* 19px Wix ground truth */
     padding: 3.5rem 2.5rem;
     text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
@@ -304,7 +314,7 @@ a {
     background-color: var(--clr-red-accent);
     color: var(--clr-white);
     padding: 0.85rem 2.5rem;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-events); /* 19px Wix ground truth - rounded rectangle, not pill */
     font-size: 1rem;
     font-weight: 700;
     width: 100%;
@@ -316,7 +326,7 @@ a {
     background-color: #000000;
     color: var(--clr-white);
     padding: 0.85rem 2.5rem;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-pill); /* 300px pill */
     font-size: 1rem;
     font-weight: 700;
     width: 100%;
@@ -325,7 +335,7 @@ a {
 }
 
 .btn-rsvp:hover {
-    background-color: #222222;
+    background-color: #F75F40;
     transform: scale(1.03);
 }
 
@@ -333,14 +343,18 @@ a {
    5. VOLUNTEER SECTION
    ========================================================================== */
 .volunteer-section {
-    background-color: var(--clr-white);
-    padding: 5rem 2rem 6rem;
+    background-color: transparent;
+    padding: 2.5rem 1.5rem;
     width: 100%;
 }
 
 .volunteer-container {
     max-width: 1240px;
     margin: 0 auto;
+    background-color: var(--clr-white);
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    padding: 4rem 3.5rem 4.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .volunteer-header {
@@ -369,7 +383,7 @@ a {
 
 .volunteer-image-wrapper {
     width: 100%;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
     overflow: hidden;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
@@ -380,6 +394,7 @@ a {
     max-height: 600px;
     object-fit: cover;
     object-position: center;
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
     transition: transform 0.6s ease;
 }
 
@@ -391,15 +406,19 @@ a {
    6. APPLICATION STEPS SECTION
    ========================================================================== */
 .application-section {
-    background-color: var(--clr-red-accent);
-    color: var(--clr-white);
-    padding: 6rem 2rem;
+    background-color: transparent;
+    padding: 2.5rem 1.5rem;
     width: 100%;
 }
 
 .application-container {
     max-width: 1240px;
     margin: 0 auto;
+    background-color: var(--clr-red-accent);
+    color: var(--clr-white);
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    padding: 4.5rem 3.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .app-steps-layout {
@@ -437,7 +456,7 @@ a {
 .step-card {
     background-color: var(--clr-white);
     color: var(--clr-black);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
     padding: 3.5rem 3rem;
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
     transition: var(--transition);
@@ -541,7 +560,8 @@ a {
 
 .board-card {
     background-color: var(--clr-white);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    border: 1px solid rgba(0, 0, 0, 0.07);
     overflow: hidden;
     width: 100%;
     max-width: 380px;
@@ -559,6 +579,7 @@ a {
     width: 100%;
     height: 360px;
     overflow: hidden;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
 }
 
 .board-photo {
@@ -566,6 +587,7 @@ a {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
     transition: transform 0.5s ease;
 }
 
@@ -614,15 +636,19 @@ a {
    8. HOW TO START A CHAPTER SECTION
    ========================================================================== */
 .chapter-section {
-    background-color: var(--clr-yellow-accent);
-    padding: 6rem 2rem 7rem;
+    background-color: transparent;
+    padding: 2.5rem 1.5rem;
     width: 100%;
 }
 
 .chapter-container {
     max-width: 1240px;
     margin: 0 auto;
+    background-color: var(--clr-yellow-accent);
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    padding: 4.5rem 3.5rem 5rem;
     text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .chapter-heading {
@@ -635,7 +661,7 @@ a {
 
 .chapter-image-card {
     background-color: var(--clr-yellow-accent);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -646,7 +672,7 @@ a {
     width: 100%;
     max-height: 600px;
     object-fit: cover;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 2rem;
 }
@@ -701,7 +727,7 @@ a {
 
 .prizes-card {
     background-color: var(--clr-white);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-prizes); /* 17px Wix ground truth */
     padding: 4rem 3.5rem;
     max-width: 440px;
     text-align: center;
@@ -785,15 +811,18 @@ a {
    10. FOOTER
    ========================================================================== */
 .site-footer {
-    background-color: var(--clr-white);
-    padding: 3rem 2rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    background-color: transparent;
+    padding: 2.5rem 1.5rem 3.5rem;
     width: 100%;
 }
 
 .footer-container {
-    max-width: 1380px;
+    max-width: 1240px;
     margin: 0 auto;
+    background-color: var(--clr-white);
+    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    padding: 2.5rem 3rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -923,8 +952,52 @@ a {
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        top: 10px;
+        padding: 0 0.75rem;
+        margin-bottom: -64px;
+    }
+
+    .nav-container {
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-md); /* 12px mobile */
+    }
+
+    .nav-logo a {
+        font-size: 0.95rem;
+        white-space: nowrap;
+    }
+
     .nav-links {
-        gap: 1rem;
+        gap: 0.75rem;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 0.2rem 0.35rem;
+    }
+
+    .nav-rsvp-btn {
+        padding: 0.35rem 0.9rem;
+        font-size: 0.8rem;
+    }
+
+    .hero-section {
+        padding: 5.5rem 1rem 2rem;
+    }
+
+    .volunteer-section,
+    .application-section,
+    .chapter-section {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .volunteer-container,
+    .application-container,
+    .chapter-container,
+    .footer-container {
+        padding: 2.5rem 1.5rem;
+        border-radius: var(--radius-card);
     }
 
     .volunteer-header {
