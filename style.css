@@ -168,7 +168,7 @@ a {
    ========================================================================== */
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    min-height: 101.7vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
