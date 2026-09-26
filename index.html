@@ -333,9 +333,11 @@
 
                 // To change the circle size manually, update both '100' values below:
                 const gradient = ctx.createRadialGradient(x, y, 0, x, y, 100);
-                // Soft fade from very center to edge
-                gradient.addColorStop(0, 'rgba(0,0,0,1)');
-                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                
+                // To make it softer or harder, change the last number (opacity: 0.0 to 1.0)
+                gradient.addColorStop(0, 'rgba(0,0,0,0.6)');   // Center
+                gradient.addColorStop(0.5, 'rgba(0,0,0,0.15)'); // Middle
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');      // Edge
 
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
