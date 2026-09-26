@@ -637,12 +637,12 @@ a {
     z-index: 20;
 }
 
-.row-panshul {
+.row-arham {
     justify-content: center;
     z-index: 25;
 }
 
-.row-arham {
+.row-panshul {
     justify-content: flex-end;
     z-index: 30;
 }
