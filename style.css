@@ -723,12 +723,14 @@ a {
 }
 
 /* ==========================================================================
-   8. HOW TO START A CHAPTER SECTION
+   8. HOW TO START A CHAPTER SECTION (With Integrated Prizes & Awards)
    ========================================================================== */
 .chapter-section {
     background-color: var(--clr-yellow-accent);
-    padding: 6.5rem 1.5rem;
+    padding: 6.5rem 2rem;
     width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .chapter-container {
@@ -737,8 +739,9 @@ a {
     background-color: transparent;
     border-radius: 0;
     padding: 0;
-    text-align: center;
     box-shadow: none;
+    position: relative;
+    z-index: 5;
 }
 
 .chapter-heading {
@@ -746,46 +749,106 @@ a {
     font-weight: 800;
     letter-spacing: -0.04em;
     color: var(--clr-black);
-    margin-bottom: 3rem;
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.chapter-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 2.25rem;
+    align-items: stretch;
+}
+
+.chapter-image-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
 }
 
 .chapter-image-card {
+    width: 100%;
     background-color: transparent;
-    border-radius: 0;
+    border-radius: var(--radius-card);
     overflow: hidden;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .chapter-image {
     width: 100%;
-    max-height: 600px;
+    height: 100%;
+    min-height: 420px;
     object-fit: cover;
+    display: block;
     border-radius: var(--radius-card);
-    /* 14px Wix ground truth */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    margin-bottom: 2rem;
+    transition: transform 0.5s ease;
 }
 
-.chapter-steps-bar {
+.chapter-image-card:hover .chapter-image {
+    transform: scale(1.03);
+}
+
+.chapter-info-col {
     display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    justify-content: space-between;
+}
+
+.chapter-card {
+    background-color: var(--clr-white);
+    border-radius: var(--radius-card);
+    padding: 2.5rem 2.25rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 4rem;
-    flex-wrap: wrap;
-    padding: 0.5rem 1rem;
+    flex: 1;
+    text-align: left;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chapter-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
+}
+
+.chapter-card-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--clr-black);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.chapter-card-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444444;
+}
+
+.chapter-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
 }
 
 .chapter-step-item {
-    font-size: 1.1rem;
+    font-size: 1.12rem;
     font-weight: 700;
     color: var(--clr-black);
+    line-height: 1.4;
 }
 
 .chapter-link {
     color: var(--clr-black);
     text-decoration: underline;
+    text-underline-offset: 3px;
     transition: var(--transition);
 }
 
@@ -793,114 +856,98 @@ a {
     color: var(--clr-red-accent);
 }
 
-/* ==========================================================================
-   9. PRIZES & AWARDS SECTION (Floating Pixel Art Around Perimeter)
-   ========================================================================== */
-.prizes-section {
-    background-color: var(--clr-bg-page);
-    padding: 8rem 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.prizes-stage {
-    position: relative;
-    width: 100%;
-    max-width: 1080px;
-    min-height: 480px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.prizes-card {
-    background-color: var(--clr-white);
-    border-radius: var(--radius-prizes);
-    /* 17px Wix ground truth */
-    padding: 4rem 3.5rem;
-    max-width: 440px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    position: relative;
-    z-index: 5;
-    transition: var(--transition);
-}
-
-.prizes-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
-}
-
-.prizes-title {
-    font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-    color: var(--clr-black);
-}
-
-.prizes-text {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #444444;
-}
-
-/* Authentic Floating Pixel Art Positioning */
+/* Floating Pixel Art Overlapping Image & White Box Borders */
 .prize-art-icon {
     position: absolute;
-    width: 75px;
     height: auto;
-    z-index: 4;
-    transition: transform 0.3s ease;
-    animation: pixel-float 5s ease-in-out infinite alternate;
+    z-index: 10;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.14));
+    animation: pixel-float var(--float-dur, 4.5s) ease-in-out infinite alternate;
+    animation-delay: var(--float-delay, 0s);
+    will-change: transform;
 }
 
+/* 1. Trophy Left: Overlaps Top-Left of Image Card */
 .prize-trophy-left {
-    top: 5%;
-    left: 20%;
-    animation-delay: 0s;
+    width: 66px;
+    top: -24px;
+    left: -18px;
+    --rot: -11deg;
+    --rot-drift: 4deg;
+    --float-y: -10px;
+    --float-dur: 4.6s;
+    --float-delay: 0s;
 }
 
-.prize-icecream {
-    top: 38%;
-    left: 6%;
-    animation-delay: 1.2s;
-}
-
-.prize-console {
-    bottom: 8%;
-    left: 22%;
-    animation-delay: 2.4s;
-}
-
-.prize-trophy-right {
-    top: 5%;
-    right: 20%;
-    animation-delay: 0.6s;
-}
-
-.prize-coin {
-    top: 38%;
-    right: 8%;
-    animation-delay: 1.8s;
-}
-
+/* 2. Space Invader: Overlaps Bottom Border of Image Card */
 .prize-invader {
-    bottom: 8%;
-    right: 14%;
-    animation-delay: 3s;
+    width: 58px;
+    bottom: -20px;
+    left: 18%;
+    --rot: 9deg;
+    --rot-drift: -4deg;
+    --float-y: -9px;
+    --float-dur: 5.2s;
+    --float-delay: 1.8s;
+}
+
+/* 3. Game Console: In the Center Gutter, Overlaps Right Border of Image Card */
+.prize-console {
+    width: 74px;
+    top: calc(50% - 37px);
+    right: -28px;
+    --rot: -8deg;
+    --rot-drift: 3deg;
+    --float-y: -11px;
+    --float-dur: 4.8s;
+    --float-delay: 2.6s;
+}
+
+/* 4. Ice Cream: Overlaps Top Border of Prizes & Awards Card (away from text) */
+.prize-icecream {
+    width: 60px;
+    top: -28px;
+    right: 44px;
+    --rot: 15deg;
+    --rot-drift: -4deg;
+    --float-y: -9px;
+    --float-dur: 4.2s;
+    --float-delay: 0.9s;
+}
+
+/* 5. Coin: Overlaps Right Seam / Corner of Prizes & Awards Card */
+.prize-coin {
+    width: 52px;
+    bottom: -22px;
+    right: -18px;
+    --rot: -14deg;
+    --rot-drift: 4deg;
+    --float-y: -8px;
+    --float-dur: 3.9s;
+    --float-delay: 2.1s;
+}
+
+/* 6. Trophy Right: Overlaps Bottom Border of Steps Card (away from text) */
+.prize-trophy-right {
+    width: 68px;
+    bottom: -26px;
+    right: 64px;
+    --rot: 11deg;
+    --rot-drift: -3deg;
+    --float-y: -10px;
+    --float-dur: 5.0s;
+    --float-delay: 1.4s;
 }
 
 @keyframes pixel-float {
     0% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(0) rotate(var(--rot, 0deg));
     }
 
     100% {
-        transform: translateY(-12px) rotate(3deg);
+        transform: translateY(var(--float-y, -10px)) rotate(calc(var(--rot, 0deg) + var(--rot-drift, 3deg)));
     }
 }
 
@@ -1070,16 +1117,19 @@ a {
         justify-content: center;
     }
 
-    .prizes-stage {
-        min-height: 400px;
+    .chapter-content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
-    .prize-trophy-left {
-        left: 8%;
+    .chapter-image {
+        min-height: 340px;
+        max-height: 480px;
     }
 
-    .prize-trophy-right {
-        right: 8%;
+    .chapter-image-wrapper {
+        min-height: 340px;
+        max-height: 480px;
     }
 }
 
@@ -1179,14 +1229,61 @@ a {
         margin-bottom: 2rem;
     }
 
-    .prize-art-icon {
-        width: 50px;
+    .chapter-card {
+        padding: 2rem 1.6rem;
     }
 
-    .prize-icecream,
+    .chapter-card-title {
+        font-size: 1.5rem;
+    }
+
+    .chapter-card-text {
+        font-size: 0.95rem;
+    }
+
+    .chapter-step-item {
+        font-size: 1rem;
+    }
+
+    .prize-art-icon {
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.12));
+    }
+
+    .prize-trophy-left {
+        width: 48px;
+        top: -16px;
+        left: -10px;
+    }
+
+    .prize-invader {
+        width: 42px;
+        bottom: -15px;
+        left: 12%;
+    }
+
+    .prize-console {
+        width: 50px;
+        top: auto;
+        bottom: -18px;
+        right: 14px;
+    }
+
+    .prize-icecream {
+        width: 46px;
+        top: -20px;
+        right: 24px;
+    }
+
     .prize-coin {
-        display: none;
-        /* Hide edge clutter on narrow screens */
+        width: 40px;
+        bottom: -16px;
+        right: -8px;
+    }
+
+    .prize-trophy-right {
+        width: 52px;
+        bottom: -20px;
+        right: 32px;
     }
 
     .footer-container {

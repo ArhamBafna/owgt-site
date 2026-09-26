@@ -184,46 +184,60 @@
         </div>
     </section>
 
-    <!-- How to start a chapter Section -->
+    <!-- How to start a chapter Section (with Prizes & Awards Integrated) -->
     <section id="chapter" class="chapter-section">
         <div class="chapter-container">
             <h2 class="chapter-heading">How to start a chapter?</h2>
-            <div class="chapter-image-card">
-                <img src="assets/images/chapter_robot.jpg" alt="Students building and programming robotics in classroom"
-                    class="chapter-image">
-                <div class="chapter-steps-bar">
-                    <p class="chapter-step-item">1. Fill out
-                        <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. --><a
-                            href="#" onclick="showToast(event)" class="chapter-link">this form</a>.
-                    </p>
-                    <p class="chapter-step-item">2. Download
-                        <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. --><a
-                            href="#" onclick="showToast(event)" class="chapter-link">this document</a> for more details.
-                    </p>
+
+            <div class="chapter-content-grid">
+                <!-- Left Column: Chapter Image with Overlapping Floating Icons -->
+                <div class="chapter-image-wrapper">
+                    <!-- Overlapping image borders (top-left, bottom, right center) -->
+                    <img src="assets/icons/trophy.svg" alt="Pixel Art Trophy" class="prize-art-icon prize-trophy-left">
+                    <img src="assets/icons/spaceinvader.svg" alt="Pixel Art Space Invader" class="prize-art-icon prize-invader">
+                    <img src="assets/icons/console.svg" alt="Pixel Art Game Console" class="prize-art-icon prize-console">
+
+                    <div class="chapter-image-card">
+                        <img src="assets/images/chapter_robot.jpg"
+                            alt="Students building and programming robotics in classroom" class="chapter-image">
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Prizes & Awards Section (Light Green Background with Pixel Art around perimeter) -->
-    <section class="prizes-section">
-        <div class="prizes-stage">
-            <!-- Authentic Pixel Art floating around perimeter -->
-            <img src="assets/icons/trophy.svg" alt="Pixel Art Trophy" class="prize-art-icon prize-trophy-left">
-            <img src="assets/icons/icecream.svg" alt="Pixel Art Ice Cream" class="prize-art-icon prize-icecream">
-            <img src="assets/icons/console.svg" alt="Pixel Art Game Console" class="prize-art-icon prize-console">
+                <!-- Right Column: Prizes & Awards + Steps to Join with Overlapping Floating Icons -->
+                <div class="chapter-info-col">
+                    <!-- Top Card: Prizes & Awards -->
+                    <div class="chapter-card chapter-prizes-card">
+                        <!-- Overlapping top border and bottom-right seam border -->
+                        <img src="assets/icons/icecream.svg" alt="Pixel Art Ice Cream" class="prize-art-icon prize-icecream">
+                        <img src="assets/icons/coin.svg" alt="Pixel Art Coin" class="prize-art-icon prize-coin">
 
-            <img src="assets/icons/trophy_right.svg" alt="Pixel Art Trophy Right"
-                class="prize-art-icon prize-trophy-right">
-            <img src="assets/icons/coin.svg" alt="Pixel Art Coin" class="prize-art-icon prize-coin">
-            <img src="assets/icons/spaceinvader.svg" alt="Pixel Art Space Invader" class="prize-art-icon prize-invader">
+                        <h3 class="chapter-card-title">Prizes &amp; awards</h3>
+                        <p class="chapter-card-text">By starting a chapter you will be part of the OWGT Team. You will
+                            have the ability to lead the club and gain volunteer hours for your work. You can gain over
+                            100 hours in the year. In addition You will be given a recognition letter and potential
+                            board positions.</p>
+                    </div>
 
-            <!-- Center White Card -->
-            <div class="prizes-card">
-                <h2 class="prizes-title">Prizes &amp; awards</h2>
-                <p class="prizes-text">By starting a chapter you will be part of the OWGT Team. You will have the
-                    ability to lead the club and gain volunteer hours for your work. You can gain over 100 hours in the
-                    year. In addition You will be given a recognition letter and potential board positions.</p>
+                    <!-- Bottom Card: Steps to Start -->
+                    <div class="chapter-card chapter-steps-card">
+                        <!-- Overlapping bottom border -->
+                        <img src="assets/icons/trophy_right.svg" alt="Pixel Art Trophy Right"
+                            class="prize-art-icon prize-trophy-right">
+
+                        <h3 class="chapter-card-title">Steps to get started</h3>
+                        <div class="chapter-steps-list">
+                            <p class="chapter-step-item">1. Fill out
+                                <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. --><a
+                                    href="#" onclick="showToast(event)" class="chapter-link">this form</a>.
+                            </p>
+                            <p class="chapter-step-item">2. Download
+                                <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. --><a
+                                    href="#" onclick="showToast(event)" class="chapter-link">this document</a> for more
+                                details.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
