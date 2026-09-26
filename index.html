@@ -260,8 +260,8 @@
                 }
                 
                 ctx.globalCompositeOperation = 'source-over';
-                // Darken heavily (40%) and make greyscale so the full color underneath pops
-                ctx.filter = 'grayscale(100%) brightness(40%)';
+                // To change darkness manually, update the brightness percentage below:
+                ctx.filter = 'grayscale(100%) brightness(70%)';
                 ctx.drawImage(bgImg, sX, sY, sWidth, sHeight, 0, 0, canvas.width, canvas.height);
                 ctx.filter = 'none';
             }
@@ -297,14 +297,15 @@
                 // Erase dark layer to reveal true color underneath
                 ctx.globalCompositeOperation = 'destination-out';
                 
-                const gradient = ctx.createRadialGradient(x, y, 0, x, y, 150);
+                // To change the circle size manually, update both '80' values below:
+                const gradient = ctx.createRadialGradient(x, y, 0, x, y, 80);
                 gradient.addColorStop(0, 'rgba(0,0,0,1)');
                 gradient.addColorStop(0.4, 'rgba(0,0,0,1)');
                 gradient.addColorStop(1, 'rgba(0,0,0,0)');
                 
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
-                ctx.arc(x, y, 150, 0, Math.PI * 2);
+                ctx.arc(x, y, 80, 0, Math.PI * 2);
                 ctx.fill();
                 
                 if (!isPainted) {
