@@ -5,6 +5,7 @@
     src: url('https://static.parastorage.com/fonts/v2/57107ed2-217c-4a34-9593-2f0f00c2c146/v1/crave-fine.latin.woff2') format('woff2');
     font-display: swap;
 }
+
 @font-face {
     font-family: 'crave-fine';
     font-style: normal;
@@ -15,7 +16,8 @@
 
 /* Design Tokens directly extracted from Wix Studio Site */
 :root {
-    --clr-bg-page: #EBF8E7; /* Light mint green page background */
+    --clr-bg-page: #EBF8E7;
+    /* Light mint green page background */
     --clr-white: #FFFFFF;
     --clr-black: #111111;
     --clr-dark: #1C1C1C;
@@ -38,8 +40,11 @@
 
     --transition: all 0.25s ease;
 
-    /* Hero Title O Logo Rotation: Change 0deg to any angle (e.g. 10deg, -10deg) */
+    /* Hero Title O Logo Controls */
     --logo-rotate: 0deg;
+    --logo-zoom: 1;
+    --logo-x: 0px;
+    --logo-y: 0px;
 }
 
 /* Reset */
@@ -84,7 +89,8 @@ a {
     z-index: 1000;
     pointer-events: none;
     padding: 0 1.5rem;
-    margin-bottom: -108px; /* Pulls hero section upward so navbar floats seamlessly over the hero clouds/sky */
+    margin-bottom: -108px;
+    /* Pulls hero section upward so navbar floats seamlessly over the hero clouds/sky */
 }
 
 .nav-container {
@@ -99,7 +105,8 @@ a {
     background-color: rgba(255, 255, 255, 0.72);
     backdrop-filter: blur(35px);
     -webkit-backdrop-filter: blur(35px);
-    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    border-radius: var(--radius-card);
+    /* 14px Wix ground truth */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.7);
     pointer-events: auto;
@@ -196,10 +203,18 @@ a {
 
 .hero-title-o {
     /* ========================================================
-       MANUAL ROTATION: Change 0deg to any angle you want!
-       Examples: 10deg (tilt right), -10deg (tilt left), 45deg
+       MANUAL LOGO CONTROLS:
+       Change any number below to adjust the robot inside 'O'!
+
+       - ROTATION:  angle (e.g. 10deg, -10deg, 0deg)
+       - ZOOM:      1 = 100%, 1.1 = 10% bigger, 0.9 = 10% smaller
+       - LEFT/RIGHT (X): 0px = center, 2px = right, -2px = left
+       - UP/DOWN (Y):    0px = center, -2px = up, 2px = down
        ======================================================== */
-    --logo-rotate: 0deg;
+    --logo-rotate: -10deg;
+    --logo-zoom: 1;
+    --logo-x: 0px;
+    --logo-y: 0px;
 
     position: relative;
     display: inline-block;
@@ -231,7 +246,9 @@ a {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -48.5%) rotate(var(--logo-rotate, 0deg));
+    transform: translate(calc(-50% + var(--logo-x, 0px)), calc(-48.5% + var(--logo-y, 0px)))
+               rotate(var(--logo-rotate, 0deg))
+               scale(var(--logo-zoom, var(--logo-scale, 1)));
     transform-origin: center center;
     width: 250%;
     max-width: none;
@@ -251,8 +268,15 @@ a {
 }
 
 @keyframes trophy-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 .hero-scroll-indicator {
@@ -275,8 +299,15 @@ a {
 }
 
 @keyframes arrow-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(6px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(6px);
+    }
 }
 
 /* ==========================================================================
@@ -334,7 +365,8 @@ a {
     background-color: var(--clr-red-accent);
     color: var(--clr-white);
     padding: 0.85rem 2.5rem;
-    border-radius: var(--radius-events); /* 19px Wix ground truth - rounded rectangle, not pill */
+    border-radius: var(--radius-events);
+    /* 19px Wix ground truth - rounded rectangle, not pill */
     font-size: 1rem;
     font-weight: 700;
     width: auto;
@@ -348,7 +380,8 @@ a {
     background-color: #000000;
     color: var(--clr-white);
     padding: 0.85rem 2.5rem;
-    border-radius: var(--radius-pill); /* 300px pill */
+    border-radius: var(--radius-pill);
+    /* 300px pill */
     font-size: 1rem;
     font-weight: 700;
     width: auto;
@@ -408,7 +441,8 @@ a {
 
 .volunteer-image-wrapper {
     width: 100%;
-    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    border-radius: var(--radius-card);
+    /* 14px Wix ground truth */
     overflow: hidden;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
@@ -419,7 +453,8 @@ a {
     max-height: 600px;
     object-fit: cover;
     object-position: center;
-    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    border-radius: var(--radius-card);
+    /* 14px Wix ground truth */
     transition: transform 0.6s ease;
 }
 
@@ -481,7 +516,8 @@ a {
 .step-card {
     background-color: var(--clr-white);
     color: var(--clr-black);
-    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    border-radius: var(--radius-card);
+    /* 14px Wix ground truth */
     padding: 3.5rem 3rem;
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
     transition: var(--transition);
@@ -556,12 +592,14 @@ a {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 8rem; /* Creates ample scrolling space between card stops */
+    gap: 8rem;
+    /* Creates ample scrolling space between card stops */
 }
 
 .board-sticky-row {
     position: sticky;
-    top: 180px; /* Sticks cards right below the sticky 'Board' title */
+    top: 180px;
+    /* Sticks cards right below the sticky 'Board' title */
     width: 100%;
     display: flex;
     pointer-events: none;
@@ -585,7 +623,8 @@ a {
 
 .board-card {
     background-color: var(--clr-white);
-    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    border-radius: var(--radius-card);
+    /* 14px Wix ground truth */
     border: 1px solid rgba(0, 0, 0, 0.07);
     overflow: hidden;
     width: 100%;
@@ -697,7 +736,8 @@ a {
     width: 100%;
     max-height: 600px;
     object-fit: cover;
-    border-radius: var(--radius-card); /* 14px Wix ground truth */
+    border-radius: var(--radius-card);
+    /* 14px Wix ground truth */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 2rem;
 }
@@ -752,7 +792,8 @@ a {
 
 .prizes-card {
     background-color: var(--clr-white);
-    border-radius: var(--radius-prizes); /* 17px Wix ground truth */
+    border-radius: var(--radius-prizes);
+    /* 17px Wix ground truth */
     padding: 4rem 3.5rem;
     max-width: 440px;
     text-align: center;
@@ -828,8 +869,13 @@ a {
 }
 
 @keyframes pixel-float {
-    0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(-12px) rotate(3deg); }
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-12px) rotate(3deg);
+    }
 }
 
 /* ==========================================================================
@@ -938,8 +984,13 @@ a {
 }
 
 @keyframes toast-slide-up {
-    from { transform: translateY(15px); }
-    to { transform: translateY(0); }
+    from {
+        transform: translateY(15px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 .toast-content p {
@@ -987,7 +1038,9 @@ a {
         gap: 5rem;
     }
 
-    .row-artham, .row-panshul, .row-arham {
+    .row-artham,
+    .row-panshul,
+    .row-arham {
         justify-content: center;
     }
 
@@ -995,8 +1048,13 @@ a {
         min-height: 400px;
     }
 
-    .prize-trophy-left { left: 8%; }
-    .prize-trophy-right { right: 8%; }
+    .prize-trophy-left {
+        left: 8%;
+    }
+
+    .prize-trophy-right {
+        right: 8%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1009,7 +1067,8 @@ a {
     .nav-container {
         padding: 1rem 1.25rem;
         min-height: 72px;
-        border-radius: var(--radius-md); /* 12px mobile */
+        border-radius: var(--radius-md);
+        /* 12px mobile */
     }
 
     .nav-logo a {
@@ -1081,7 +1140,8 @@ a {
     }
 
     .board-sticky-row {
-        position: static; /* Let cards flow naturally on mobile */
+        position: static;
+        /* Let cards flow naturally on mobile */
     }
 
     .board-sticky-track {
@@ -1097,8 +1157,10 @@ a {
         width: 50px;
     }
 
-    .prize-icecream, .prize-coin {
-        display: none; /* Hide edge clutter on narrow screens */
+    .prize-icecream,
+    .prize-coin {
+        display: none;
+        /* Hide edge clutter on narrow screens */
     }
 
     .footer-container {
