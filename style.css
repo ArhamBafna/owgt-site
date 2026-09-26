@@ -37,6 +37,9 @@
     --radius-pill: 300px;
 
     --transition: all 0.25s ease;
+
+    /* Hero Title O Logo Rotation: Change 0deg to any angle (e.g. 10deg, -10deg) */
+    --logo-rotate: 0deg;
 }
 
 /* Reset */
@@ -192,6 +195,12 @@ a {
 }
 
 .hero-title-o {
+    /* ========================================================
+       MANUAL ROTATION: Change 0deg to any angle you want!
+       Examples: 10deg (tilt right), -10deg (tilt left), 45deg
+       ======================================================== */
+    --logo-rotate: 0deg;
+
     position: relative;
     display: inline-block;
 }
@@ -222,11 +231,13 @@ a {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -48.5%);
+    transform: translate(-50%, -48.5%) rotate(var(--logo-rotate, 0deg));
+    transform-origin: center center;
     width: 250%;
     max-width: none;
     height: auto;
     display: block;
+    transition: transform 0.2s ease;
 }
 
 .hero-trophy-icon {
