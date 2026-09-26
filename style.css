@@ -274,46 +274,50 @@ a {
    ========================================================================== */
 .events-section {
     width: 100%;
-    padding: 5rem 1.5rem;
+    padding: 6rem 1.5rem;
     display: flex;
     justify-content: center;
-    background-color: var(--clr-bg-page);
+    align-items: center;
+    background-color: var(--clr-blue-box);
 }
 
+.events-container,
 .events-card {
-    background-color: var(--clr-blue-box);
     width: 100%;
-    max-width: 480px;
-    min-height: 480px;
+    max-width: 1240px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: var(--radius-events); /* 19px Wix ground truth */
-    padding: 4.5rem 2.5rem;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    transition: var(--transition);
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    min-height: auto;
 }
 
 .events-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    transform: none;
+    box-shadow: none;
 }
 
 .events-title {
-    font-size: 2.2rem;
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--clr-black);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 .events-actions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 1.4rem;
+    flex-wrap: wrap;
 }
 
 .btn-tbd {
@@ -323,9 +327,11 @@ a {
     border-radius: var(--radius-events); /* 19px Wix ground truth - rounded rectangle, not pill */
     font-size: 1rem;
     font-weight: 700;
-    width: 100%;
-    max-width: 280px;
+    width: auto;
+    min-width: 220px;
+    text-align: center;
     box-shadow: 0 2px 10px rgba(230, 59, 46, 0.25);
+    display: inline-block;
 }
 
 .btn-rsvp {
@@ -335,8 +341,11 @@ a {
     border-radius: var(--radius-pill); /* 300px pill */
     font-size: 1rem;
     font-weight: 700;
-    width: 100%;
-    max-width: 220px;
+    width: auto;
+    min-width: 180px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     transition: var(--transition);
 }
 
@@ -820,7 +829,8 @@ a {
     background-color: var(--clr-white);
     padding: 3.5rem 1.5rem;
     width: 100%;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #000000;
+    color: #000000;
 }
 
 .footer-container {
@@ -834,27 +844,48 @@ a {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 2rem;
+}
+
+.footer-brand-side {
+    max-width: 700px;
 }
 
 .footer-brand-name {
     font-size: 1.15rem;
     font-weight: 800;
     letter-spacing: -0.03em;
-    color: var(--clr-black);
-    margin-bottom: 0.2rem;
+    color: #000000;
+    margin-bottom: 0.4rem;
 }
 
 .footer-nonprofit-tag {
     font-size: 0.85rem;
-    color: #666666;
+    color: #000000;
+    line-height: 1.5;
+}
+
+.footer-nonprofit-tag a {
+    color: #000000;
+    text-decoration: underline;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.footer-nonprofit-tag a:hover {
+    color: var(--clr-red-accent);
 }
 
 .footer-meta-side {
     text-align: right;
     font-size: 0.85rem;
-    color: #666666;
+    color: #000000;
     line-height: 1.5;
+}
+
+.footer-copyright,
+.footer-email {
+    color: #000000;
 }
 
 /* ==========================================================================
@@ -995,12 +1026,25 @@ a {
     }
 
     .events-section {
-        padding: 3.5rem 1rem;
+        padding: 4rem 1.25rem;
     }
 
+    .events-container,
     .events-card {
-        min-height: 400px;
-        padding: 3.5rem 1.5rem;
+        min-height: auto;
+        padding: 0;
+    }
+
+    .events-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .btn-tbd,
+    .btn-rsvp {
+        width: 100%;
+        max-width: 280px;
     }
 
     .volunteer-section,
@@ -1053,6 +1097,7 @@ a {
         text-align: center;
     }
 
+    .footer-brand-side,
     .footer-meta-side {
         text-align: center;
     }
