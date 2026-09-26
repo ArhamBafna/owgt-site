@@ -952,6 +952,94 @@ a {
 }
 
 /* ==========================================================================
+   9. NEWSLETTER SECTION (Brevo Signup Form)
+   ========================================================================== */
+.newsletter-section {
+    background-color: var(--clr-bg-page);
+    padding: 6rem 1.5rem;
+    width: 100%;
+    position: relative;
+}
+
+.newsletter-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newsletter-section .sib-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.newsletter-section #sib-form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newsletter-section #sib-container {
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    padding: 2rem 2.2rem;
+    box-sizing: border-box;
+}
+
+:where(.sib-form-message-panel) {
+    display: none;
+}
+
+:where(.sib-form-message-panel .sib-notification__icon) {
+    width: 20px;
+    height: 20px;
+}
+
+#sib-container input:-ms-input-placeholder {
+    font-family: Trebuchet MS, sans-serif;
+    text-align: center;
+    color: #c0ccda;
+}
+
+#sib-container input::placeholder {
+    font-family: Trebuchet MS, sans-serif;
+    text-align: center;
+    color: #c0ccda;
+}
+
+#sib-container textarea::placeholder {
+    font-family: Trebuchet MS, sans-serif;
+    text-align: center;
+    color: #c0ccda;
+}
+
+#sib-container a {
+    text-decoration: underline;
+    color: #2BB2FC;
+}
+
+.newsletter-section .entry__field input {
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.newsletter-section .sib-form-block__button {
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    padding: 12px 36px;
+}
+
+.newsletter-section .sib-form-block__button:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+/* ==========================================================================
    10. FOOTER
    ========================================================================== */
 .site-footer {
@@ -1194,13 +1282,15 @@ a {
 
     .volunteer-section,
     .application-section,
-    .chapter-section {
+    .chapter-section,
+    .newsletter-section {
         padding: 3.5rem 1.25rem;
     }
 
     .volunteer-container,
     .application-container,
     .chapter-container,
+    .newsletter-container,
     .footer-container {
         padding: 0;
         border-radius: 0;
@@ -1295,5 +1385,33 @@ a {
     .footer-brand-side,
     .footer-meta-side {
         text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0.75rem 0.85rem;
+    }
+
+    .nav-logo a {
+        font-size: 0.92rem;
+    }
+
+    .nav-links {
+        gap: 0.35rem;
+    }
+
+    .nav-link {
+        font-size: 0.78rem;
+        padding: 0.2rem 0.25rem;
+    }
+
+    .nav-rsvp-btn {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.78rem;
+    }
+
+    .newsletter-section #sib-container {
+        padding: 1.5rem 1.1rem;
     }
 }
