@@ -49,9 +49,9 @@
        - LEFT/RIGHT (X): 0px = center, 5px = right, -5px = left
        - UP/DOWN (Y):    0px = center, -5px = up, 5px = down
        ======================================================== */
-    --logo-rotate: 102deg;
-    --logo-zoom: 0.1;
-    --logo-x: 10px;
+    --logo-rotate: -5deg;
+    --logo-zoom: 0.8;
+    --logo-x: 4px;
     --logo-y: 0px;
 }
 
