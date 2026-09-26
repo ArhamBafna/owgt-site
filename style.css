@@ -1461,7 +1461,7 @@ a {
     font-size: 2.2rem;
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: var(--clr-black);
+    color: #045AFF;
     margin: 0 0 0.5rem 0;
     line-height: 1.1;
 }
@@ -1469,7 +1469,7 @@ a {
 .rsvp-subtitle {
     font-family: var(--font-body);
     font-size: 0.95rem;
-    color: #555555;
+    color: #000000;
     margin: 0 0 1.6rem 0;
     line-height: 1.45;
 }
@@ -1494,9 +1494,9 @@ a {
 }
 
 .rsvp-email-input:focus {
-    border-color: #0f9992;
+    border-color: #045AFF;
     background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(15, 153, 146, 0.15);
+    box-shadow: 0 0 0 3px rgba(4, 90, 255, 0.15);
 }
 
 .rsvp-error-text {
@@ -1509,7 +1509,7 @@ a {
 .rsvp-submit-btn {
     width: 100%;
     padding: 0.85rem 1.5rem;
-    background-color: #0f9992;
+    background-color: #045AFF;
     color: #ffffff;
     font-family: var(--font-body);
     font-size: 1rem;
@@ -1525,7 +1525,7 @@ a {
 }
 
 .rsvp-submit-btn:hover {
-    background-color: #0b7c76;
+    background-color: #0346cc;
     transform: translateY(-1px);
 }
 
