@@ -959,21 +959,24 @@ a {
     padding: 6rem 1.5rem;
     width: 100%;
     position: relative;
+    text-align: center;
 }
 
 .newsletter-container {
-    max-width: 720px;
+    max-width: 860px;
     width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .newsletter-section .sib-form {
     width: 100%;
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .newsletter-section #sib-form-container {
@@ -981,27 +984,52 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .newsletter-section #sib-container {
     width: 100%;
-    max-width: 720px !important;
     background-color: transparent !important;
     box-shadow: none !important;
     border: none !important;
     padding: 0 !important;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-/* Widen headline so 'you' stays on the same line */
+.newsletter-section #sib-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Widen ONLY headline container so 'you' stays on the same line */
+.newsletter-headline-wrapper {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.newsletter-headline-block {
+    text-align: center;
+    width: 100%;
+}
+
 .newsletter-headline-text {
-    margin: 0;
+    margin: 0 auto;
     font-size: 29px;
     font-weight: 700;
     color: #fd0009;
     font-family: Trebuchet MS, sans-serif;
     letter-spacing: -0.02em;
     line-height: 1.25;
+    text-align: center;
 }
 
 @media (min-width: 580px) {
@@ -1017,17 +1045,45 @@ a {
     }
 }
 
-/* Custom Checkbox matching OWGT theme */
-.newsletter-checkbox-block {
-    padding: 12px 0 6px;
-    display: flex;
-    justify-content: flex-start;
+/* Keep container for body and text below it narrow (max-width 500px) & centered */
+.newsletter-body-wrapper {
+    max-width: 500px;
     width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.newsletter-body-wrapper .sib-form-block {
+    text-align: center;
+    width: 100%;
+}
+
+.newsletter-body-wrapper .sib-text-form-block {
+    text-align: center;
+}
+
+.newsletter-body-wrapper p {
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Custom Checkbox matching OWGT theme - Centered */
+.newsletter-checkbox-block {
+    padding: 10px 0 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
 }
 
 .custom-checkbox-label {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     cursor: pointer;
     user-select: none;
@@ -1130,8 +1186,28 @@ a {
     color: #2BB2FC;
 }
 
+.newsletter-section .form__entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.newsletter-section .form__label-row {
+    width: 100%;
+}
+
+.newsletter-section .entry__field {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .newsletter-section .entry__field input.input {
     width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
     padding: 14px 18px;
     font-family: 'Familjen Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 1rem;
@@ -1149,6 +1225,13 @@ a {
 .newsletter-section .entry__field input.input:focus {
     border-color: var(--clr-black);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.newsletter-section .entry__error {
+    text-align: center;
+    margin: 6px auto 0;
+    width: 100%;
+    max-width: 480px;
 }
 
 .newsletter-section .sib-form-block__button {
