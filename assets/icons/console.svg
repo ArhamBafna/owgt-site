@@ -1,1 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect width="12" height="14" x="2" y="1" fill="#CCCCCC" rx="1"/><rect width="8" height="6" x="4" y="3" fill="#88CC88"/><circle cx="5" cy="12" r="1" fill="#FF4444"/><circle cx="11" cy="11" r="1" fill="#4444FF"/></svg>
+<svg preserveAspectRatio="xMidYMid meet" data-bbox="0.375 0.393 151.277 171.416" xmlns="http://www.w3.org/2000/svg" viewBox="0.375 0.393 151.277 171.416" height="172" width="152" data-type="color" role="presentation" aria-hidden="true" aria-label="">
+    <g>
+        <path fill="#1C1C1C" d="M91.137 141.56H60.883v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M101.223 131.478H70.969v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M91.137 121.394H60.883v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M101.223 111.309H70.969v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M111.309 101.226H81.055v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M91.137 101.228H60.883v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M121.395 91.14H91.141v30.25h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M101.223 91.14H70.969v30.25h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M30.632 91.14V81.057H20.547V40.725h20.17v-30.25H50.8V.394h60.513v10.083h10.085v20.166h10.085v10.083h10.085v40.332h-10.085V91.14z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M101.223 141.559H70.969v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M81.055 141.56H50.801v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M91.137 131.477H60.883v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M70.97 121.394H40.714v40.332h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M81.054 161.727v-10.083H70.969v-30.249h10.085v-10.083h10.084v-10.083h30.259v40.332h-10.085v20.166z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M101.223 101.229H70.969v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M50.796 141.56v-20.166H40.71V91.141h50.424v50.419z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M60.883 101.229H30.63v40.332h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M131.481 91.14h-30.254v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M111.309 91.139H81.055v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M50.801 91.139H20.547v30.249H50.8z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M10.46 101.227V91.14H.375V40.725H10.46V30.642h20.17V10.476h30.254V60.89h-20.17H50.8v10.083h20.17V50.808h30.254V60.89h20.174V40.725h30.254V91.14h-10.085v10.087z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M70.97 40.724H40.714v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M141.563 30.64h-30.254v30.25h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M70.97.393H40.714v30.249h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M81.051 121.395H50.797v40.332H81.05z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M70.973 101.228H40.72v40.332h30.254z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M131.48 111.307v-30.25H20.544v30.25z" data-color="1"></path>
+        <path fill="#FFEC40" d="M81.058 151.643H70.973v10.083h10.085z" data-color="2"></path>
+        <path fill="#FFEC40" d="M91.136 141.558H81.05v10.083h10.085z" data-color="2"></path>
+        <path fill="#FFEC40" d="M81.054 131.478H70.969v10.083h10.085z" data-color="2"></path>
+        <path fill="#FFEC40" d="M91.143 121.395H81.06v10.083h10.084z" data-color="2"></path>
+        <path fill="#FFEC40" d="M101.225 111.31H91.141v10.083h10.084z" data-color="2"></path>
+        <path fill="#FFEC40" d="M81.054 111.309H70.969v10.083h10.085z" data-color="2"></path>
+        <path fill="#FFEC40" d="M111.307 101.228h-10.084v10.083h10.084z" data-color="2"></path>
+        <path fill="#FFEC40" d="M91.14 101.226H81.054v10.083h10.084z" data-color="2"></path>
+        <path fill="#FFEC40" d="M81.057 81.057V60.89h10.085v10.083h10.084v10.083H121.4V70.974h10.085V50.808H121.4V40.725h-10.085V20.559h-10.089V10.476H60.887v10.083H50.802v30.249h10.085V60.89H50.802V50.808h-20.17v20.166h10.086v10.083z" data-color="2"></path>
+        <path fill="#F73D18" d="M91.143 151.645H81.06v10.083h10.084z" data-color="3"></path>
+        <path fill="#F73D18" d="M70.972 151.641H60.887v10.083h10.085z" data-color="3"></path>
+        <path fill="#F73D18" d="M81.054 141.559H70.969v10.083h10.085z" data-color="3"></path>
+        <path fill="#F73D18" d="M60.886 131.477H50.8v20.166h10.085z" data-color="3"></path>
+        <path fill="#F73D18" d="M111.313 111.312h-10.089v10.084H91.139v10.083H81.056v10.083H91.14v10.083h10.085v-20.166h10.089z" data-color="3"></path>
+        <path fill="#F73D18" d="M91.14 111.312H81.054v10.084h10.084z" data-color="3"></path>
+        <path fill="#F73D18" d="M60.882 131.477h20.17v-10.083H70.965v-10.083H81.05v-10.083H50.797v10.083h10.085z" data-color="3"></path>
+        <path fill="#F73D18" d="M50.804 111.312H40.719v20.166h10.085z" data-color="3"></path>
+        <path fill="#F73D18" d="M121.397 101.229h-10.085v10.083h10.085z" data-color="3"></path>
+        <path fill="#F73D18" d="M101.225 101.228H91.141v10.083h10.084z" data-color="3"></path>
+        <path fill="#F73D18" d="M40.714 101.229H30.629v10.083h10.085z" data-color="3"></path>
+        <path fill="#F73D18" d="M131.483 70.975h-10.085v10.083h-20.174V70.975H91.139V60.892H81.055v20.166h-40.34V70.975H30.631V50.809H50.8v-30.25H40.714v20.167h-20.17v10.083H10.462v30.249h10.085V91.14h110.937V81.058h10.084v-30.25h-10.084z" data-color="3"></path>
+        <path fill="#F73D18" d="M60.886 50.81H50.8v10.083h10.085z" data-color="3"></path>
+        <path fill="#F73D18" d="M131.479 40.725h-10.084v10.083h10.084z" data-color="3"></path>
+        <path fill="#F73D18" d="M60.886 10.475H50.8v10.083h10.085z" data-color="3"></path>
+        <path fill="#1C1C1C" d="M70.968 131.477H60.883v20.166h10.085z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M60.886 111.311H50.8v20.166h10.085z" data-color="1"></path>
+        <path fill="#1C1C1C" d="M121.4 91.14H30.633v10.084H121.4z" data-color="1"></path>
+    </g>
+</svg>

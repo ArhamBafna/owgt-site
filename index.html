@@ -7,14 +7,33 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Familjen Grotesk for Headings & Text, Inter fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Placeholder Modal -->
-    <div id="toast-modal" class="toast-hidden">
-        <div class="toast-content">
-            <p>This is a placeholder button. Contact site owner for the live destination URL.</p>
-            <button onclick="closeToast()">Close</button>
+    <!-- Top Announcement Bar / Ticker -->
+    <div class="announcement-bar">
+        <div class="ticker-wrapper">
+            <div class="ticker-content">
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+            </div>
+            <div class="ticker-content" aria-hidden="true">
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+                <span>🏆 Empowering Through Technology</span>
+            </div>
         </div>
     </div>
 
@@ -22,89 +41,144 @@
     <header class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="assets/images/owgt-logo.png" alt="OWGT Logo">
-                <span>OneWorldGreaterTogether</span>
+                <a href="#welcome">OneWorldGreaterTogether</a>
             </div>
             <nav class="nav-links">
-                <a href="#welcome">Welcome</a>
-                <a href="#join">Join</a>
-                <a href="#chapter">Chapter</a>
+                <a href="#welcome" class="nav-link">Welcome</a>
+                <a href="#join" class="nav-link">Join</a>
+                <a href="#chapter" class="nav-link">Chapter</a>
                 <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. -->
-                <a href="#" onclick="showToast(event)" class="nav-btn">RSVP</a>
+                <a href="#" onclick="showToast(event)" class="nav-rsvp-btn">RSVP</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="welcome" class="hero">
-        <div class="hero-bg"></div>
+    <!-- Main Hero Section -->
+    <section id="welcome" class="hero-section">
+        <div class="hero-bg-overlay"></div>
         <div class="hero-content">
-            <h2>Empowering Through Technology</h2>
-            <h1>OneWorld<br>GreaterTogether</h1>
+            <h1 class="hero-title">
+                OneWorld<br>
+                GreaterTogether
+                <img src="assets/icons/hero_trophy.svg" alt="Trophy" class="hero-trophy-icon">
+            </h1>
+            <a href="#events" class="hero-scroll-indicator" aria-label="Scroll to next section">
+                <img src="assets/icons/arrow_down.svg" alt="Scroll Down Arrow">
+            </a>
         </div>
     </section>
 
     <!-- Events Section -->
-    <section class="events-section">
+    <section id="events" class="events-section">
         <div class="events-card">
-            <h3>Events Coming Soon</h3>
-            <div class="events-buttons">
-                <span class="btn-red">To Be Determined</span>
+            <h2 class="events-title">Events Coming Soon</h2>
+            <div class="events-actions">
+                <span class="btn-tbd">To Be Determined</span>
                 <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. -->
-                <a href="#" onclick="showToast(event)" class="btn-black">RSVP</a>
+                <a href="#" onclick="showToast(event)" class="btn-rsvp">RSVP</a>
             </div>
         </div>
     </section>
 
     <!-- Volunteer Section -->
     <section class="volunteer-section">
-        <div class="volunteer-content">
-            <h2>Want to volunteer?</h2>
-            <p>By joining our dedicated team, you too can make a difference. We want hard workers who are truly passionate about making an impact. For volunteering, hours and recognition will be given.</p>
+        <div class="volunteer-container">
+            <div class="volunteer-header">
+                <h2 class="volunteer-title">Want to volunteer?</h2>
+                <p class="volunteer-desc">By joining our dedicated team, you too can make a difference. We want hard workers who are truly passionate about making an impact. For volunteering, hours and recognition will be given.</p>
+            </div>
+            <div class="volunteer-image-wrapper">
+                <img src="assets/images/volunteer_hackathon.jpg" alt="Volunteers working together with laptop at hackathon" class="volunteer-image">
+            </div>
         </div>
     </section>
 
     <!-- Application Steps Section -->
     <section id="join" class="application-section">
-        <div class="app-container">
-            <h2>Application<br>Steps</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <span class="step-label">Step 1</span>
-                    <p>Fill out <a href="#" onclick="showToast(event)">this form</a>.</p>
-                    <img src="assets/icons/email_icon.svg" class="pixel-icon email-icon" alt="Email Icon">
+        <div class="application-container">
+            <div class="app-steps-layout">
+                <div class="app-title-col">
+                    <h2 class="app-heading">Application<br>Steps</h2>
+                    <img src="assets/icons/email_envelope.svg" alt="Email Envelope Pixel Art" class="app-pixel-envelope">
                 </div>
-                <div class="step-card">
-                    <span class="step-label">Step 2</span>
-                    <p>Wait 1 to 2 weeks for an email from <strong>oneworldgreatertogether@gmail.com</strong>.</p>
-                    <p>You will be asked to join a meeting.</p>
-                    <p>You will then be told if you have be accepted.</p>
+                <div class="app-cards-col">
+                    <div class="step-card">
+                        <h3 class="step-number">Step 1</h3>
+                        <p class="step-text">Fill out <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. --><a href="#" onclick="showToast(event)" class="step-link">this form</a>.</p>
+                    </div>
+                    <div class="step-card">
+                        <h3 class="step-number">Step 2</h3>
+                        <p class="step-text">Wait 1 to 2 weeks for an email from <strong>oneworldgreatertogether@gmail.com</strong>.</p>
+                        <p class="step-subtext">You will be asked to join a meeting.</p>
+                        <p class="step-subtext">You will then be told if you have be accepted.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Board of Directors Section -->
+    <!-- Board Section (Sticky Progressive Cascading Cards on Scroll) -->
     <section class="board-section">
-        <h2>Board</h2>
-        <div class="board-grid">
-            <div class="board-card">
-                <img src="assets/images/board_member_1.jpg" alt="Artham Juvariwala">
-                <h3>Artham Juvariwala</h3>
-                <h4>President</h4>
-                <p>Hey my name is Artham, the founder and president of OWGT. I started OWGT inspired to make a change in my community, now educating thousands, something I am very proud of.</p>
+        <div class="board-heading-wrapper">
+            <h2 class="board-main-title">Board</h2>
+        </div>
+
+        <div class="board-sticky-track">
+            <!-- Row 1: Artham Juvariwala (Sticky Stack 1 - Left) -->
+            <div class="board-sticky-row row-artham">
+                <div class="board-card card-left">
+                    <div class="board-photo-wrapper">
+                        <img src="assets/images/board_member_1.jpg" alt="Artham Juvariwala" class="board-photo">
+                    </div>
+                    <div class="board-info">
+                        <div class="board-name-badge">
+                            <img src="assets/icons/badge_gold.svg" alt="President Gold Badge" class="board-badge-icon">
+                            <div class="board-text-group">
+                                <h3 class="board-name">Artham Juvariwala</h3>
+                                <p class="board-role">President</p>
+                            </div>
+                        </div>
+                        <p class="board-bio">Hey my name is Artham, the founder and president of OWGT. I started OWGT inspired to make a change in my community, now educating thousands, something I am very proud of.</p>
+                    </div>
+                </div>
             </div>
-            <div class="board-card">
-                <img src="assets/images/board_member_2.jpg" alt="Panshul Kadam">
-                <h3>Panshul Kadam</h3>
-                <h4>Vice President</h4>
-                <p>Hey my name is Panshul, one of the two vice presidents at OWGT. I help primarily with marketing, sharing educating through the media.</p>
+
+            <!-- Row 2: Panshul Kadam (Sticky Stack 2 - Center) -->
+            <div class="board-sticky-row row-panshul">
+                <div class="board-card card-center">
+                    <div class="board-photo-wrapper">
+                        <img src="assets/images/board_member_2.jpg" alt="Panshul Kadam" class="board-photo">
+                    </div>
+                    <div class="board-info">
+                        <div class="board-name-badge">
+                            <img src="assets/icons/badge_ribbon.svg" alt="Vice President Ribbon" class="board-badge-icon">
+                            <div class="board-text-group">
+                                <h3 class="board-name">Panshul Kadam</h3>
+                                <p class="board-role">Vice President</p>
+                            </div>
+                        </div>
+                        <p class="board-bio">Hey my name is Panshul, one of the two vice presidents at OWGT. I help primarily with marketing, sharing educating through the media.</p>
+                    </div>
+                </div>
             </div>
-            <div class="board-card">
-                <img src="assets/images/board_member_3.jpg" alt="Arham Bafna">
-                <h3>Arham Bafna</h3>
-                <h4>Vice President</h4>
-                <p>Hey my name is Arham, one of the two vice presidents at OWGT. I handle day to day operations, focusing on new events and expanding.</p>
+
+            <!-- Row 3: Arham Bafna (Sticky Stack 3 - Right) -->
+            <div class="board-sticky-row row-arham">
+                <div class="board-card card-right">
+                    <div class="board-photo-wrapper">
+                        <img src="assets/images/board_member_3.jpg" alt="Arham Bafna" class="board-photo">
+                    </div>
+                    <div class="board-info">
+                        <div class="board-name-badge">
+                            <img src="assets/icons/badge_ribbon.svg" alt="Vice President Ribbon" class="board-badge-icon">
+                            <div class="board-text-group">
+                                <h3 class="board-name">Arham Bafna</h3>
+                                <p class="board-role">Vice President</p>
+                            </div>
+                        </div>
+                        <p class="board-bio">Hey my name is Arham, one of the two vice presidents at OWGT. I handle day to day operations, focusing on new events and expanding.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -112,28 +186,33 @@
     <!-- How to start a chapter Section -->
     <section id="chapter" class="chapter-section">
         <div class="chapter-container">
-            <h2>How to start a chapter?</h2>
-            <img src="assets/images/robot_kids.jpg" alt="Robot Kids" class="chapter-img">
-            <div class="chapter-steps">
-                <p>1. Fill out <a href="#" onclick="showToast(event)">this form</a>.</p>
-                <p>2. Download <a href="#" onclick="showToast(event)">this document</a> for more details.</p>
+            <h2 class="chapter-heading">How to start a chapter?</h2>
+            <div class="chapter-image-card">
+                <img src="assets/images/chapter_robot.jpg" alt="Students building and programming robotics in classroom" class="chapter-image">
+                <div class="chapter-steps-bar">
+                    <p class="chapter-step-item">1. Fill out <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. --><a href="#" onclick="showToast(event)" class="chapter-link">this form</a>.</p>
+                    <p class="chapter-step-item">2. Download <!-- PLACEHOLDER LINK: Agent, do not invent dummy URLs. Ask user for real destination link before replacing this placeholder. --><a href="#" onclick="showToast(event)" class="chapter-link">this document</a> for more details.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Prizes & Awards Section -->
+    <!-- Prizes & Awards Section (Light Green Background with Pixel Art around perimeter) -->
     <section class="prizes-section">
-        <div class="prizes-container">
-            <!-- Floating Pixel Arts -->
-            <img src="assets/icons/trophy.svg" class="pixel-icon trophy" alt="Trophy">
-            <img src="assets/icons/coin.svg" class="pixel-icon coin" alt="Coin">
-            <img src="assets/icons/console.svg" class="pixel-icon console" alt="Console">
-            <img src="assets/icons/icecream.svg" class="pixel-icon icecream" alt="Ice Cream">
-            <img src="assets/icons/spaceinvader.svg" class="pixel-icon spaceinvader" alt="Space Invader">
+        <div class="prizes-stage">
+            <!-- Authentic Pixel Art floating around perimeter -->
+            <img src="assets/icons/trophy.svg" alt="Pixel Art Trophy" class="prize-art-icon prize-trophy-left">
+            <img src="assets/icons/icecream.svg" alt="Pixel Art Ice Cream" class="prize-art-icon prize-icecream">
+            <img src="assets/icons/console.svg" alt="Pixel Art Game Console" class="prize-art-icon prize-console">
             
+            <img src="assets/icons/trophy_right.svg" alt="Pixel Art Trophy Right" class="prize-art-icon prize-trophy-right">
+            <img src="assets/icons/coin.svg" alt="Pixel Art Coin" class="prize-art-icon prize-coin">
+            <img src="assets/icons/spaceinvader.svg" alt="Pixel Art Space Invader" class="prize-art-icon prize-invader">
+
+            <!-- Center White Card -->
             <div class="prizes-card">
-                <h2>Prizes & awards</h2>
-                <p>By starting a chapter you will be part of the OWGT Team. You will have the ability to lead the club and gain volunteer hours for your work. You can gain over 100 hours in the year. In addition You will be given a recognition letter and potential board positions.</p>
+                <h2 class="prizes-title">Prizes &amp; awards</h2>
+                <p class="prizes-text">By starting a chapter you will be part of the OWGT Team. You will have the ability to lead the club and gain volunteer hours for your work. You can gain over 100 hours in the year. In addition You will be given a recognition letter and potential board positions.</p>
             </div>
         </div>
     </section>
@@ -141,34 +220,36 @@
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-container">
-            <div class="footer-logo">
-                <img src="assets/images/owgt-logo.png" alt="OWGT Logo">
-                <div class="footer-brand">
-                    <h2>OneWorldGreaterTogether</h2>
-                    <p>a 501 (c) 3 organization</p>
-                </div>
+            <div class="footer-brand-side">
+                <h2 class="footer-brand-name">OneWorldGreaterTogether</h2>
+                <p class="footer-nonprofit-tag">a 501 (c) 3 organization</p>
             </div>
-            <div class="footer-links">
-                <a href="#welcome">Welcome</a>
-                <a href="#join">Join</a>
-                <a href="#chapter">Chapter</a>
-            </div>
-            <div class="footer-contact">
-                <p>oneworldgreatertogether@gmail.com</p>
-                <p>&copy; 2026 by OWGT</p>
+            <div class="footer-meta-side">
+                <p class="footer-copyright">&copy; 2026 by OWGT</p>
+                <p class="footer-email">oneworldgreatertogether@gmail.com</p>
             </div>
         </div>
     </footer>
 
+    <!-- Placeholder Toast Modal -->
+    <div id="toast-modal" class="toast-hidden" role="dialog" aria-modal="true">
+        <div class="toast-content">
+            <p>This is a placeholder button. Contact site owner for the live destination URL.</p>
+            <button onclick="closeToast()" class="toast-close-btn">Close</button>
+        </div>
+    </div>
+
     <script>
         function showToast(e) {
-            e.preventDefault();
-            document.getElementById('toast-modal').classList.remove('toast-hidden');
-            document.getElementById('toast-modal').classList.add('toast-visible');
+            if (e) e.preventDefault();
+            const modal = document.getElementById('toast-modal');
+            modal.classList.remove('toast-hidden');
+            modal.classList.add('toast-visible');
         }
         function closeToast() {
-            document.getElementById('toast-modal').classList.remove('toast-visible');
-            document.getElementById('toast-modal').classList.add('toast-hidden');
+            const modal = document.getElementById('toast-modal');
+            modal.classList.remove('toast-visible');
+            modal.classList.add('toast-hidden');
         }
     </script>
 </body>
