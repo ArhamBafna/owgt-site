@@ -1,0 +1,272 @@
+{
+  "placeholder/.eslintrc.json": {
+    "mtime": 1790279748.0137863,
+    "seen": 1790438855.7273476,
+    "ast_hash": "9b8be5ef96ddd69ecd1ddc1554c61a88",
+    "semantic_hash": "9b8be5ef96ddd69ecd1ddc1554c61a88"
+  },
+  "placeholder/app/api/subscribe/route.ts": {
+    "mtime": 1790288330.762922,
+    "seen": 1790438855.7273524,
+    "ast_hash": "2b81624d6006982cf2a9d9b93e5773a0",
+    "semantic_hash": "2b81624d6006982cf2a9d9b93e5773a0"
+  },
+  "placeholder/app/layout.tsx": {
+    "mtime": 1790293880.810287,
+    "seen": 1790438855.7273543,
+    "ast_hash": "0248d68894b74f5a57b8f6abeb3868da",
+    "semantic_hash": "0248d68894b74f5a57b8f6abeb3868da"
+  },
+  "placeholder/app/page.tsx": {
+    "mtime": 1790295905.2227368,
+    "seen": 1790438855.7273552,
+    "ast_hash": "45cd5ba103c82ff5c442c9592a675d80",
+    "semantic_hash": "45cd5ba103c82ff5c442c9592a675d80"
+  },
+  "placeholder/next.config.ts": {
+    "mtime": 1790279745.2828465,
+    "seen": 1790438855.727356,
+    "ast_hash": "9b77af189a21a7a64e4bd7a426f64176",
+    "semantic_hash": "9b77af189a21a7a64e4bd7a426f64176"
+  },
+  "placeholder/package.json": {
+    "mtime": 1790279939.4490426,
+    "seen": 1790438855.7273567,
+    "ast_hash": "ffced21dcb6b7c0979a8ffa61a89a240",
+    "semantic_hash": "ffced21dcb6b7c0979a8ffa61a89a240"
+  },
+  "placeholder/postcss.config.mjs": {
+    "mtime": 1790279944.8488574,
+    "seen": 1790438855.7273574,
+    "ast_hash": "b2f5d23a090943dc40e19a92862cc2c1",
+    "semantic_hash": "b2f5d23a090943dc40e19a92862cc2c1"
+  },
+  "placeholder/tailwind.config.ts": {
+    "mtime": 1790284120.641391,
+    "seen": 1790438855.7273579,
+    "ast_hash": "58fa0597ac6467528c8bb853648294af",
+    "semantic_hash": "58fa0597ac6467528c8bb853648294af"
+  },
+  "placeholder/tsconfig.json": {
+    "mtime": 1790279954.6544378,
+    "seen": 1790438855.7273588,
+    "ast_hash": "701d94282762685a48ca77258568187e",
+    "semantic_hash": "701d94282762685a48ca77258568187e"
+  },
+  "placeholder/vercel.json": {
+    "mtime": 1790279873.9585843,
+    "seen": 1790438855.7273593,
+    "ast_hash": "89e71812b74932f1d22cf57ff85df996",
+    "semantic_hash": "89e71812b74932f1d22cf57ff85df996"
+  },
+  "raw-source-code/image-urls.json": {
+    "mtime": 1790432813.8802931,
+    "seen": 1790438855.72736,
+    "ast_hash": "27492fcc1205e53337ba13f040276296",
+    "semantic_hash": "27492fcc1205e53337ba13f040276296"
+  },
+  "AGENTS.md": {
+    "mtime": 1790437294.03336,
+    "seen": 1790438855.7273607,
+    "ast_hash": "092b3fc8a9d1d85a0c3490772fa87496",
+    "semantic_hash": "092b3fc8a9d1d85a0c3490772fa87496"
+  },
+  "docs/REBUILD_PROMPT.md": {
+    "mtime": 1790432599.384072,
+    "seen": 1790438855.7273612,
+    "ast_hash": "6b8d640497228bdfbf881fca49b9aeeb",
+    "semantic_hash": "6b8d640497228bdfbf881fca49b9aeeb"
+  },
+  "docs/visual_discrepancies.md": {
+    "mtime": 1790110973.8622887,
+    "seen": 1790438855.7273622,
+    "ast_hash": "729d278a69e92bff073bb6174fd1e599",
+    "semantic_hash": "729d278a69e92bff073bb6174fd1e599"
+  },
+  "index.html": {
+    "mtime": 1790436008.4234726,
+    "seen": 1790438855.7273626,
+    "ast_hash": "09faaf1fccb6cfdb77f67914b95cc9a0",
+    "semantic_hash": "09faaf1fccb6cfdb77f67914b95cc9a0"
+  },
+  "placeholder/README.md": {
+    "mtime": 1790279890.8707142,
+    "seen": 1790438855.727363,
+    "ast_hash": "b33d053ba3a4d36c18a73b2993383164",
+    "semantic_hash": "b33d053ba3a4d36c18a73b2993383164"
+  },
+  "placeholder/docs/owgt-placeholder-spec.md": {
+    "mtime": 1790279098.116322,
+    "seen": 1790438855.7273638,
+    "ast_hash": "9745afed2f509c1869d601d605bc656f",
+    "semantic_hash": "9745afed2f509c1869d601d605bc656f"
+  },
+  "raw-source-code/extracted-text.txt": {
+    "mtime": 1790432963.1245947,
+    "seen": 1790438855.7273643,
+    "ast_hash": "2d21f10f1e6e28b4d483253e61fcffa9",
+    "semantic_hash": "2d21f10f1e6e28b4d483253e61fcffa9"
+  },
+  "raw-source-code/hydrated-index.html": {
+    "mtime": 1790432813.8349526,
+    "seen": 1790438855.7273648,
+    "ast_hash": "51047d413c5ba956ba49eb1943b482ba",
+    "semantic_hash": "51047d413c5ba956ba49eb1943b482ba"
+  },
+  "raw-source-code/linktree.html": {
+    "mtime": 1790431727.4602027,
+    "seen": 1790438855.7273655,
+    "ast_hash": "cf9029e182304f908e94f6fdeaff17b3",
+    "semantic_hash": "cf9029e182304f908e94f6fdeaff17b3"
+  },
+  "raw-source-code/wix-index.html": {
+    "mtime": 1790110023.154948,
+    "seen": 1790438855.7273662,
+    "ast_hash": "7eeb91df0c601f15378d85c3fa9352da",
+    "semantic_hash": "7eeb91df0c601f15378d85c3fa9352da"
+  },
+  "assets/icons/arrow_down.svg": {
+    "mtime": 1790435567.337862,
+    "seen": 1790438855.727367,
+    "ast_hash": "75dd4cab9a4776acc2526854b03620b2",
+    "semantic_hash": "75dd4cab9a4776acc2526854b03620b2"
+  },
+  "assets/icons/badge_gold.svg": {
+    "mtime": 1790435567.3420877,
+    "seen": 1790438855.7273676,
+    "ast_hash": "4d95a7720660e151069ee11195294f79",
+    "semantic_hash": "4d95a7720660e151069ee11195294f79"
+  },
+  "assets/icons/badge_ribbon.svg": {
+    "mtime": 1790435567.344502,
+    "seen": 1790438855.7273684,
+    "ast_hash": "f2f7f3548c1f28a64d274421920defb9",
+    "semantic_hash": "f2f7f3548c1f28a64d274421920defb9"
+  },
+  "assets/icons/coin.svg": {
+    "mtime": 1790435857.6543782,
+    "seen": 1790438855.7273693,
+    "ast_hash": "6b4bc497a1c3bb046b51bc813421cffe",
+    "semantic_hash": "6b4bc497a1c3bb046b51bc813421cffe"
+  },
+  "assets/icons/console.svg": {
+    "mtime": 1790435857.6528761,
+    "seen": 1790438855.7273698,
+    "ast_hash": "f16edb8e1c936f2439bd197f26eca62f",
+    "semantic_hash": "f16edb8e1c936f2439bd197f26eca62f"
+  },
+  "assets/icons/email_envelope.svg": {
+    "mtime": 1790435567.3400717,
+    "seen": 1790438855.7273705,
+    "ast_hash": "1d1a1ab5c6f10501721f56b048d9e756",
+    "semantic_hash": "1d1a1ab5c6f10501721f56b048d9e756"
+  },
+  "assets/icons/hero_trophy.svg": {
+    "mtime": 1790435883.2881882,
+    "seen": 1790438855.727371,
+    "ast_hash": "9c2848def766c557a63ac0bcdf818073",
+    "semantic_hash": "9c2848def766c557a63ac0bcdf818073"
+  },
+  "assets/icons/icecream.svg": {
+    "mtime": 1790435857.6523454,
+    "seen": 1790438855.7273715,
+    "ast_hash": "da1fa0ef4cb7f268eb46df1f95532bf1",
+    "semantic_hash": "da1fa0ef4cb7f268eb46df1f95532bf1"
+  },
+  "assets/icons/spaceinvader.svg": {
+    "mtime": 1790435857.654912,
+    "seen": 1790438855.727372,
+    "ast_hash": "833332adb4d85f8fa2e8d2b6bdf3fafc",
+    "semantic_hash": "833332adb4d85f8fa2e8d2b6bdf3fafc"
+  },
+  "assets/icons/trophy.svg": {
+    "mtime": 1790435857.6425629,
+    "seen": 1790438855.727373,
+    "ast_hash": "209cfa7c533db2d8fe178085ff2ae837",
+    "semantic_hash": "209cfa7c533db2d8fe178085ff2ae837"
+  },
+  "assets/icons/trophy_right.svg": {
+    "mtime": 1790435857.653769,
+    "seen": 1790438855.7273734,
+    "ast_hash": "9c2848def766c557a63ac0bcdf818073",
+    "semantic_hash": "9c2848def766c557a63ac0bcdf818073"
+  },
+  "assets/images/board_member_1.jpg": {
+    "mtime": 1790432937.1048155,
+    "seen": 1790438855.7273738,
+    "ast_hash": "6b4ea9b58f48a15188a6b47bfc0eeb88",
+    "semantic_hash": "6b4ea9b58f48a15188a6b47bfc0eeb88"
+  },
+  "assets/images/board_member_2.jpg": {
+    "mtime": 1790432937.3416142,
+    "seen": 1790438855.7273746,
+    "ast_hash": "67923687b342c6379fdc825e89653e06",
+    "semantic_hash": "67923687b342c6379fdc825e89653e06"
+  },
+  "assets/images/board_member_3.jpg": {
+    "mtime": 1790432937.7260547,
+    "seen": 1790438855.727375,
+    "ast_hash": "3e621e04802288d71a3e970732b5f1f5",
+    "semantic_hash": "3e621e04802288d71a3e970732b5f1f5"
+  },
+  "assets/images/chapter_robot.jpg": {
+    "mtime": 1790432938.0438194,
+    "seen": 1790438855.7273755,
+    "ast_hash": "6e547a118ae23117f5c345d83d36c4fc",
+    "semantic_hash": "6e547a118ae23117f5c345d83d36c4fc"
+  },
+  "assets/images/hero_bg.png": {
+    "mtime": 1790432936.2451777,
+    "seen": 1790438855.7273762,
+    "ast_hash": "7f74251de2e7e2738b8400e3be9f34c0",
+    "semantic_hash": "7f74251de2e7e2738b8400e3be9f34c0"
+  },
+  "assets/images/owgt-logo.png": {
+    "mtime": 1790432936.501765,
+    "seen": 1790438855.727377,
+    "ast_hash": "673e5b8011906495d573a75578438d71",
+    "semantic_hash": "673e5b8011906495d573a75578438d71"
+  },
+  "assets/images/volunteer_hackathon.jpg": {
+    "mtime": 1790432936.918955,
+    "seen": 1790438855.7273777,
+    "ast_hash": "8ab6b9ca907c927e377a810703d760b6",
+    "semantic_hash": "8ab6b9ca907c927e377a810703d760b6"
+  },
+  "placeholder/public/owgt-logo.png": {
+    "mtime": 1790284092.0726013,
+    "seen": 1790438855.7273781,
+    "ast_hash": "1a0c6c25a9443ddda08c4ba4840c6a18",
+    "semantic_hash": "1a0c6c25a9443ddda08c4ba4840c6a18"
+  },
+  "reference-images/live_playwright.png": {
+    "mtime": 1790110942.5448408,
+    "seen": 1790438855.7273786,
+    "ast_hash": "6c9e2afbadd2c585019c127cf890988e",
+    "semantic_hash": "6c9e2afbadd2c585019c127cf890988e"
+  },
+  "reference-images/local_playwright.png": {
+    "mtime": 1790110921.7800486,
+    "seen": 1790438855.727379,
+    "ast_hash": "65fc59e606f00c8fc51a1c4eb07282af",
+    "semantic_hash": "65fc59e606f00c8fc51a1c4eb07282af"
+  },
+  "reference-images/local_playwright_new.png": {
+    "mtime": 1790438536.3028877,
+    "seen": 1790438855.72738,
+    "ast_hash": "e9d073f1deed4c7c7587b24f8be9c187",
+    "semantic_hash": "e9d073f1deed4c7c7587b24f8be9c187"
+  },
+  "reference-images/reference_live_desktop.png": {
+    "mtime": 1790432813.7638907,
+    "seen": 1790438855.727381,
+    "ast_hash": "e2dfe0931168db5a7720e27119d47fe1",
+    "semantic_hash": "e2dfe0931168db5a7720e27119d47fe1"
+  },
+  "reference-images/reference_live_mobile.png": {
+    "mtime": 1790432894.6372056,
+    "seen": 1790438855.7273815,
+    "ast_hash": "03e812149d06c3f9204ba5b7ef2dac0c",
+    "semantic_hash": "03e812149d06c3f9204ba5b7ef2dac0c"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "_warning": "TOKEN TOTALS BELOW ARE WRONG. They are placeholders, not measurements. AI WAS used: 6 LLM subagents performed semantic extraction over 34 documents/images (357 nodes, 818 edges, 18 hyperedges). The host Task tool did not expose each subagent's `usage` field, so the chunk files kept their input_tokens/output_tokens = 0 placeholders and this file summed them. Only the AST pass (94 nodes, 21% of the graph) was genuinely free. Do NOT use these totals to estimate re-run cost. A --mode deep rebuild will spend real tokens on the 34 semantic files unless they hit graphify-out/cache/ (content-hashed, repo-relative) -- a cache hit is genuinely free.",
+  "runs": [
+    {
+      "date": "2026-09-26T16:07:35.732442+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "tokens_measured": false,
+      "semantic_subagents": 6,
+      "semantic_files": 34,
+      "ast_files": 11,
+      "files": 45
+    }
+  ],
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "total_tokens_measured": false
+}
