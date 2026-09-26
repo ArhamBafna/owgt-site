@@ -191,6 +191,44 @@ a {
     margin-bottom: 3.5rem;
 }
 
+.hero-title-o {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-title-o-char {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-logo-box {
+    position: absolute;
+    top: 44%;
+    left: 50.5%;
+    transform: translate(-50%, -50%);
+    width: 46%;
+    height: 74%;
+    border-radius: 50%;
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-title-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48.5%);
+    width: 250%;
+    max-width: none;
+    height: auto;
+    display: block;
+}
+
 .hero-trophy-icon {
     position: absolute;
     right: 21%;
