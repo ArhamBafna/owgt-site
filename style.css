@@ -1276,10 +1276,12 @@ a {
 }
 
 #sib-container input::placeholder {
-    font-family: Trebuchet MS, sans-serif;
-    font-size: 1.18rem;
+    font-family: 'Familjen Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.22rem;
+    font-weight: 400;
     text-align: center;
     color: var(--clr-placeholder);
+    opacity: 1;
 }
 
 #sib-container a {
@@ -1337,7 +1339,9 @@ a {
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.newsletter-section .entry__field input.input:focus {
+.newsletter-section .entry__field input.input:focus,
+.newsletter-section .entry__field input.input:focus-visible {
+    outline: none !important;
     border-color: var(--clr-black) !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
 }
@@ -1535,10 +1539,18 @@ a {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.rsvp-email-input:focus {
+.rsvp-email-input::placeholder {
+    font-weight: 400;
+    color: var(--clr-placeholder);
+    opacity: 1;
+}
+
+.rsvp-email-input:focus,
+.rsvp-email-input:focus-visible {
+    outline: none;
     border-color: var(--clr-black);
     background-color: var(--clr-white);
-    box-shadow: 0 0 0 3px rgba(201, 42, 30, 0.18);
+    box-shadow: 0 0 0 1.5px var(--clr-black);
 }
 
 .rsvp-error-text {

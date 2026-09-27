@@ -382,10 +382,10 @@
                                         <div class="form__entry entry_block">
                                             <div class="form__label-row ">
                                                 <div class="entry__field">
-                                                    <label class="field-label" for="EMAIL">Email address</label>
                                                     <input class="input " type="text" id="EMAIL" name="EMAIL"
                                                         autocomplete="email" inputmode="email" value=""
-                                                        placeholder="you@example.com" data-required="true" required />
+                                                        placeholder="email address" aria-label="email address"
+                                                        data-required="true" required />
                                                 </div>
                                             </div>
                                             <label class="entry__error entry__error--primary"
@@ -487,9 +487,8 @@
                 <p class="rsvp-subtitle">be the first to know about upcoming workshops &amp; events</p>
                 <form id="rsvp-popup-form" action="https://sibforms.com/serve/MUIFAFd-ELRb80KAFGK8Vzt-7DWyP7ieFIfLymcOXoiObnRsTS9d1pBMH9Ow1iVmZRCF2cij5ugrXvTAMonnYXnxHgcjYf3aVdfjFTrU1kqMRyQKEZhKXVNCz12FyHI77T7q2Nqh4pOETlvaT56-UWuwBSzuzvUVk6-UeiyQEnI9rIczo67djuwGEj371o-yRl5m5NJ0tz28ygIFZA==" method="POST">
                     <div class="rsvp-input-group">
-                        <label class="field-label" for="rsvp-email">Email address</label>
-                        <input type="email" id="rsvp-email" name="EMAIL" placeholder="you@example.com" required
-                            autocomplete="email" class="rsvp-email-input">
+                        <input type="email" id="rsvp-email" name="EMAIL" placeholder="email address" required
+                            autocomplete="email" class="rsvp-email-input" aria-label="email address">
                         <div id="rsvp-error" class="rsvp-error-text" role="alert" aria-live="polite" style="display: none;"></div>
                     </div>
                     <button type="submit" id="rsvp-submit-btn" class="rsvp-submit-btn">
