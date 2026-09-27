@@ -354,10 +354,63 @@ a {
    photo, so a phone with JS disabled degrades to the original image.
 
    Only the manual reset is hidden. The loop resets itself. */
-@media (hover: none),
-    (any-hover: none) {
-    .hero-reset-btn {
+@media (hover: none), (any-hover: none) {
+    .hero-reset-btn,
+    .hero-bg-canvas {
         display: none;
+    }
+
+    .hero-bg-reveal {
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 120vh,
+            black calc(120vh + 200px),
+            black calc(240vh + 200px),
+            transparent calc(240vh + 400px),
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 120vh,
+            black calc(120vh + 200px),
+            black calc(240vh + 200px),
+            transparent calc(240vh + 400px),
+            transparent 100%
+        );
+        -webkit-mask-size: 100% calc(360vh + 400px);
+        mask-size: 100% calc(360vh + 400px);
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        
+        -webkit-mask-position: 0 calc(-240vh - 400px);
+        mask-position: 0 calc(-240vh - 400px);
+        
+        animation: skyWaveLoop 8s linear infinite;
+    }
+}
+
+@keyframes skyWaveLoop {
+    0% {
+        -webkit-mask-position: 0 calc(-240vh - 400px);
+        mask-position: 0 calc(-240vh - 400px);
+    }
+    25% {
+        -webkit-mask-position: 0 calc(-120vh - 200px);
+        mask-position: 0 calc(-120vh - 200px);
+    }
+    50% {
+        -webkit-mask-position: 0 calc(-120vh - 200px);
+        mask-position: 0 calc(-120vh - 200px);
+    }
+    75% {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+    }
+    100% {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
     }
 }
 
