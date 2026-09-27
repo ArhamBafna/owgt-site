@@ -14,7 +14,7 @@ import json
 import socket
 import urllib.request
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "assets" / "images"
@@ -25,8 +25,8 @@ CONVERT = [
     ("hero_bg.png",            "hero_bg.webp",            1678, 80),
     ("owgt-logo.png",          "owgt-logo.webp",           320, 85),
     ("volunteer_hackathon.jpg","volunteer_hackathon.webp",1920, 78),
-    ("board_member_1.jpg",     "board_member_1.webp",      760, 80),
-    ("board_member_2.jpg",     "board_member_2.webp",      760, 80),
+    ("board_member_1.jpg",     "board_member_1.v2.webp",   760, 80),
+    ("board_member_2.jpg",     "board_member_2.v2.webp",   760, 80),
     ("board_member_3.jpg",     "board_member_3.webp",      570, 80),
     ("chapter_robot.jpg",      "chapter_robot.webp",      1320, 78),
 ]
@@ -37,6 +37,10 @@ for src_name, out_name, width, quality in CONVERT:
     if not src.exists():
         raise SystemExit(f"BLOCKER: missing source {src}. Restore it from git history.")
     with Image.open(src) as im:
+        # Phone cameras store portrait shots as landscape pixels plus an EXIF
+        # "rotate 90" tag. WebP has no equivalent tag, so the rotation must be
+        # baked into the pixels or the photo ships sideways.
+        im = ImageOps.exif_transpose(im)
         im = im.convert("RGB") if src.suffix.lower() == ".jpg" else im
         if im.width > width:
             height = round(im.height * width / im.width)
