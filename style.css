@@ -166,12 +166,29 @@ a {
     position: relative;
 }
 
+/* The brand mark. It sits on its own baked-in white tile, so it needs an
+   outline and a soft shadow to stay readable against the frosted navbar,
+   which is itself near-white and translucent. */
 .nav-logo a {
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--clr-black);
-    white-space: nowrap;
+    display: block;
+}
+
+.nav-logo-img {
+    display: block;
+    height: 48px;
+    /* Auto width keeps the logo's own 0.86 portrait ratio; the width/height
+       attributes in the markup only reserve the right aspect before this
+       height applies. */
+    width: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.10);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nav-logo a:hover .nav-logo-img {
+    transform: scale(1.04);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
 }
 
 .nav-links {
@@ -1654,9 +1671,8 @@ a {
         /* 12px mobile */
     }
 
-    .nav-logo a {
-        font-size: 1.05rem;
-        white-space: nowrap;
+    .nav-logo-img {
+        height: 38px;
     }
 
     .nav-toggle {
@@ -1869,10 +1885,6 @@ a {
         padding: 0.75rem 0.85rem;
     }
 
-    .nav-logo a {
-        font-size: 0.95rem;
-    }
-
     .newsletter-section #sib-container {
         padding: 1.5rem 1.1rem;
     }
@@ -2014,6 +2026,7 @@ body.modal-open {
     .board-card,
     .chapter-card,
     .step-card,
+    .nav-logo-img,
     .nav-rsvp-btn,
     .btn-rsvp,
     .rsvp-submit-btn,
@@ -2024,6 +2037,7 @@ body.modal-open {
     .board-card:hover,
     .chapter-card:hover,
     .step-card:hover,
+    .nav-logo a:hover .nav-logo-img,
     .volunteer-image-wrapper:hover .volunteer-image,
     .chapter-image-card:hover .chapter-image,
     .board-card:hover .board-photo {

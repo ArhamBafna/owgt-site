@@ -17,6 +17,7 @@ Read this section before trusting any colour instruction below it.
 |---|---|---|---|---|
 | A1 | 2026-09-26 | `2c8e046` | Primary buttons: `--clr-red-accent` → `--clr-green-accent` (`#1E7A46`) | Owner felt the red button read as unapproachable. The intermediate green was not kept — see A2. |
 | A2 | 2026-09-26 | *(this change)* | Primary buttons: green → **`--clr-blue-accent` `#0345AA`**, hover `--clr-blue-dark` `#023C8F` | Green fought the mint page background and split the palette in two. `#0345AA` is the brand blue already used in `placeholder/app` (`--color-owgt-blue`), so button and accents are one family. Red stays reserved for text, borders, focus rings and the application-steps band. |
+| A3 | 2026-09-26 | *(this change)* | Navbar left slot: the words "OneWorldGreaterTogether" → **`assets/images/owgt-logo-nav.webp`**, a white tile rounded 12 px at 48 px tall (38 px mobile) with a faint outline and soft shadow. Tab favicons: **rounded 20 %, pure white fill, transparent corners** in new `favicon-16.r2.png` / `favicon-32.r2.png`. | Owner asked for the logo in the navbar and for softer icon edges. The logo file was unusable as shipped: its artwork is 485×570 inside a 1254×1254 canvas, so a straight 48 px render drew the robot 19 px wide. The icons were opaque `#FDFDFD` squares with no rounded corners. A3 also resolves the A2-era `.nav-logo a` font-size rules, which had nothing left to size. |
 
 **Net effect on the button system:** Tier 1 is now a blue pill, not a red one. Tier 2 (`.rsvp-close-btn`, black) and the status chip (`.btn-tbd`, white) are unchanged.
 
@@ -338,6 +339,30 @@ with Image.open(SRC / "favicon.png") as im:
             .resize((1200, 630), Image.LANCZOS) \
             .save(SRC / "og-image.jpg", "JPEG", quality=82, optimize=True, progressive=True)
 ```
+
+**Rounded favicons and the navbar tile** â€” not part of the one-time pipeline above.
+`scripts/make_brand_assets.py` owns them instead, because it has to stay
+re-runnable: the 1254Ã1254 `owgt-logo.png` and the 600Ã—600 `favicon.png` it reads
+were both deleted from the working tree by the pipeline above, so the script
+restores them from git history on every run and asserts the geometry it produces.
+
+```powershell
+python scripts/make_brand_assets.py
+```
+
+| Output | From | Treatment |
+| --- | --- | --- |
+| `assets/images/owgt-logo-nav.webp` | `owgt-logo.png` @ `64e93ff` | Artwork cropped to its bounding box, #FDFDFD flattened to pure white, 6% white padding added back, natural 0.86 portrait ratio kept, 360 px tall |
+| `assets/images/favicon-16.r2.png` | `favicon.png` @ `c55113a~1` | Squared up, white flattened, 20% rounded corners masked, corners transparent |
+| `assets/images/favicon-32.r2.png` | `favicon.png` @ `c55113a~1` | as above |
+
+The `.r2` and `-nav` suffixes are load-bearing. `vercel.json` serves `/assets/*`
+as `max-age=31536000, immutable`, so a same-named replacement would never reach a
+browser that has already cached the old one.
+
+The 16 px radius is honestly close to invisible: 20% of 16 px is 3 px. It reads
+on the 32 px icon and on high-DPI tabs, and the 180 px `apple-touch-icon.png` is
+deliberately left square because iOS masks it into its own rounded square itself.
 
 **Social icons** â€” download all 7, then normalise each to 32Ã—32:
 
@@ -703,7 +728,10 @@ Replace the navbar markup, `index.html` lines 24â€“36:
     <header class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#welcome">OneWorldGreaterTogether</a>
+                <a href="#welcome" aria-label="OneWorldGreaterTogether, back to top">
+                    <img src="assets/images/owgt-logo-nav.webp" alt="" class="nav-logo-img" width="311" height="360"
+                        loading="eager" decoding="async">
+                </a>
             </div>
             <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links"
                 aria-label="Open menu">
@@ -1203,6 +1231,11 @@ Also fix the logo size at 480 px â€” `.nav-logo a` at 0.92rem with `white-s
         font-size: 0.95rem;
     }
 ```
+
+> **Superseded by A3.** `.nav-logo a` no longer sets a font size: the left slot now
+> holds `assets/images/owgt-logo-nav.webp` instead of the words
+> "OneWorldGreaterTogether". At 38 px tall the tile is 33 px wide, so the 480 px
+> collision this rule was written to prevent cannot happen, and the rule is gone.
 
 Behaviour of the toggle (JavaScript in Phase 6, task 6.4): toggles `.is-open` on `#nav-links` and `aria-expanded` on `#nav-toggle`; closes on any nav link click, on Escape, and when the viewport widens past 768 px.
 
@@ -1857,8 +1890,8 @@ Replace `index.html` lines 4â€“19 in their entirety:
     <meta name="twitter:description" content="A youth-led 501(c)(3) nonprofit educating students in technology and STEM.">
     <meta name="twitter:image" content="https://owgt.org/assets/images/og-image.jpg">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.r2.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.r2.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
 
