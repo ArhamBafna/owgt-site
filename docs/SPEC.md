@@ -2070,8 +2070,5 @@ The six pixel-art icons in the chapter section and the scroll-down arrow should 
 
 None of these block the work. Each is recorded so it is not silently forgotten.
 
-1. **Point `owgt.org` at the new deployment.** Until that happens, every absolute URL in `<head>` and in `sitemap.xml` refers to the Wix coming-soon page. The owner is deploying.
-2. **Create a separate Brevo list for RSVP.** Right now the RSVP popup and the newsletter form post to the same list, so event interest and newsletter subscribers land in one audience. The owner chose to keep this behaviour for now. To fix it: create a second list in Brevo, copy its form endpoint, and change the `action` on `#rsvp-popup-form` only. The JavaScript reads the endpoint from that attribute, so no code change is needed.
-3. **Confirm the `crave-fine` font licence.** See Â§5.16. The fallback if it cannot be confirmed is written out there.
-4. **Enable Deployment Protection review.** The existing `placeholder` Vercel project is behind an auth wall, so nothing on it is publicly reachable. Decide the same for this project before or after launch.
-5. **The 390+ figure in the newsletter copy.** The live `rewards.owgt.org` page says 391 resources; the site copy says "390+". Not a defect â€” "390+" is correct either way â€” but if the number is ever restated, keep the two in sync.
+1. **Enable Deployment Protection review.** The existing `placeholder` Vercel project is behind an auth wall, so nothing on it is publicly reachable. Decide the same for this project before or after launch.
+2. **The 390+ figure in the newsletter copy.** The live `rewards.owgt.org` page says 391 resources; the site copy says "390+". Not a defect â€” "390+" is correct either way â€” but if the number is ever restated, keep the two in sync.
