@@ -289,10 +289,17 @@ a {
     min-height: 101.7vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* flex-end + a tall top padding = the headline is pinned near the bottom
+       edge, and the top padding reserves a sky zone for the "AI" clouds (which
+       sit at 22-39% of hero height) so they never reach the text. The padding
+       also forces the hero tall enough on short windows to keep ~80px of
+       clearance. Raising the bottom padding lifts the text closer to the AI
+       and spends clearance; lowering the top padding costs it faster.
+       Do not shrink the top value without re-checking that. */
+    justify-content: flex-end;
     align-items: center;
     text-align: center;
-    padding: 12rem 1.5rem 5rem;
+    padding: 23rem 1.5rem 0rem;
     overflow: hidden;
 }
 
@@ -320,7 +327,8 @@ a {
 
 /* Touch devices have no cursor, so the grey reveal mask can never be erased.
    Hide the canvas so the full-colour background image shows through. */
-@media (hover: none), (any-hover: none) {
+@media (hover: none),
+(any-hover: none) {
     .hero-bg-canvas {
         display: none;
     }
@@ -390,7 +398,7 @@ a {
     color: #111111;
     position: relative;
     display: inline-block;
-    margin-top: 10rem;
+    margin-top: 0;
     margin-bottom: 3.5rem;
 }
 
@@ -1248,17 +1256,17 @@ a {
     box-shadow: 0 4px 10px rgba(201, 42, 30, 0.18);
 }
 
-.custom-checkbox-input:checked + .custom-checkbox-box {
+.custom-checkbox-input:checked+.custom-checkbox-box {
     background-color: var(--clr-black);
     border-color: var(--clr-black);
 }
 
-.custom-checkbox-input:checked + .custom-checkbox-box .custom-checkbox-icon {
+.custom-checkbox-input:checked+.custom-checkbox-box .custom-checkbox-icon {
     stroke-dashoffset: 0;
     transform: scale(1);
 }
 
-.custom-checkbox-input:focus-visible + .custom-checkbox-box {
+.custom-checkbox-input:focus-visible+.custom-checkbox-box {
     outline: 2px solid var(--clr-red-accent);
     outline-offset: 2px;
 }
@@ -1892,6 +1900,7 @@ a {
         padding: 1.5rem 1.1rem;
     }
 }
+
 /* ==========================================================================
    13. PHASE 3/4 ADDITIONS
    ========================================================================== */
