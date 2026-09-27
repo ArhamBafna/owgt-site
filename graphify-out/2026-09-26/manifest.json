@@ -66,10 +66,10 @@
     "semantic_hash": "27492fcc1205e53337ba13f040276296"
   },
   "AGENTS.md": {
-    "mtime": 1790462695.3473127,
-    "seen": 1790466826.9413466,
-    "ast_hash": "48e9e345230af00aa880bf48f8c733ba",
-    "semantic_hash": ""
+    "mtime": 1790437294.03336,
+    "seen": 1790438855.7273607,
+    "ast_hash": "092b3fc8a9d1d85a0c3490772fa87496",
+    "semantic_hash": "092b3fc8a9d1d85a0c3490772fa87496"
   },
   "docs/REBUILD_PROMPT.md": {
     "mtime": 1790432599.384072,
@@ -84,10 +84,10 @@
     "semantic_hash": "729d278a69e92bff073bb6174fd1e599"
   },
   "index.html": {
-    "mtime": 1790458201.9452145,
-    "seen": 1790466826.9413524,
-    "ast_hash": "8d687741f1c427f4ea028a9f857c72f0",
-    "semantic_hash": ""
+    "mtime": 1790436008.4234726,
+    "seen": 1790438855.7273626,
+    "ast_hash": "09faaf1fccb6cfdb77f67914b95cc9a0",
+    "semantic_hash": "09faaf1fccb6cfdb77f67914b95cc9a0"
   },
   "placeholder/README.md": {
     "mtime": 1790279890.8707142,
@@ -216,10 +216,10 @@
     "semantic_hash": "6e547a118ae23117f5c345d83d36c4fc"
   },
   "assets/images/hero_bg.png": {
-    "mtime": 1790450258.5308611,
-    "seen": 1790466826.9413714,
-    "ast_hash": "3d7a23aa432904b9c65db0b9a40e1040",
-    "semantic_hash": ""
+    "mtime": 1790432936.2451777,
+    "seen": 1790438855.7273762,
+    "ast_hash": "7f74251de2e7e2738b8400e3be9f34c0",
+    "semantic_hash": "7f74251de2e7e2738b8400e3be9f34c0"
   },
   "assets/images/owgt-logo.png": {
     "mtime": 1790432936.501765,
@@ -252,10 +252,10 @@
     "semantic_hash": "65fc59e606f00c8fc51a1c4eb07282af"
   },
   "reference-images/local_playwright_new.png": {
-    "mtime": 1790441661.6854506,
-    "seen": 1790466826.9413767,
-    "ast_hash": "38f2d636c06f479edb6ece74b70b161c",
-    "semantic_hash": ""
+    "mtime": 1790438536.3028877,
+    "seen": 1790438855.72738,
+    "ast_hash": "e9d073f1deed4c7c7587b24f8be9c187",
+    "semantic_hash": "e9d073f1deed4c7c7587b24f8be9c187"
   },
   "reference-images/reference_live_desktop.png": {
     "mtime": 1790432813.7638907,
@@ -268,47 +268,5 @@
     "seen": 1790438855.7273815,
     "ast_hash": "03e812149d06c3f9204ba5b7ef2dac0c",
     "semantic_hash": "03e812149d06c3f9204ba5b7ef2dac0c"
-  },
-  "docs/SPEC.md": {
-    "mtime": 1790466566.3901608,
-    "seen": 1790466826.941349,
-    "ast_hash": "ce9628da272ffa8cbb6f10f12817b84c",
-    "semantic_hash": ""
-  },
-  "docs/anti_ai_audit_findings.md": {
-    "mtime": 1790461628.1742227,
-    "seen": 1790466826.94135,
-    "ast_hash": "437d1aa213f4e3faf915903d3b477ad8",
-    "semantic_hash": ""
-  },
-  "docs/ideas/hero-ai-background.md": {
-    "mtime": 1790449158.7498767,
-    "seen": 1790466826.9413507,
-    "ast_hash": "0ee62dafad664bf4b1bbd4673fdc7839",
-    "semantic_hash": ""
-  },
-  "raw-source-code/brevo-singup-form.html": {
-    "mtime": 1790445938.929278,
-    "seen": 1790466826.941355,
-    "ast_hash": "30dd032a16af3c542f4a1cc77de6ab24",
-    "semantic_hash": ""
-  },
-  "assets/images/favicon.png": {
-    "mtime": 1790452731.5192974,
-    "seen": 1790466826.94137,
-    "ast_hash": "2d78cea350658d5f1271efd5d2e2001d",
-    "semantic_hash": ""
-  },
-  "assets/images/hero_bg.bak.png": {
-    "mtime": 1790449737.6712031,
-    "seen": 1790466826.941371,
-    "ast_hash": "0359de16c04d5006fff55f90b9ed9d05",
-    "semantic_hash": ""
-  },
-  "assets/images/hero_bg_og.bak.png": {
-    "mtime": 1790432936.2451777,
-    "seen": 1790466826.9413722,
-    "ast_hash": "7f74251de2e7e2738b8400e3be9f34c0",
-    "semantic_hash": ""
   }
 }

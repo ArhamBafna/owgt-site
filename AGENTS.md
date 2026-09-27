@@ -1,7 +1,5 @@
 # AGENTS.md - OneWorld GreaterTogether (OWGT) Project Reference & Context
 
-This repository is a clean, dependency-free 1:1 rebuild of the official OneWorldGreaterTogether Wix Studio website.
-
 ---
 
 ## 1. Project Philosophy & Stack
@@ -11,10 +9,5 @@ This repository is a clean, dependency-free 1:1 rebuild of the official OneWorld
   - Desktop: `1440px`
   - Mobile: `390px`
 
+IMP: NEVER CHECK VISUALLY UNLESS I EXCPLICETLY TELL YOU TO!
 ---
-
-## 2. Visual & Ground Truth References
-
-### Ground Truth Reference
-- **`reference-images/live_playwright.png`**: This image shows exactly how the website is intended to look visually when fully hydrated and rendered on desktop. Any visual adjustments should be compared against this screenshot.
-- **`raw-source-code/wix-index.html`**: The exact HTML/CSS extracted from the live Wix website. If in doubt regarding wording, exact color hexes, SVG geometry, or layout parameters, consult this file.
