@@ -27,20 +27,28 @@
             <div class="nav-logo">
                 <a href="#welcome">OneWorldGreaterTogether</a>
             </div>
-            <nav class="nav-links">
+            <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links"
+                aria-label="Open menu">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+            <nav class="nav-links" id="nav-links">
                 <a href="#join" class="nav-link">Join</a>
                 <a href="#chapter" class="nav-link">Chapter</a>
                 <a href="#newsletter" class="nav-link">Newsletter</a>
-                <a href="#" onclick="openRsvpModal(event)" class="nav-rsvp-btn">RSVP</a>
+                <button type="button" class="nav-rsvp-btn" data-rsvp-open>RSVP</button>
             </nav>
         </div>
     </header>
+
+    <main>
 
     <!-- Main Hero Section -->
     <section id="welcome" class="hero-section">
         <div class="hero-bg-base"></div>
         <canvas id="hero-mask-canvas" class="hero-bg-canvas"></canvas>
-        <button id="hero-reset-btn" class="hero-reset-btn" aria-label="Reset colors">Reset Colors</button>
+        <button id="hero-reset-btn" class="hero-reset-btn" type="button" aria-label="Reset colors" title="Reset the hero colours">Reset Colors</button>
         <div class="hero-bg-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">
@@ -62,7 +70,7 @@
             <h2 class="events-title">Events Coming Soon</h2>
             <div class="events-actions">
                 <span class="btn-tbd">None yet, check back soon...</span>
-                <a href="#" onclick="openRsvpModal(event)" class="btn-rsvp">RSVP</a>
+                <button type="button" class="btn-rsvp" data-rsvp-open>RSVP</button>
             </div>
         </div>
     </section>
@@ -351,9 +359,10 @@
                                         <div class="form__entry entry_block">
                                             <div class="form__label-row ">
                                                 <div class="entry__field">
+                                                    <label class="field-label" for="EMAIL">Email address</label>
                                                     <input class="input " type="text" id="EMAIL" name="EMAIL"
-                                                        autocomplete="off" value="" placeholder="Email"
-                                                        data-required="true" required />
+                                                        autocomplete="email" inputmode="email" value=""
+                                                        placeholder="you@example.com" data-required="true" required />
                                                 </div>
                                             </div>
                                             <label class="entry__error entry__error--primary"
@@ -401,6 +410,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-container">
@@ -443,20 +454,20 @@
 
     <!-- RSVP Popup Modal -->
     <div id="rsvp-modal" class="rsvp-modal-hidden" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-title">
-        <div class="rsvp-modal-backdrop" onclick="closeRsvpModal()"></div>
+        <div class="rsvp-modal-backdrop" data-rsvp-close></div>
         <div class="rsvp-modal-content">
-            <button type="button" class="rsvp-close-icon" onclick="closeRsvpModal()"
-                aria-label="Close modal">&times;</button>
+            <button type="button" class="rsvp-close-icon" data-rsvp-close aria-label="Close modal">&times;</button>
 
             <!-- Form View -->
             <div id="rsvp-form-view">
                 <h2 id="rsvp-modal-title" class="rsvp-title">RSVP</h2>
                 <p class="rsvp-subtitle">be the first to know about upcoming workshops &amp; events</p>
-                <form id="rsvp-popup-form" onsubmit="handleRsvpSubmit(event)">
+                <form id="rsvp-popup-form" action="https://sibforms.com/serve/MUIFAFd-ELRb80KAFGK8Vzt-7DWyP7ieFIfLymcOXoiObnRsTS9d1pBMH9Ow1iVmZRCF2cij5ugrXvTAMonnYXnxHgcjYf3aVdfjFTrU1kqMRyQKEZhKXVNCz12FyHI77T7q2Nqh4pOETlvaT56-UWuwBSzuzvUVk6-UeiyQEnI9rIczo67djuwGEj371o-yRl5m5NJ0tz28ygIFZA==" method="POST">
                     <div class="rsvp-input-group">
-                        <input type="email" id="rsvp-email" name="EMAIL" placeholder="name@gmail.com" required
+                        <label class="field-label" for="rsvp-email">Email address</label>
+                        <input type="email" id="rsvp-email" name="EMAIL" placeholder="you@example.com" required
                             autocomplete="email" class="rsvp-email-input">
-                        <div id="rsvp-error" class="rsvp-error-text" style="display: none;"></div>
+                        <div id="rsvp-error" class="rsvp-error-text" role="alert" aria-live="polite" style="display: none;"></div>
                     </div>
                     <button type="submit" id="rsvp-submit-btn" class="rsvp-submit-btn">
                         <span class="rsvp-btn-text">Submit</span>
@@ -475,16 +486,8 @@
                     </svg>
                 </div>
                 <h3 class="rsvp-success-title">You're on the list!</h3>
-                <button type="button" onclick="closeRsvpModal()" class="rsvp-close-btn">Close</button>
+                <button type="button" class="rsvp-close-btn" data-rsvp-close>Close</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Placeholder Toast Modal -->
-    <div id="toast-modal" class="toast-hidden" role="dialog" aria-modal="true">
-        <div class="toast-content">
-            <p>This is a placeholder button. Contact site owner for the live destination URL.</p>
-            <button onclick="closeToast()" class="toast-close-btn">Close</button>
         </div>
     </div>
 
