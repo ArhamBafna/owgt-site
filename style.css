@@ -1888,6 +1888,10 @@ a {
     text-decoration: underline;
     text-underline-offset: 2px;
     transition: color 0.25s ease;
+    /* A 34-character address is one unbreakable token. Inside a grid item
+       (min-width: auto) that forces the whole track wider than the viewport,
+       pushing the page 40px sideways at 390px. Let it wrap instead. */
+    overflow-wrap: anywhere;
 }
 
 .email-link:hover {
