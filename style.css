@@ -347,19 +347,15 @@ a {
     z-index: 1;
 }
 
-/* Touch devices have no cursor, so the reveal mask can never be erased.
-   Hide the canvas so the full-colour background image shows through, and hide
-   the golden layer too, otherwise it would sit on top of it forever. */
+/* Touch devices have no cursor, so the desktop brush can never be aimed.
+   Both hero layers stay visible here: assets/js/hero-loop.v1.js drives the
+   same mask along generated sweeps instead. Until that script paints, the
+   reveal layer is still visibility:hidden and .hero-bg-base shows the calm
+   photo, so a phone with JS disabled degrades to the original image.
+
+   Only the manual reset is hidden. The loop resets itself. */
 @media (hover: none),
     (any-hover: none) {
-    .hero-bg-canvas {
-        display: none;
-    }
-
-    .hero-bg-reveal {
-        display: none;
-    }
-
     .hero-reset-btn {
         display: none;
     }
