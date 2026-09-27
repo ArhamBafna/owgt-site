@@ -32,6 +32,7 @@
     <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/crave-fine-700.woff2">
     <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/familjen-grotesk-800.woff2">
     <link rel="preload" as="image" href="assets/images/hero_bg.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/hero_bg_golden.webp" type="image/webp" fetchpriority="low">
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
@@ -68,8 +69,9 @@
     <!-- Main Hero Section -->
     <section id="welcome" class="hero-section">
         <div class="hero-bg-base"></div>
+        <div class="hero-bg-reveal" id="hero-bg-reveal"></div>
         <canvas id="hero-mask-canvas" class="hero-bg-canvas"></canvas>
-        <button id="hero-reset-btn" class="hero-reset-btn" type="button" aria-label="Reset colors" title="Reset the hero colours">Reset Colors</button>
+        <button id="hero-reset-btn" class="hero-reset-btn" type="button" aria-label="Reset sky" title="Reset the hero sky">Reset Sky</button>
         <div class="hero-bg-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">
@@ -515,7 +517,7 @@
     </div>
 
     <script defer src="assets/js/nav.js"></script>
-    <script defer src="assets/js/hero-canvas.v2.js"></script>
+    <script defer src="assets/js/hero-canvas.v3.js"></script>
     <script defer src="assets/js/modal.js"></script>
     <script defer src="assets/js/brevo-globals.js"></script>
     <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>

@@ -308,6 +308,10 @@ a {
 /* ASSET CACHE RULE: /assets/* is served with `immutable` for one year (vercel.json).
    If you change an image's CONTENT, you MUST also change its FILENAME (e.g. hero_bg.v2.webp)
    and update every reference. Otherwise visitors keep the old file for a year. */
+
+/* Both hero layers are the same 1678x937 asset, so the `cover` crop and the
+   `center` position resolve identically and the two skies register pixel for
+   pixel. Never give either hero image a different pixel size. */
 .hero-bg-base {
     position: absolute;
     inset: 0;
@@ -318,6 +322,36 @@ a {
     z-index: 0;
 }
 
+/* The richer golden-hour sky that the cursor uncovers. Sits directly above
+   .hero-bg-base (same z-index, later in the DOM) and directly below the mask
+   canvas, so it is never visible until the canvas erases.
+
+   It starts `visibility: hidden` and only becomes visible once JS reports
+   that the canvas has painted the mask. Without that gate the canvas bitmap
+   is transparent for the moment before the deferred script runs, and the
+   saturated golden sky would flash on screen and then get covered by the
+   calm original -- the exact opposite of the intended first frame.
+   .hero-bg-base is the flash-safe stand-in for that gap: it is the same
+   original photo, in CSS, so it paints with the page.
+
+   Do not change z-index here. It matches .hero-bg-base on purpose. */
+.hero-bg-reveal {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/images/hero_bg_golden.webp');
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+    visibility: hidden;
+}
+
+.hero-bg-reveal.is-ready {
+    visibility: visible;
+}
+
+/* The mask. Paints the original photo at full strength and the cursor erases
+   it, uncovering .hero-bg-reveal underneath. */
 .hero-bg-canvas {
     position: absolute;
     inset: 0;
@@ -327,11 +361,16 @@ a {
     z-index: 1;
 }
 
-/* Touch devices have no cursor, so the grey reveal mask can never be erased.
-   Hide the canvas so the full-colour background image shows through. */
+/* Touch devices have no cursor, so the reveal mask can never be erased.
+   Hide the canvas so the full-colour background image shows through, and hide
+   the golden layer too, otherwise it would sit on top of it forever. */
 @media (hover: none),
-(any-hover: none) {
+    (any-hover: none) {
     .hero-bg-canvas {
+        display: none;
+    }
+
+    .hero-bg-reveal {
         display: none;
     }
 

@@ -4,17 +4,20 @@
     const heroSection = document.getElementById('welcome');
     const canvas = document.getElementById('hero-mask-canvas');
     const resetBtn = document.getElementById('hero-reset-btn');
+    const revealLayer = document.getElementById('hero-bg-reveal');
     if (!heroSection || !canvas || !resetBtn) { return; }
 
-    // No hovering input means no cursor to reveal colour with, so the grey mask
-    // is skipped entirely and the full-colour background shows (see style.css).
+    // No hovering input means no cursor to uncover the golden sky with, so the
+    // mask is skipped entirely and the calm original shows (see style.css).
     const canHover = window.matchMedia('(hover: hover) and (any-hover: hover)').matches;
     if (!canHover) { return; }
 
     const ctx = canvas.getContext('2d');
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
-    const supportsFilter = typeof ctx.filter === 'string';
 
+    // The mask is the original photo, unpainted. Erasing it uncovers the
+    // richer golden-hour sky waiting underneath, so the first frame is the
+    // real image rather than a drained copy of it.
     const bgImg = new Image();
     bgImg.src = 'assets/images/hero_bg.webp';
 
@@ -44,30 +47,32 @@
         }
 
         ctx.globalCompositeOperation = 'source-over';
-        if (supportsFilter) {
-            ctx.filter = 'grayscale(55%) brightness(80%)';
-            ctx.drawImage(bgImg, sX, sY, sWidth, sHeight, 0, 0, cssW, cssH);
-            ctx.filter = 'none';
-        } else {
-            // ctx.filter is unsupported in Safari < 18.
-            ctx.drawImage(bgImg, sX, sY, sWidth, sHeight, 0, 0, cssW, cssH);
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.28)';
-            ctx.fillRect(0, 0, cssW, cssH);
-        }
+        ctx.drawImage(bgImg, sX, sY, sWidth, sHeight, 0, 0, cssW, cssH);
+    }
+
+    // Only now is the mask opaque enough to hide the golden sky behind it.
+    // Until this fires, .hero-bg-base is painting the original in CSS, so the
+    // first frame is correct either way and the saturated sky never flashes.
+    function maskIsPainted() {
+        if (revealLayer) { revealLayer.classList.add('is-ready'); }
     }
 
     function paintBase() {
         ctx.clearRect(0, 0, cssW, cssH);
         if (bgImg.complete && bgImg.naturalWidth !== 0) {
             drawImageCover();
+            maskIsPainted();
         } else {
-            bgImg.addEventListener('load', drawImageCover, { once: true });
+            bgImg.addEventListener('load', function () {
+                drawImageCover();
+                maskIsPainted();
+            }, { once: true });
         }
         isPainted = false;
         resetBtn.classList.remove('is-visible');
     }
 
-    function fillGreyscale() {
+    function coverMask() {
         snapshot.width = canvas.width;
         snapshot.height = canvas.height;
         snapshot.getContext('2d').drawImage(canvas, 0, 0);
@@ -81,7 +86,7 @@
         canvas.width = Math.round(cssW * DPR);
         canvas.height = Math.round(cssH * DPR);
         ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-        fillGreyscale();
+        coverMask();
     }
 
     let resizeTimer = null;
@@ -105,8 +110,10 @@
 
         ctx.globalCompositeOperation = 'destination-out';
         const gradient = ctx.createRadialGradient(x, y, 0, x, y, 200);
+        // The middle stop stays low so the rim of the hole dissolves instead of
+        // ending. Between two full-colour skies a hard rim reads as a ring.
         gradient.addColorStop(0, 'rgba(0,0,0,0.6)');
-        gradient.addColorStop(0.5, 'rgba(0,0,0,0.15)');
+        gradient.addColorStop(0.5, 'rgba(0,0,0,0.10)');
         gradient.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -120,6 +127,6 @@
     }
 
     resetBtn.addEventListener('click', function () {
-        fillGreyscale();
+        coverMask();
     });
 })();
