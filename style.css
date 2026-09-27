@@ -178,10 +178,13 @@ a {
     overflow: hidden;
 }
 
+/* ASSET CACHE RULE: /assets/* is served with `immutable` for one year (vercel.json).
+   If you change an image's CONTENT, you MUST also change its FILENAME (e.g. hero_bg.v2.webp)
+   and update every reference. Otherwise visitors keep the old file for a year. */
 .hero-bg-base {
     position: absolute;
     inset: 0;
-    background-image: url('assets/images/hero_bg.png');
+    background-image: url('assets/images/hero_bg.webp');
     background-size: cover;
     background-position: center;
     pointer-events: none;
