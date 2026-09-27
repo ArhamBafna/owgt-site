@@ -7,6 +7,29 @@
 
 ---
 
+## 0a. Amendments after this spec was written
+
+This document is the historical plan for the 7-phase rebuild. It is **not** rewritten when the owner changes their mind about a decision after the fact — the record of what was built stays accurate. Amendments are logged here instead, and the affected sections carry a `SUPERSEDED` marker pointing back to this table.
+
+Read this section before trusting any colour instruction below it.
+
+| # | Date | Commit | What changed | Why |
+|---|---|---|---|---|
+| A1 | 2026-09-26 | `2c8e046` | Primary buttons: `--clr-red-accent` → `--clr-green-accent` (`#1E7A46`) | Owner felt the red button read as unapproachable. The intermediate green was not kept — see A2. |
+| A2 | 2026-09-26 | *(this change)* | Primary buttons: green → **`--clr-blue-accent` `#0345AA`**, hover `--clr-blue-dark` `#023C8F` | Green fought the mint page background and split the palette in two. `#0345AA` is the brand blue already used in `placeholder/app` (`--color-owgt-blue`), so button and accents are one family. Red stays reserved for text, borders, focus rings and the application-steps band. |
+
+**Net effect on the button system:** Tier 1 is now a blue pill, not a red one. Tier 2 (`.rsvp-close-btn`, black) and the status chip (`.btn-tbd`, white) are unchanged.
+
+Measured contrast for `#0345AA`: white text **8.62:1** (needs 4.5:1). Against every background a primary button can land on — white `8.62:1`, mint `#EBF8E7` `7.85:1`, blue box `#BCE7FD` `6.56:1`, yellow `#FED02F` `5.86:1` — all clear the 3:1 needed for a non-text control.
+
+**Verification after A2** (expect 6 lines, all `--clr-blue-accent`/`--clr-blue-dark`, no green):
+
+```powershell
+Select-String -Path style.css -Pattern 'clr-blue-accent|clr-blue-dark'
+```
+
+---
+
 ## 0. How to use this document
 
 This is not a list of problems. It is a list of **things to do, with the answer already decided**.
@@ -63,10 +86,14 @@ Practical consequence: for every other task, prove the work by **reading code an
 
 All colours used anywhere in this spec are defined here. When a later phase says "the brand red", it means `var(--clr-red-accent)`.
 
+> **SUPERSEDED in part — see A1 and A2 in A 0a.** "The brand red" no longer means the button colour. Since A2 the primary buttons use `var(--clr-blue-accent)`, and `--clr-red-accent` is an **accent only** (text, borders, focus rings, the application-steps band). The red rows below are still correct; they just no longer describe the buttons.
+
 | Token | Value | Contrast note | Replaces |
 |---|---|---|---|
-| `--clr-red-accent` | `#C92A1E` | white text on it = **5.48:1** (needs 4.5:1) | the old `#E63B2E` |
+| `--clr-red-accent` | `#C92A1E` | white text on it = **5.48:1** (needs 4.5:1). **Accent only, not buttons** (A2) | the old `#E63B2E` |
 | `--clr-red-dark` | `#A11F16` | white text on it = **7.71:1**. Hover/active state | the old unused `#C92A1E` |
+| `--clr-blue-accent` | `#0345AA` | white text on it = **8.62:1**. **Primary button colour** (A2) | `--clr-green-accent` `#1E7A46` (A1) |
+| `--clr-blue-dark` | `#023C8F` | white text on it = **10.27:1**. Button hover/active | `--clr-green-dark` `#175C36` (A1) |
 | `--clr-link` | `#0F5D8C` | on the mint `#EBF8E7` = **6.45:1** | the old `#2BB2FC` |
 | `--clr-placeholder` | `#5A6B7D` | on white = **5.48:1** | the old `#c0ccda` |
 | `--clr-bg-page` | `#EBF8E7` | unchanged | â€” |
@@ -871,6 +898,8 @@ The `#sib-container textarea::placeholder` rule at lines 1207â€“1212 target
 ## 5.4 Unify the button system (J6â€“J7)
 
 The site has 8 different button definitions. It ends with **two tiers and one shape**.
+
+> **SUPERSEDED in part, see A2 in section 0a.** This task shipped with a **red** Tier 1 pill, as written below. The owner has since rejected red as unapproachable. Tier 1 is now a **blue** pill: `var(--clr-blue-accent)` with `var(--clr-blue-dark)` on hover. The structure below is still exactly right and still describes `style.css` today; only the two colour tokens changed. Tier 2 (black) and the status chip below are unaffected.
 
 **Tier 1 â€” primary action.** Red pill. Used by: nav RSVP, events RSVP, RSVP modal submit, newsletter join.
 
@@ -1991,6 +2020,8 @@ Three specific things: the newsletter email box's placeholder text is now readab
 
 **3. One red, one button shape, one modal palette (findings J5â€“J7)**
 Every red button on the site â€” nav RSVP, events RSVP, the "Apply to volunteer" button, the newsletter join button, and the RSVP popup's Submit â€” should now be the same shade of red, all pill-shaped. Hovering any of them goes darker. The RSVP popup is no longer blue: its title is black, its input is white with a grey border, and its Submit button matches the site red. Confirm the single red still looks like your brand and that the popup no longer looks like it belongs to a different website.
+
+> **SUPERSEDED in part, see A2 in section 0a.** The owner checked this and rejected the red. The five buttons named above are now one shade of **blue** (`#0345AA`, darkening to `#023C8F` on hover), not red. Everything else in this item still holds: one shape across all five, one hover state, and the modal now matching the site palette. If the buttons are re-checked, check the blue for the same thing red was checked for.
 
 **4. The hero sharpness (finding H2)**
 On a retina laptop or a phone, move the mouse across the hero background. The image should look crisp, not soft or smeared. Before this fix the hero was rendered at half its needed resolution and upscaled by the browser. Also tap "Reset Colors" â€” it should appear only after you have scratched the image, and clicking it should restore the grey.

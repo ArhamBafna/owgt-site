@@ -57,11 +57,14 @@
     --clr-black: #111111;
     --clr-red-accent: #C92A1E;
     --clr-red-dark: #A11F16;
-    /* Button green. Chosen to clear 3:1 against every background a primary
-       button can land on: white, mint #EBF8E7, blue-box #BCE7FD, yellow
-       #FED02F. White text on it is 5.35:1 (needs 4.5:1). */
-    --clr-green-accent: #1E7A46;
-    --clr-green-dark: #175C36;
+    /* Primary button colour. Chosen to clear 3:1 against every background a
+       primary button can land on: white, mint #EBF8E7, blue-box #BCE7FD,
+       yellow #FED02F. White text on it is 8.62:1 (needs 4.5:1). It is the
+       brand blue already used in placeholder/app (--color-owgt-blue), so the
+       button and the accents stay one family. Red stays reserved for text,
+       borders and the application-steps band. */
+    --clr-blue-accent: #0345AA;
+    --clr-blue-dark: #023C8F;
     --clr-yellow-accent: #FED02F;
     --clr-blue-box: #BCE7FD;
     --clr-text-muted: #555555;
@@ -233,7 +236,7 @@ a {
 
 /* ==========================================================================
    BUTTON SYSTEM -- two tiers, one shape.
-   Tier 1 (below): the green pill. Every primary action on the site.
+   Tier 1 (below): the blue pill. Every primary action on the site.
    Tier 2: the black pill, .rsvp-close-btn only.
    Anything else that looks clickable is a status chip, not a button. (.btn-tbd)
    ========================================================================== */
@@ -241,7 +244,7 @@ a {
 .btn-rsvp,
 .rsvp-submit-btn,
 .newsletter-section .sib-form-block__button {
-    background-color: var(--clr-green-accent);
+    background-color: var(--clr-blue-accent);
     color: var(--clr-white);
     border: none;
     border-radius: var(--radius-pill);
@@ -254,7 +257,7 @@ a {
 .btn-rsvp:hover,
 .rsvp-submit-btn:hover,
 .newsletter-section .sib-form-block__button:hover {
-    background-color: var(--clr-green-dark);
+    background-color: var(--clr-blue-dark);
     transform: translateY(-2px);
 }
 
@@ -1333,7 +1336,7 @@ a {
 .newsletter-section .sib-form-block__button {
     padding: 16px 60px;
     font-size: 1.25rem;
-    box-shadow: 0 4px 14px rgba(30, 122, 70, 0.3);
+    box-shadow: 0 4px 14px rgba(3, 69, 170, 0.3);
 }
 
 .newsletter-disclaimer-text p {
@@ -1945,7 +1948,7 @@ a {
     padding: 0.85rem 2.5rem;
     min-width: 220px;
     text-align: center;
-    background-color: var(--clr-green-accent);
+    background-color: var(--clr-blue-accent);
     color: var(--clr-white);
     border-radius: var(--radius-pill);
     font-size: 1rem;
@@ -1954,7 +1957,7 @@ a {
 }
 
 .btn-apply:hover {
-    background-color: var(--clr-green-dark);
+    background-color: var(--clr-blue-dark);
     transform: translateY(-2px);
 }
 
