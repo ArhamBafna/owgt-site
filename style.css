@@ -1,17 +1,52 @@
+/* Familjen Grotesk ships as a variable font: one file serves all four weights.
+   Four @font-face blocks over the same file is how Google Fonts serves it, and
+   each face pins the wght axis to its own value. */
 @font-face {
-    font-family: 'crave-fine';
+    font-family: 'Familjen Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('assets/fonts/familjen-grotesk-400.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Familjen Grotesk';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('assets/fonts/familjen-grotesk-600.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Familjen Grotesk';
     font-style: normal;
     font-weight: 700;
-    src: url('https://static.parastorage.com/fonts/v2/57107ed2-217c-4a34-9593-2f0f00c2c146/v1/crave-fine.latin.woff2') format('woff2');
     font-display: swap;
+    src: url('assets/fonts/familjen-grotesk-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Familjen Grotesk';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('assets/fonts/familjen-grotesk-800.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'crave-fine';
     font-style: normal;
     font-weight: 400;
-    src: url('https://static.parastorage.com/fonts/v2/1b8b7e48-4b4b-4373-a980-062e9481d461/v1/crave-fine.latin.woff2') format('woff2');
     font-display: swap;
+    src: url('assets/fonts/crave-fine-400.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'crave-fine';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('assets/fonts/crave-fine-700.woff2') format('woff2');
 }
 
 /* Design Tokens directly extracted from Wix Studio Site */
@@ -20,13 +55,14 @@
     /* Light mint green page background */
     --clr-white: #FFFFFF;
     --clr-black: #111111;
-    --clr-dark: #1C1C1C;
-    --clr-red-accent: #E63B2E;
-    --clr-red-dark: #C92A1E;
+    --clr-red-accent: #C92A1E;
+    --clr-red-dark: #A11F16;
     --clr-yellow-accent: #FED02F;
     --clr-blue-box: #BCE7FD;
     --clr-text-muted: #555555;
-    --clr-text-light: #777777;
+    --clr-link: #0F5D8C;
+    --clr-placeholder: #5A6B7D;
+    --clr-success-text: #085229;
 
     --font-heading: 'Familjen Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-body: 'Familjen Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -34,11 +70,7 @@
     --radius-sm: 7px;
     --radius-md: 12px;
     --radius-card: 14px;
-    --radius-prizes: 17px;
-    --radius-events: 19px;
     --radius-pill: 300px;
-
-    --transition: all 0.25s ease;
 
     /* ========================================================
        HERO LOGO MANUAL CONTROLS:
@@ -86,6 +118,11 @@ a {
     text-decoration: none;
 }
 
+:focus-visible {
+    outline: 3px solid var(--clr-red-accent);
+    outline-offset: 2px;
+}
+
 
 /* ==========================================================================
    2. NAVBAR (Floating Frosted Glass Navbar)
@@ -118,7 +155,7 @@ a {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.7);
     pointer-events: auto;
-    transition: var(--transition);
+    position: relative;
 }
 
 .nav-logo a {
@@ -141,26 +178,79 @@ a {
     color: #222222;
     padding: 0.5rem 0.8rem;
     border-radius: var(--radius-sm);
-    transition: var(--transition);
+    transition: color 0.25s ease, background-color 0.25s ease;
 }
 
 .nav-link:hover {
     color: var(--clr-red-accent);
 }
 
-.nav-rsvp-btn {
-    background-color: #F73D18;
-    color: var(--clr-white);
-    padding: 0.65rem 1.8rem;
-    border-radius: var(--radius-pill);
-    font-size: 1rem;
-    font-weight: 700;
-    transition: var(--transition);
+/* Mobile nav toggle: hidden on desktop, the primary nav on desktop */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
 }
 
-.nav-rsvp-btn:hover {
-    background-color: #000000;
-    transform: scale(1.04);
+.nav-toggle-bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 0 auto;
+    background-color: var(--clr-black);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-rsvp-btn {
+    padding: 0.65rem 1.8rem;
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   BUTTON SYSTEM -- two tiers, one shape.
+   Tier 1 (below): the red pill. Every primary action on the site.
+   Tier 2: the black pill, .rsvp-close-btn only.
+   Anything else that looks clickable is a status chip, not a button. (.btn-tbd)
+   ========================================================================== */
+.nav-rsvp-btn,
+.btn-rsvp,
+.rsvp-submit-btn,
+.newsletter-section .sib-form-block__button {
+    background-color: var(--clr-red-accent);
+    color: var(--clr-white);
+    border: none;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-rsvp-btn:hover,
+.btn-rsvp:hover,
+.rsvp-submit-btn:hover,
+.newsletter-section .sib-form-block__button:hover {
+    background-color: var(--clr-red-dark);
+    transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -220,14 +310,16 @@ a {
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.3s ease, transform 0.2s ease;
+    transition: opacity 0.3s ease, transform 0.2s ease, visibility 0.3s ease;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     transform: translateY(10px);
 }
 
 .hero-reset-btn.is-visible {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
 }
@@ -312,7 +404,6 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--transition);
     animation: arrow-float 2s ease-in-out infinite;
 }
 
@@ -320,11 +411,6 @@ a {
     width: 20px;
     height: 20px;
     opacity: 0.85;
-}
-
-.hero-scroll-indicator:hover {
-    transform: translateY(4px);
-    opacity: 1;
 }
 
 @keyframes arrow-float {
@@ -351,8 +437,7 @@ a {
     background-color: var(--clr-blue-box);
 }
 
-.events-container,
-.events-card {
+.events-container {
     width: 100%;
     max-width: 1240px;
     margin: 0 auto;
@@ -361,16 +446,7 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: transparent;
-    border-radius: 0;
-    padding: 0;
-    box-shadow: none;
     min-height: auto;
-}
-
-.events-card:hover {
-    transform: none;
-    box-shadow: none;
 }
 
 .events-title {
@@ -390,40 +466,30 @@ a {
     flex-wrap: wrap;
 }
 
+/* Not a button. A white status chip, so it stops reading as a broken one. */
 .btn-tbd {
-    background-color: var(--clr-red-accent);
-    color: var(--clr-white);
-    padding: 0.85rem 2.5rem;
-    border-radius: var(--radius-events);
-    /* 19px Wix ground truth - rounded rectangle, not pill */
-    font-size: 1rem;
-    font-weight: 700;
+    background-color: var(--clr-white);
+    color: var(--clr-black);
+    border: 1.5px solid rgba(0, 0, 0, 0.16);
+    padding: 0.6rem 1.6rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.95rem;
+    font-weight: 600;
     width: auto;
-    min-width: 220px;
+    min-width: 0;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(230, 59, 46, 0.25);
     display: inline-block;
+    cursor: default;
 }
 
 .btn-rsvp {
-    background-color: #000000;
-    color: var(--clr-white);
     padding: 0.85rem 2.5rem;
-    border-radius: var(--radius-pill);
     /* 300px pill */
     font-size: 1rem;
-    font-weight: 700;
-    width: auto;
     min-width: 180px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    transition: var(--transition);
-}
-
-.btn-rsvp:hover {
-    background-color: #F75F40;
-    transform: scale(1.03);
 }
 
 /* ==========================================================================
@@ -438,10 +504,6 @@ a {
 .volunteer-container {
     max-width: 1240px;
     margin: 0 auto;
-    background-color: transparent;
-    border-radius: 0;
-    padding: 0;
-    box-shadow: none;
 }
 
 .volunteer-header {
@@ -503,11 +565,7 @@ a {
 .application-container {
     max-width: 1240px;
     margin: 0 auto;
-    background-color: transparent;
     color: var(--clr-white);
-    border-radius: 0;
-    padding: 0;
-    box-shadow: none;
 }
 
 .app-steps-layout {
@@ -549,7 +607,7 @@ a {
     /* 14px Wix ground truth */
     padding: 3.5rem 3rem;
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
-    transition: var(--transition);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .step-card:hover {
@@ -575,7 +633,7 @@ a {
     color: var(--clr-black);
     text-decoration: underline;
     font-weight: 700;
-    transition: var(--transition);
+    transition: color 0.25s ease;
 }
 
 .step-link:hover {
@@ -739,10 +797,6 @@ a {
 .chapter-container {
     max-width: 1240px;
     margin: 0 auto;
-    background-color: transparent;
-    border-radius: 0;
-    padding: 0;
-    box-shadow: none;
     position: relative;
     z-index: 5;
 }
@@ -876,7 +930,7 @@ a {
     color: var(--clr-black);
     text-decoration: underline;
     text-underline-offset: 3px;
-    transition: var(--transition);
+    transition: color 0.25s ease;
 }
 
 .chapter-link:hover {
@@ -893,7 +947,6 @@ a {
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.14));
     animation: pixel-float var(--float-dur, 4.5s) ease-in-out infinite alternate;
     animation-delay: var(--float-delay, 0s);
-    will-change: transform;
 }
 
 /* 1. Trophy Left: Overlaps Top-Left of Image Card */
@@ -1052,7 +1105,7 @@ a {
     margin: 0 auto;
     font-size: clamp(2.1rem, 3.8vw, 2.9rem);
     font-weight: 800;
-    color: #fd0009;
+    color: var(--clr-red-accent);
     font-family: Trebuchet MS, sans-serif;
     letter-spacing: -0.02em;
     line-height: 1.2;
@@ -1121,7 +1174,6 @@ a {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--clr-black);
-    transition: var(--transition);
 }
 
 .custom-checkbox-input {
@@ -1143,7 +1195,7 @@ a {
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .custom-checkbox-icon {
@@ -1159,7 +1211,7 @@ a {
 .custom-checkbox-label:hover .custom-checkbox-box {
     border-color: var(--clr-red-accent);
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(230, 59, 46, 0.18);
+    box-shadow: 0 4px 10px rgba(201, 42, 30, 0.18);
 }
 
 .custom-checkbox-input:checked + .custom-checkbox-box {
@@ -1193,30 +1245,16 @@ a {
     height: 20px;
 }
 
-#sib-container input:-ms-input-placeholder {
-    font-family: Trebuchet MS, sans-serif;
-    font-size: 1.18rem;
-    text-align: center;
-    color: #c0ccda;
-}
-
 #sib-container input::placeholder {
     font-family: Trebuchet MS, sans-serif;
     font-size: 1.18rem;
     text-align: center;
-    color: #c0ccda;
-}
-
-#sib-container textarea::placeholder {
-    font-family: Trebuchet MS, sans-serif;
-    font-size: 1.18rem;
-    text-align: center;
-    color: #c0ccda;
+    color: var(--clr-placeholder);
 }
 
 #sib-container a {
     text-decoration: underline;
-    color: #2BB2FC;
+    color: var(--clr-link);
 }
 
 .newsletter-section .form__entry {
@@ -1262,8 +1300,7 @@ a {
     border-radius: var(--radius-md) !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     box-sizing: border-box;
-    outline: none;
-    transition: var(--transition);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .newsletter-section .entry__field input.input:focus {
@@ -1279,19 +1316,9 @@ a {
 }
 
 .newsletter-section .sib-form-block__button {
-    cursor: pointer;
-    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
     padding: 16px 60px;
     font-size: 1.25rem;
-    font-weight: 700;
-    border-radius: var(--radius-pill);
-    box-shadow: 0 4px 14px rgba(15, 153, 146, 0.3);
-}
-
-.newsletter-section .sib-form-block__button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(15, 153, 146, 0.4);
-    opacity: 0.95;
+    box-shadow: 0 4px 14px rgba(201, 42, 30, 0.3);
 }
 
 .newsletter-disclaimer-text p {
@@ -1314,10 +1341,6 @@ a {
 .footer-container {
     max-width: 1240px;
     margin: 0 auto;
-    background-color: transparent;
-    border-radius: 0;
-    padding: 0;
-    box-shadow: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1347,7 +1370,7 @@ a {
     color: #000000;
     text-decoration: underline;
     font-weight: 700;
-    transition: var(--transition);
+    transition: color 0.25s ease;
 }
 
 .footer-nonprofit-tag a:hover {
@@ -1367,45 +1390,9 @@ a {
 }
 
 /* ==========================================================================
-   11. PLACEHOLDER TOAST MODAL
+   11. RSVP POPUP MODAL
    ========================================================================== */
-.toast-hidden {
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-}
-
-.toast-visible {
-    opacity: 1;
-    pointer-events: auto;
-    visibility: visible;
-}
-
-#toast-modal {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
-    z-index: 99999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.25s ease;
-    padding: 1.5rem;
-}
-
-.toast-content {
-    background-color: var(--clr-white);
-    border-radius: var(--radius-md);
-    padding: 2.2rem;
-    max-width: 440px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    animation: toast-slide-up 0.25s ease forwards;
-}
-
-@keyframes toast-slide-up {
+@keyframes modal-slide-up {
     from {
         transform: translateY(15px);
     }
@@ -1415,34 +1402,6 @@ a {
     }
 }
 
-.toast-content p {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #222222;
-    margin-bottom: 1.5rem;
-    line-height: 1.45;
-}
-
-.toast-close-btn {
-    background-color: var(--clr-black);
-    color: var(--clr-white);
-    border: none;
-    border-radius: var(--radius-pill);
-    padding: 0.65rem 2rem;
-    font-size: 0.95rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.toast-close-btn:hover {
-    background-color: #333333;
-    transform: scale(1.04);
-}
-
-/* ==========================================================================
-   11.1 RSVP POPUP MODAL
-   ========================================================================== */
 .rsvp-modal-hidden {
     opacity: 0;
     pointer-events: none;
@@ -1483,7 +1442,7 @@ a {
     width: 100%;
     text-align: center;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-    animation: toast-slide-up 0.25s ease forwards;
+    animation: modal-slide-up 0.25s ease forwards;
 }
 
 .rsvp-close-icon {
@@ -1494,7 +1453,7 @@ a {
     border: none;
     font-size: 1.75rem;
     line-height: 1;
-    color: #888888;
+    color: var(--clr-black);
     cursor: pointer;
     padding: 0.25rem;
     border-radius: 6px;
@@ -1502,7 +1461,7 @@ a {
 }
 
 .rsvp-close-icon:hover {
-    color: #111111;
+    color: var(--clr-black);
     transform: scale(1.1);
 }
 
@@ -1511,7 +1470,7 @@ a {
     font-size: 2.2rem;
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: #045AFF;
+    color: var(--clr-black);
     margin: 0 0 0.5rem 0;
     line-height: 1.1;
 }
@@ -1535,23 +1494,22 @@ a {
     padding: 0.85rem 1rem;
     font-family: var(--font-body);
     font-size: 1rem;
-    color: #111111;
-    background-color: #f7fafc;
-    border: 1.5px solid #d3dce6;
+    color: var(--clr-black);
+    background-color: var(--clr-white);
+    border: 2px solid rgba(0, 0, 0, 0.16);
     border-radius: 10px;
-    outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .rsvp-email-input:focus {
-    border-color: #045AFF;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(4, 90, 255, 0.15);
+    border-color: var(--clr-black);
+    background-color: var(--clr-white);
+    box-shadow: 0 0 0 3px rgba(201, 42, 30, 0.18);
 }
 
 .rsvp-error-text {
     font-size: 0.85rem;
-    color: #d93025;
+    color: var(--clr-red-accent);
     margin-top: 0.4rem;
     font-weight: 600;
 }
@@ -1559,24 +1517,12 @@ a {
 .rsvp-submit-btn {
     width: 100%;
     padding: 0.85rem 1.5rem;
-    background-color: #045AFF;
-    color: #ffffff;
     font-family: var(--font-body);
     font-size: 1rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.15s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-}
-
-.rsvp-submit-btn:hover {
-    background-color: #0346cc;
-    transform: translateY(-1px);
 }
 
 .rsvp-submit-btn:active {
@@ -1605,7 +1551,7 @@ a {
 .rsvp-success-svg {
     width: 52px;
     height: 52px;
-    color: #0f9992;
+    color: #0B7A34;
 }
 
 .rsvp-success-title {
@@ -1613,7 +1559,7 @@ a {
     font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: #085229;
+    color: var(--clr-success-text);
     margin: 0 0 1.5rem 0;
 }
 
@@ -1626,7 +1572,7 @@ a {
     font-size: 0.95rem;
     font-weight: 700;
     cursor: pointer;
-    transition: var(--transition);
+    transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
 .rsvp-close-btn:hover {
@@ -1695,18 +1641,43 @@ a {
         white-space: nowrap;
     }
 
-    .nav-links {
-        gap: 0.85rem;
+    .nav-toggle {
+        display: flex;
     }
 
-    .nav-link {
-        font-size: 0.9rem;
-        padding: 0.25rem 0.4rem;
+    .nav-links {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.25rem;
+        padding: 0.75rem;
+        background-color: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(35px);
+        -webkit-backdrop-filter: blur(35px);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: var(--radius-md);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+        display: none;
+    }
+
+    .nav-links.is-open {
+        display: flex;
+    }
+
+    .nav-link,
+    .nav-rsvp-btn {
+        font-size: 1rem;
+        padding: 0.7rem 0.9rem;
+        text-align: left;
+        width: 100%;
     }
 
     .nav-rsvp-btn {
-        padding: 0.45rem 1.1rem;
-        font-size: 0.85rem;
+        text-align: center;
+        margin-top: 0.35rem;
     }
 
     .hero-section {
@@ -1717,10 +1688,8 @@ a {
         padding: 4rem 1.25rem;
     }
 
-    .events-container,
-    .events-card {
+    .events-container {
         min-height: auto;
-        padding: 0;
     }
 
     .events-actions {
@@ -1746,15 +1715,6 @@ a {
 
     .newsletter-section {
         padding: 6rem 1.25rem 2rem;
-    }
-
-    .volunteer-container,
-    .application-container,
-    .chapter-container,
-    .newsletter-container,
-    .footer-container {
-        padding: 0;
-        border-radius: 0;
     }
 
     .site-footer {
@@ -1892,24 +1852,159 @@ a {
     }
 
     .nav-logo a {
-        font-size: 0.92rem;
-    }
-
-    .nav-links {
-        gap: 0.35rem;
-    }
-
-    .nav-link {
-        font-size: 0.78rem;
-        padding: 0.2rem 0.25rem;
-    }
-
-    .nav-rsvp-btn {
-        padding: 0.35rem 0.75rem;
-        font-size: 0.78rem;
+        font-size: 0.95rem;
     }
 
     .newsletter-section #sib-container {
         padding: 1.5rem 1.1rem;
+    }
+}
+/* ==========================================================================
+   13. PHASE 3/4 ADDITIONS
+   ========================================================================== */
+
+/* Hero tagline */
+.hero-tagline {
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 2.2vw, 1.6rem);
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--clr-black);
+    max-width: 46ch;
+    margin: 0 auto 3.5rem;
+}
+
+/* The tagline now sits between the title and the scroll arrow,
+   so pull the title's bottom margin up. */
+.hero-title {
+    margin-bottom: 1.25rem;
+}
+
+/* Clickable email addresses */
+.email-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.25s ease;
+}
+
+.email-link:hover {
+    color: var(--clr-red-accent);
+}
+
+/* Visible field labels */
+.field-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--clr-black);
+    text-align: center;
+}
+
+.rsvp-input-group .field-label {
+    text-align: left;
+}
+
+/* Volunteer call to action */
+.volunteer-copy {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.volunteer-desc {
+    flex: none;
+}
+
+.btn-apply {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.85rem 2.5rem;
+    min-width: 220px;
+    text-align: center;
+    background-color: var(--clr-red-accent);
+    color: var(--clr-white);
+    border-radius: var(--radius-pill);
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.btn-apply:hover {
+    background-color: var(--clr-red-dark);
+    transform: translateY(-2px);
+}
+
+/* Footer social row */
+.footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.footer-social a {
+    display: block;
+    line-height: 0;
+    border-radius: 50%;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-social a:hover {
+    transform: scale(1.12);
+    opacity: 0.85;
+}
+
+/* Three children now compete for .footer-container's space, so the social
+   row wraps onto its own line. */
+.footer-social {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+/* Modal scroll lock, driven by assets/js/modal.js */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   14. REDUCED MOTION
+   Users who ask their OS to reduce motion get a still page.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .hero-scroll-indicator,
+    .prize-art-icon,
+    .rsvp-btn-spinner {
+        animation: none;
+    }
+
+    .board-card,
+    .chapter-card,
+    .step-card,
+    .nav-rsvp-btn,
+    .btn-rsvp,
+    .rsvp-submit-btn,
+    .newsletter-section .sib-form-block__button {
+        transition: none;
+    }
+
+    .board-card:hover,
+    .chapter-card:hover,
+    .step-card:hover,
+    .volunteer-image-wrapper:hover .volunteer-image,
+    .chapter-image-card:hover .chapter-image,
+    .board-card:hover .board-photo {
+        transform: none;
     }
 }

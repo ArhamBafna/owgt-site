@@ -9,14 +9,10 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="assets/images/favicon.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/crave-fine-700.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/familjen-grotesk-800.woff2">
     <link rel="preload" as="image" href="assets/images/hero_bg.webp" type="image/webp" fetchpriority="high">
     <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Google Fonts: Familjen Grotesk for Headings & Text, Inter fallback -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@400;600;700;800;900&display=swap"
-        rel="stylesheet">
 </head>
 
 <body>
@@ -134,7 +130,7 @@
         <div class="board-sticky-track">
             <!-- Row 1: Artham Juvariwala (Sticky Stack 1 - Left) -->
             <div class="board-sticky-row row-artham">
-                <div class="board-card card-left">
+                <div class="board-card">
                     <div class="board-photo-wrapper">
                         <img src="assets/images/board_member_1.webp" alt="Artham Juvariwala" width="760" height="570"
                             loading="lazy" decoding="async" class="board-photo">
@@ -143,7 +139,7 @@
                         <div class="board-name-badge">
                             <img src="assets/icons/badge_gold.svg" alt="" class="board-badge-icon" width="38"
                                 height="38" loading="lazy" decoding="async">
-                            <div class="board-text-group">
+                            <div>
                                 <h3 class="board-name">Artham Juvariwala</h3>
                                 <p class="board-role">President</p>
                             </div>
@@ -157,7 +153,7 @@
 
             <!-- Row 2: Arham Bafna (Sticky Stack 2 - Center) -->
             <div class="board-sticky-row row-arham">
-                <div class="board-card card-center">
+                <div class="board-card">
                     <div class="board-photo-wrapper">
                         <img src="assets/images/board_member_3.webp" alt="Arham Bafna" width="570" height="760"
                             loading="lazy" decoding="async" class="board-photo">
@@ -166,7 +162,7 @@
                         <div class="board-name-badge">
                             <img src="assets/icons/badge_ribbon.svg" alt="" class="board-badge-icon" width="38"
                                 height="38" loading="lazy" decoding="async">
-                            <div class="board-text-group">
+                            <div>
                                 <h3 class="board-name">Arham Bafna</h3>
                                 <p class="board-role">Vice President</p>
                             </div>
@@ -180,7 +176,7 @@
 
             <!-- Row 3: Panshul Kadam (Sticky Stack 3 - Right) -->
             <div class="board-sticky-row row-panshul">
-                <div class="board-card card-right">
+                <div class="board-card">
                     <div class="board-photo-wrapper">
                         <img src="assets/images/board_member_2.webp" alt="Panshul Kadam" width="760" height="570"
                             loading="lazy" decoding="async" class="board-photo">
@@ -189,7 +185,7 @@
                         <div class="board-name-badge">
                             <img src="assets/icons/badge_ribbon.svg" alt="" class="board-badge-icon" width="38"
                                 height="38" loading="lazy" decoding="async">
-                            <div class="board-text-group">
+                            <div>
                                 <h3 class="board-name">Panshul Kadam</h3>
                                 <p class="board-role">Vice President</p>
                             </div>
@@ -229,7 +225,7 @@
                 <!-- Right Column: Prizes & Awards + Steps to Join with Overlapping Floating Icons -->
                 <div class="chapter-info-col">
                     <!-- Top Card: Prizes & Awards -->
-                    <div class="chapter-card chapter-prizes-card">
+                    <div class="chapter-card">
                         <!-- Overlapping top border and bottom-right seam border -->
                         <img src="assets/icons/icecream.svg" alt=""
                             class="prize-art-icon prize-icecream" width="60" height="64" loading="lazy" decoding="async">
@@ -250,7 +246,7 @@
                     </div>
 
                     <!-- Bottom Card: Steps to Start -->
-                    <div class="chapter-card chapter-steps-card">
+                    <div class="chapter-card">
                         <!-- Overlapping bottom border -->
                         <img src="assets/icons/trophy_right.svg" alt=""
                             class="prize-art-icon prize-trophy-right" width="68" height="68" loading="lazy"
@@ -313,7 +309,7 @@
                             <!-- Wide Headline Container -->
                             <div class="newsletter-headline-wrapper" style="padding: 6px 0 10px;">
                                 <div class="sib-form-block newsletter-headline-block"
-                                    style="font-family:Trebuchet MS, sans-serif; font-weight:700; text-align:center; color:#fd0009; background-color:transparent;">
+                                        style="font-family:Trebuchet MS, sans-serif; font-weight:700; text-align:center; color:var(--clr-red-accent); background-color:transparent;">
                                     <p class="newsletter-headline-text">keeping up with AI will DRAIN you</p>
                                 </div>
                             </div>
@@ -375,7 +371,7 @@
                                 <div style="padding: 8px 0 12px;">
                                     <div class="sib-form-block" style="text-align: center">
                                         <button class="sib-form-block__button sib-form-block__button-with-loader"
-                                            style="font-family:Helvetica, sans-serif; font-weight:700; text-align:center; color:#FFFFFF; background-color:#0f9992; border-width:0px; border-radius:10px;"
+                                            style="font-family:Helvetica, sans-serif; font-weight:700; text-align:center; color:#FFFFFF; border-width:0px;"
                                             form="sib-form" type="submit">
                                             <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon"
                                                 viewBox="0 0 512 512">
