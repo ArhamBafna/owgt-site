@@ -41,15 +41,20 @@ FAVICON_SRC_PATH = "assets/images/favicon.png"     # 600x600, robot head only
 # A pixel further than this from the flat background counts as artwork.
 ARTWORK_THRESHOLD = 18
 
-# Navbar tile proportions. The wordmark is legible down to about 44 px tall, so
-# the tile keeps the logo's natural 0.85 portrait ratio rather than being forced
-# square -- a square tile would need side padding that shrinks the robot.
-NAV_PADDING_RATIO = 0.06      # of content width, on all four sides
-NAV_TARGET_HEIGHT = 360       # px; covers the 48 px desktop size at 3x DPR
+# Navbar tile. Square, not the lockup's own 485x570 shape: a proportional tile
+# is a tall rectangle whose rounded corners read as stretched, and the 0.06
+# padding it carried left the O.W.G.T wordmark hard against the edge, which
+# looked squished. Sized off the long edge, so the short axis (horizontal, where
+# the wordmark runs out) gets the most air.
+NAV_PADDING_RATIO = 0.10      # of the artwork's long edge
+NAV_TARGET_HEIGHT = 360       # px; covers the 58 px desktop size at 3x DPR
 NAV_WEBP_QUALITY = 90
 
-# Favicon corner treatment.
+# Favicons share the navbar tile's air so the two read as one family.
+FAVICON_PADDING_RATIO = 0.08  # of the artwork's long edge
 FAVICON_CORNER_RATIO = 0.20   # radius as a fraction of the icon's edge
+FAVICON_SIZES = (16, 32)      # the two the markup declares
+ICO_SIZES = (16, 32, 48)      # what the root favicon.ico carries
 
 
 def restore_from_git(commit: str, path: str, dest: Path) -> None:
@@ -107,12 +112,22 @@ def flatten_to_white(art: Image.Image, bg: tuple[int, int, int]) -> Image.Image:
     return out
 
 
-def pad_uniform(art: Image.Image, ratio: float) -> Image.Image:
-    """Add uniform white padding of `ratio` x content width on all four sides."""
-    pad = round(art.width * ratio)
-    out = Image.new("RGB", (art.width + pad * 2, art.height + pad * 2),
-                    (255, 255, 255))
-    out.paste(art, (pad, pad))
+def pad_to_square(art: Image.Image, ratio: float) -> Image.Image:
+    """Centre the artwork in a white square tile, padded by `ratio` of its long edge.
+
+    Square, not the artwork's own shape: the lockup is 485x570, so a
+    proportional tile is a tall rectangle and the rounded corners read as
+    stretched. Because the artwork is not itself square, equal padding on all
+    four sides is impossible -- the tile is sized off the long edge, so the
+    short axis ends up with more room. On the lockup that is the horizontal
+    axis, which is exactly where the O.W.G.T wordmark runs to the edge and
+    needs the air.
+    """
+    edge = max(art.width, art.height)
+    pad = round(edge * ratio)
+    side = edge + pad * 2
+    out = Image.new("RGB", (side, side), (255, 255, 255))
+    out.paste(art, ((side - art.width) // 2, (side - art.height) // 2))
     return out
 
 
@@ -131,48 +146,57 @@ def rounded_mask(size: int, ratio: float) -> Image.Image:
     return mask
 
 
+def rounded_icon(square: Image.Image, size: int, ratio: float) -> Image.Image:
+    """Downscale a white square tile to `size` and round its corners away."""
+    icon = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    icon.paste(square.resize((size, size), Image.LANCZOS), (0, 0),
+               rounded_mask(size, ratio))
+    return icon
+
+
 def build_nav_logo(src: Path) -> Path:
     art, bg = load_flat_art(src)
-    tile = pad_uniform(flatten_to_white(art, bg), NAV_PADDING_RATIO)
-    tile = fit_height(tile, NAV_TARGET_HEIGHT)
+    tile = fit_height(
+        pad_to_square(flatten_to_white(art, bg), NAV_PADDING_RATIO),
+        NAV_TARGET_HEIGHT)
 
-    dst = IMG / "owgt-logo-nav.webp"
+    dst = IMG / "owgt-logo-nav.v2.webp"
     tile.save(dst, "WEBP", quality=NAV_WEBP_QUALITY, method=6)
 
-    # The tile keeps the logo's own proportions, so it must stay portrait.
-    aspect = tile.width / tile.height
-    assert 0.78 < aspect < 0.92, f"tile aspect {aspect:.3f} is not the 0.85 portrait"
-    # Padding must be visibly there, not trimmed flush to the artwork.
-    assert 0.04 < NAV_PADDING_RATIO < 0.10, "padding out of the agreed range"
-    # Never upscale past the source: a blurry 3x tile is worse than a soft 2x one.
+    assert tile.width == tile.height, f"tile is {tile.width}x{tile.height}, not square"
+    # The mark must sit inside the tile with visible air, not touch the corners.
+    inner = ImageChops.difference(
+        tile, Image.new("RGB", tile.size, (255, 255, 255))
+    ).convert("L").point(lambda v: 255 if v > ARTWORK_THRESHOLD else 0).getbbox()
+    margin_x = inner[0] / tile.width
+    margin_y = inner[1] / tile.height
+    assert margin_x > 0.10, f"only {margin_x:.1%} horizontal air"
+    assert margin_y > 0.06, f"only {margin_y:.1%} vertical air"
+    # Never upscale past the source: a blurry tile is worse than a soft one.
     assert art.height >= tile.height, "tile was upscaled from the source"
     return dst
 
 
 def build_favicons(src: Path, sizes=(16, 32)) -> list[Path]:
     art, bg = load_flat_art(src)
-    # Square up first: the head artwork is 446x408, and a tab icon is square.
-    edge = max(art.width, art.height)
-    square = Image.new("RGB", (edge, edge), (255, 255, 255))
-    square.paste(art, ((edge - art.width) // 2, (edge - art.height) // 2))
-    square = flatten_to_white(square, bg)
+    # Square tile with the same air the navbar tile gets, so the two read as
+    # one family. The head art is 446x408, so padding off the long edge leaves
+    # it centred with roughly equal space on all four sides.
+    square = flatten_to_white(pad_to_square(art, FAVICON_PADDING_RATIO), bg)
 
-    # Squaring guarantees white bands above and below the art, so the mid-edge
+    # Squaring guarantees a white border on all four sides, so the mid-edge
     # points are background by construction. Probing the 16 px render instead
     # would be unreliable: at a 3 px radius the corners curve away, and after a
-    # LANCZOS downscale the bands are barely a pixel wide.
-    band = (edge - art.height) // 2
-    assert band > 0, "head art is not wider than it is tall; nothing to pad"
-    for probe in ((edge // 2, 0), (edge // 2, edge - 1)):
+    # LANCZOS downscale the border is barely a pixel wide.
+    for probe in ((square.width // 2, 0), (square.width // 2, square.height - 1),
+                  (0, square.height // 2), (square.width - 1, square.height // 2)):
         assert square.getpixel(probe) == (255, 255, 255), \
             f"favicon fill at {probe} is not pure white"
 
     written = []
     for size in sizes:
-        mask = rounded_mask(size, FAVICON_CORNER_RATIO)
-        icon = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-        icon.paste(square.resize((size, size), Image.LANCZOS), (0, 0), mask)
-        dst = IMG / f"favicon-{size}.r2.png"
+        dst = IMG / f"favicon-{size}.r3.png"
+        icon = rounded_icon(square, size, FAVICON_CORNER_RATIO)
         icon.save(dst, "PNG", optimize=True)
 
         with Image.open(dst) as check:
@@ -190,6 +214,35 @@ def build_favicons(src: Path, sizes=(16, 32)) -> list[Path]:
     return written
 
 
+def build_ico(src: Path) -> Path:
+    """Rewrite the root favicon.ico with the same rounded artwork.
+
+    This one is not optional polish. Browsers request /favicon.ico whether or
+    not the markup mentions it, and Chrome picks an icon by size -- preferring
+    to downscale a larger one over upscaling a 16 px one. A 48 px square .ico
+    therefore beat both rounded PNGs and the tab kept showing the old artwork.
+    Every icon source the browser can reach now has to be the new artwork.
+
+    The file is at the repo root, not under /assets/, so vercel.json does not
+    serve it `immutable` and it can be overwritten in place. Everything under
+    /assets/ has to change name instead.
+    """
+    art, bg = load_flat_art(src)
+    square = flatten_to_white(pad_to_square(art, FAVICON_PADDING_RATIO), bg)
+
+    dst = ROOT / "favicon.ico"
+    largest = rounded_icon(square, max(ICO_SIZES), FAVICON_CORNER_RATIO)
+    largest.save(dst, format="ICO", sizes=[(s, s) for s in ICO_SIZES])
+
+    with Image.open(dst) as check:
+        check.load()
+        alpha = check.convert("RGBA").getchannel("A")
+        assert alpha.getpixel((0, 0)) == 0, "favicon.ico corner is not transparent"
+        assert alpha.getpixel((check.width - 1, 0)) == 0, \
+            "favicon.ico corner is not transparent"
+    return dst
+
+
 def main() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
@@ -198,7 +251,8 @@ def main() -> None:
         restore_from_git(LOGO_SRC_COMMIT, LOGO_SRC_PATH, logo_src)
         restore_from_git(FAVICON_SRC_COMMIT, FAVICON_SRC_PATH, favicon_src)
 
-        for path in [build_nav_logo(logo_src), *build_favicons(favicon_src)]:
+        for path in [build_nav_logo(logo_src), *build_favicons(favicon_src),
+                     build_ico(favicon_src)]:
             rel = path.relative_to(ROOT).as_posix()
             with Image.open(path) as im:
                 size = f"{im.width}x{im.height}"
