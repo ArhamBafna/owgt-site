@@ -6,6 +6,11 @@
     const resetBtn = document.getElementById('hero-reset-btn');
     if (!heroSection || !canvas || !resetBtn) { return; }
 
+    // No hovering input means no cursor to reveal colour with, so the grey mask
+    // is skipped entirely and the full-colour background shows (see style.css).
+    const canHover = window.matchMedia('(hover: hover) and (any-hover: hover)').matches;
+    if (!canHover) { return; }
+
     const ctx = canvas.getContext('2d');
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
     const supportsFilter = typeof ctx.filter === 'string';
@@ -87,7 +92,6 @@
     resizeCanvas();
 
     heroSection.addEventListener('mousemove', function (e) {
-        if (window.matchMedia('(hover: none)').matches) { return; }
         pointerX = e.clientX;
         pointerY = e.clientY;
         if (frame === null) { frame = requestAnimationFrame(eraseAtPointer); }

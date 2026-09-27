@@ -290,8 +290,14 @@ a {
     z-index: 1;
 }
 
-@media (hover: none) {
+/* Touch devices have no cursor, so the grey reveal mask can never be erased.
+   Hide the canvas so the full-colour background image shows through. */
+@media (hover: none), (any-hover: none) {
     .hero-bg-canvas {
+        display: none;
+    }
+
+    .hero-reset-btn {
         display: none;
     }
 }

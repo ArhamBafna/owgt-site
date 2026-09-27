@@ -1573,7 +1573,12 @@ body.modal-open {
 }
 ```
 
-## 6.3 Create `assets/js/hero-canvas.js`
+## 6.3 Create `assets/js/hero-canvas.v2.js`
+
+> **Touch devices get full colour automatically.** `style.css` hides `.hero-bg-canvas` under
+> `@media (hover: none), (any-hover: none)`, so the full-colour `hero_bg.webp` shows through, and the
+> script returns early unless `(hover: hover) and (any-hover: hover)` both match. Without a cursor
+> there is nothing to erase the grey mask, so a permanently grey hero would be the only alternative.
 
 ```js
 'use strict';
@@ -1758,7 +1763,7 @@ Replace the old vendor `<script defer src="â€¦/main.js">` on line 665 with t
 
 ```html
     <script defer src="assets/js/nav.js"></script>
-    <script defer src="assets/js/hero-canvas.js"></script>
+    <script defer src="assets/js/hero-canvas.v2.js"></script>
     <script defer src="assets/js/modal.js"></script>
     <script defer src="assets/js/brevo-globals.js"></script>
     <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
@@ -1779,7 +1784,7 @@ The four local files are `defer` so they no longer block parsing. That removes t
 
 # Must be 1 in each of the two .js files that need it, 0 elsewhere:
 (Select-String -Path assets\js\modal.js -Pattern 'res\.ok').Count
-(Select-String -Path assets\js\hero-canvas.js -Pattern 'devicePixelRatio').Count
+(Select-String -Path assets\js\hero-canvas.v2.js -Pattern 'devicePixelRatio').Count
 
 # Both forms must point at the SAME Brevo URL. This is the H6 check.
 $sib = (Select-String -Path index.html -Pattern 'id="sib-form"' -Context 0,3).Context.PostContext -join ' '
