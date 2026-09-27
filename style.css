@@ -1273,6 +1273,10 @@ a {
     max-width: 560px;
     margin: 0 auto;
     display: flex;
+    /* Column, so the visible <label> sits ABOVE the input. As a row it sat
+       beside it and squeezed the input to 501px of its 560px. */
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     border: none !important;
     background: transparent !important;
