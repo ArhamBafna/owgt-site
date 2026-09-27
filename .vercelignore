@@ -1,0 +1,9 @@
+graphify-out/
+placeholder/
+raw-source-code/
+reference-images/
+docs/
+scripts/
+AGENTS.md
+.gitignore
+.gitattributes

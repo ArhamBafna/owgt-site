@@ -1,3 +1,9 @@
 node_modules/
+.next/
 *.log
-graphify-out/cache/
+.vercel/
+
+# Internal research + tooling. Not part of the deployed site.
+graphify-out/
+raw-source-code/
+reference-images/
