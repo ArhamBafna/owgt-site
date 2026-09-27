@@ -23,7 +23,6 @@ SRC = ROOT / "assets" / "images"
 # Heights are derived from the source aspect ratio by Pillow.
 CONVERT = [
     ("hero_bg.png",            "hero_bg.webp",            1678, 80),
-    ("owgt-logo.png",          "owgt-logo.webp",           320, 85),
     ("volunteer_hackathon.jpg","volunteer_hackathon.webp",1920, 78),
     ("board_member_1.jpg",     "board_member_1.v2.webp",   760, 80),
     ("board_member_2.jpg",     "board_member_2.v2.webp",   760, 80),
