@@ -9,5 +9,8 @@ graphify-out/
 raw-source-code/
 reference-images/
 
+# Throwaway side-by-side comparison pages, used to pick a colour then discarded.
+docs/button-color-preview.html
+
 .vercel
 .env*

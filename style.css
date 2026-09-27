@@ -289,13 +289,15 @@ a {
     min-height: 101.7vh;
     display: flex;
     flex-direction: column;
-    /* flex-end + a tall top padding = the headline is pinned near the bottom
-       edge, and the top padding reserves a sky zone for the "AI" clouds (which
-       sit at 22-39% of hero height) so they never reach the text. The padding
-       also forces the hero tall enough on short windows to keep ~80px of
-       clearance. Raising the bottom padding lifts the text closer to the AI
-       and spends clearance; lowering the top padding costs it faster.
-       Do not shrink the top value without re-checking that. */
+    /* The "AI" clouds are painted into hero_bg.webp at 22-39% of hero height.
+       The image is background-size: cover, so that band sits at the same
+       fraction of the hero no matter how tall the hero gets. flex-end parks
+       the headline just above the bottom edge, which is what keeps the two
+       apart. The top padding is NOT what separates them on a normal window:
+       above ~880px tall, min-height governs and the headline lands in exactly
+       the same spot whatever this value is. Below ~880px the padding is the
+       only thing holding the clouds off the text (at 700px tall, dropping it
+       to 0 overlaps by 38px), so do not shrink it without re-measuring. */
     justify-content: flex-end;
     align-items: center;
     text-align: center;
