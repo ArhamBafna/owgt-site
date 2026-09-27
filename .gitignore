@@ -9,8 +9,6 @@ graphify-out/
 raw-source-code/
 reference-images/
 
-# previous plaeholder site, not needed now
-placeholder/
 
 .vercel
 .env*

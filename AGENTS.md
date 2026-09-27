@@ -10,3 +10,13 @@ IMP: NEVER CHECK VISUALLY UNLESS I EXPLICITLY TELL YOU TO!
 - Below 768px the navbar collapses to a hamburger menu.
 - **Asset cache rule:** `/assets/*` is served `immutable` for one year. If you change an asset's content, you MUST rename the file.
 ---
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues (`ArhamBafna/owgt-site`), using the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Domain docs
+
+Single-context (`CONTEXT.md` + `docs/adr/` at repo root). See `docs/agents/domain.md`.
