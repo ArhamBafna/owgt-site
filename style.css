@@ -1906,7 +1906,7 @@ a {
     letter-spacing: -0.01em;
     text-align: center;
     color: var(--clr-black);
-    max-width: 46ch;
+    max-width: 64ch;
     margin: 0 auto 3.5rem;
 }
 
