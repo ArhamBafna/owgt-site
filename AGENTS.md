@@ -1,14 +1,5 @@
 # AGENTS.md - OneWorld GreaterTogether (OWGT) Project Reference & Context
 
----
-
-## 1. Project Philosophy & Stack
-- **Zero Framework Runtime**: Pure semantic HTML5 (`index.html`), vanilla CSS3 (`style.css`), and minimal native JavaScript for modals/interactions. No external JS libraries or Wix runtime bloat.
-- **Hosted On**: Static site hosting (e.g. Vercel).
-- **Target Viewports**:
-  - Desktop: `1440px`
-  - Mobile: `390px`
-
 IMP: NEVER CHECK VISUALLY UNLESS I EXPLICITLY TELL YOU TO!
 
 ## 2. Site Architecture (as of the SPEC.md rework)
@@ -18,5 +9,4 @@ IMP: NEVER CHECK VISUALLY UNLESS I EXPLICITLY TELL YOU TO!
 - Fonts are self-hosted in `assets/fonts/`. No Google Fonts request, no `parastorage.com` request.
 - Below 768px the navbar collapses to a hamburger menu.
 - **Asset cache rule:** `/assets/*` is served `immutable` for one year. If you change an asset's content, you MUST rename the file.
-- `docs/SPEC.md` is the executable spec. `docs/anti_ai_audit_findings.md` is its historical diagnosis.
 ---
