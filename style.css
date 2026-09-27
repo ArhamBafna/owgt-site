@@ -387,7 +387,7 @@ a {
         -webkit-mask-position: 0 calc(-240vh - 400px);
         mask-position: 0 calc(-240vh - 400px);
         
-        animation: skyWaveLoop 8s linear infinite;
+        animation: skyWaveLoop 6s linear infinite;
     }
 }
 
@@ -396,7 +396,7 @@ a {
         -webkit-mask-position: 0 calc(-240vh - 400px);
         mask-position: 0 calc(-240vh - 400px);
     }
-    25% {
+    33.333% {
         -webkit-mask-position: 0 calc(-120vh - 200px);
         mask-position: 0 calc(-120vh - 200px);
     }
@@ -404,7 +404,7 @@ a {
         -webkit-mask-position: 0 calc(-120vh - 200px);
         mask-position: 0 calc(-120vh - 200px);
     }
-    75% {
+    83.333% {
         -webkit-mask-position: 0 0;
         mask-position: 0 0;
     }
