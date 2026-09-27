@@ -150,11 +150,14 @@ a {
     width: 100%;
     max-width: 1380px;
     margin: 0 auto;
-    /* Vertical padding is trimmed to 1.1rem so the 58 px square logo tile still
-       fits inside the 94 px min-height. The container height therefore does not
+    /* Vertical padding is trimmed to 1.1rem so the 56 px logo still fits
+       inside the 94 px min-height. The container height therefore does not
        change, which is what keeps the hero overlap below (margin-bottom
-       -108px, top 14px) landing where it was tuned to. */
-    padding: 1.1rem 2.4rem;
+       -108px, top 14px) landing where it was tuned to.
+       Left padding is much tighter than the right on purpose: the logo used to
+       sit 2.4rem in, which read as an accidental gap. The right side keeps its
+       room because the nav links and the RSVP button live there. */
+    padding: 1.1rem 2.4rem 1.1rem 1.2rem;
     min-height: 94px;
     display: flex;
     justify-content: space-between;
@@ -170,29 +173,25 @@ a {
     position: relative;
 }
 
-/* The brand mark. It sits on its own baked-in white tile, so it needs an
-   outline and a soft shadow to stay readable against the frosted navbar,
-   which is itself near-white and translucent. */
+/* The brand mark. No white tile, no border, no radius: the logo is a
+   transparent PNG, so any of those would draw a box around artwork that is
+   meant to sit straight on the frosted navbar. */
 .nav-logo a {
     display: block;
 }
 
 .nav-logo-img {
     display: block;
-    height: 58px;
-    /* The tile is a square, so auto width matches it. The width/height
+    height: 56px;
+    /* The image is square, so auto width matches it. The width/height
        attributes in the markup only reserve the box before this height
        applies. */
     width: auto;
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.10);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s ease;
 }
 
 .nav-logo a:hover .nav-logo-img {
     transform: scale(1.04);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
 }
 
 .nav-links {
@@ -1669,14 +1668,14 @@ a {
     }
 
     .nav-container {
-        padding: 0.7rem 1.25rem;
+        padding: 0.7rem 1.25rem 0.7rem 0.85rem;
         min-height: 72px;
         border-radius: var(--radius-md);
         /* 12px mobile */
     }
 
     .nav-logo-img {
-        height: 48px;
+        height: 46px;
     }
 
     .nav-toggle {
@@ -1886,7 +1885,7 @@ a {
 
 @media (max-width: 480px) {
     .nav-container {
-        padding: 0.65rem 0.85rem;
+        padding: 0.65rem 0.85rem 0.65rem 0.6rem;
     }
 
     .newsletter-section #sib-container {

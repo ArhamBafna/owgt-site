@@ -29,6 +29,8 @@ from pathlib import Path
 
 from PIL import Image, ImageChops, ImageDraw
 
+import numpy as np
+
 ROOT = Path(__file__).resolve().parent.parent
 IMG = ROOT / "assets" / "images"
 
@@ -41,16 +43,16 @@ FAVICON_SRC_PATH = "assets/images/favicon.png"     # 600x600, robot head only
 # A pixel further than this from the flat background counts as artwork.
 ARTWORK_THRESHOLD = 18
 
-# Navbar tile. Square, not the lockup's own 485x570 shape: a proportional tile
-# is a tall rectangle whose rounded corners read as stretched, and the 0.06
-# padding it carried left the O.W.G.T wordmark hard against the edge, which
-# looked squished. Sized off the long edge, so the short axis (horizontal, where
-# the wordmark runs out) gets the most air.
-NAV_PADDING_RATIO = 0.10      # of the artwork's long edge
-NAV_TARGET_HEIGHT = 360       # px; covers the 58 px desktop size at 3x DPR
+# Navbar logo. Cropped tight to the artwork rather than padded out to a square:
+# with the white tile gone there is nothing visible about being square, and the
+# invisible padding both buried ~8px between the navbar edge and the robot and
+# shrank the mark inside its own box.
+NAV_TARGET_HEIGHT = 360       # px; covers the 56 px desktop size at 3x DPR
 NAV_WEBP_QUALITY = 90
 
-# Favicons share the navbar tile's air so the two read as one family.
+# Favicon padding is real and visible: the icon keeps an opaque white face, so
+# the robot needs air inside it. The favicons share the navbar's generous ratio
+# so the two read as one family.
 FAVICON_PADDING_RATIO = 0.08  # of the artwork's long edge
 FAVICON_CORNER_RATIO = 0.20   # radius as a fraction of the icon's edge
 FAVICON_SIZES = (16, 32)      # the two the markup declares
@@ -97,9 +99,9 @@ def load_flat_art(path: Path) -> tuple[Image.Image, tuple[int, int, int]]:
 def flatten_to_white(art: Image.Image, bg: tuple[int, int, int]) -> Image.Image:
     """Repaint the flat background to pure white.
 
-    The sources sit on #FDFDFD, which reads as dingy grey next to a pure white
-    navbar tile. Antialiased edge pixels sit just off the background colour, so
-    anything within the artwork threshold counts as background.
+    The sources sit on #FDFDFD, which reads as dingy grey next to a white icon.
+    Antialiased edge pixels sit just off the background colour, so anything
+    within the artwork threshold counts as background.
     """
     if bg == (255, 255, 255):
         return art
@@ -112,23 +114,65 @@ def flatten_to_white(art: Image.Image, bg: tuple[int, int, int]) -> Image.Image:
     return out
 
 
-def pad_to_square(art: Image.Image, ratio: float) -> Image.Image:
-    """Centre the artwork in a white square tile, padded by `ratio` of its long edge.
+def to_transparent(art: Image.Image, bg: tuple[int, int, int]) -> Image.Image:
+    """Lift the flat background out to real alpha, keeping antialiased edges.
+
+    The source is flat artwork composited over near-white, so every pixel obeys
+    `observed = a * foreground + (1 - a) * background`, and recovering `a` is
+    what makes the edge antialias instead of going jagged.
+
+    Alpha comes from the *worst* channel's distance from white, never from
+    luminance. The wordmark is the brand blue #0345AA, whose luminance sits far
+    below the robot's near-black, so a luminance-based alpha would render the
+    wordmark semi-transparent. The worst channel reads ~255 for both.
+
+    The colour channels are then un-premultiplied. Leaving the white
+    contribution in would fringe every edge against the coloured hero that the
+    navbar floats over.
+    """
+    flat = flatten_to_white(art, bg)
+    arr = np.asarray(flat, dtype=np.float64)
+    # Composite is over pure white, so one channel reaching 255 pins alpha high.
+    deficit = 255.0 - arr.min(axis=2)          # 0 on flat background
+    alpha = np.clip(deficit, 0, 255)
+    # Un-premultiply: fg = (observed - 255 * (1 - a)) / a, with a = alpha / 255.
+    a = (alpha / 255.0)[:, :, None]
+    fg = np.where(a > 1e-6, (arr - 255.0 * (1.0 - a)) / np.maximum(a, 1e-6), 0.0)
+    out = np.dstack([np.clip(fg, 0, 255), alpha[:, :, None]])
+    return Image.fromarray(out.round().astype(np.uint8), "RGBA")
+
+
+def pad_to_square(art: Image.Image, ratio: float,
+                  fill: tuple[int, int, int, int] = (255, 255, 255, 0)) -> Image.Image:
+    """Centre the artwork in a square canvas, padded by `ratio` of its long edge.
 
     Square, not the artwork's own shape: the lockup is 485x570, so a
-    proportional tile is a tall rectangle and the rounded corners read as
-    stretched. Because the artwork is not itself square, equal padding on all
-    four sides is impossible -- the tile is sized off the long edge, so the
-    short axis ends up with more room. On the lockup that is the horizontal
-    axis, which is exactly where the O.W.G.T wordmark runs to the edge and
-    needs the air.
+    proportional canvas is a tall rectangle and the rounded corners of the old
+    white tile read as stretched. Because the artwork is not itself square,
+    equal padding on all four sides is impossible -- the canvas is sized off the
+    long edge, so the short axis ends up with more room. On the lockup that is
+    the horizontal axis, which is exactly where the O.W.G.T wordmark runs to the
+    edge and needs the air.
+
+    `fill` is transparent for the navbar logo, which no longer carries a white
+    tile, and opaque white for the favicons, which still need a solid face.
     """
     edge = max(art.width, art.height)
     pad = round(edge * ratio)
     side = edge + pad * 2
-    out = Image.new("RGB", (side, side), (255, 255, 255))
-    out.paste(art, ((side - art.width) // 2, (side - art.height) // 2))
+    out = Image.new("RGBA", (side, side), fill)
+    out.paste(art, ((side - art.width) // 2, (side - art.height) // 2),
+              art if art.mode == "RGBA" else None)
     return out
+
+
+def opaque_square(art: Image.Image, ratio: float) -> Image.Image:
+    """A square white tile for the favicons, which still need a solid face.
+
+    The navbar logo is the opposite case -- it floats on the navbar with no
+    tile -- so the two callers differ only in the fill they ask for.
+    """
+    return pad_to_square(art, ratio, fill=(255, 255, 255, 255)).convert("RGB")
 
 
 def fit_height(art: Image.Image, height: int) -> Image.Image:
@@ -156,24 +200,49 @@ def rounded_icon(square: Image.Image, size: int, ratio: float) -> Image.Image:
 
 def build_nav_logo(src: Path) -> Path:
     art, bg = load_flat_art(src)
-    tile = fit_height(
-        pad_to_square(flatten_to_white(art, bg), NAV_PADDING_RATIO),
-        NAV_TARGET_HEIGHT)
+    logo = to_transparent(art, bg)
+    # Cropped tight to the artwork. The previous version padded the lockup out to
+    # a square canvas so a *white tile* would be square; with the tile gone the
+    # square was invisible but not harmless. It parked ~8px of nothing between
+    # the navbar edge and the robot, so the padding the owner was asking to
+    # reduce was only part of the gap, and it wasted resolution, shrinking the
+    # visible mark. A tight crop makes the CSS height mean the visible height and
+    # the CSS padding mean the visible gap.
+    bbox = logo.getchannel("A").point(lambda v: 255 if v > 8 else 0).getbbox()
+    assert bbox is not None, "the logo came out entirely transparent"
+    logo = logo.crop(bbox)
+    logo = fit_height(logo, NAV_TARGET_HEIGHT)
 
-    dst = IMG / "owgt-logo-nav.v2.webp"
-    tile.save(dst, "WEBP", quality=NAV_WEBP_QUALITY, method=6)
+    dst = IMG / "owgt-logo-nav.v3.webp"
+    logo.save(dst, "WEBP", quality=NAV_WEBP_QUALITY, method=6)
 
-    assert tile.width == tile.height, f"tile is {tile.width}x{tile.height}, not square"
-    # The mark must sit inside the tile with visible air, not touch the corners.
-    inner = ImageChops.difference(
-        tile, Image.new("RGB", tile.size, (255, 255, 255))
-    ).convert("L").point(lambda v: 255 if v > ARTWORK_THRESHOLD else 0).getbbox()
-    margin_x = inner[0] / tile.width
-    margin_y = inner[1] / tile.height
-    assert margin_x > 0.10, f"only {margin_x:.1%} horizontal air"
-    assert margin_y > 0.06, f"only {margin_y:.1%} vertical air"
-    # Never upscale past the source: a blurry tile is worse than a soft one.
-    assert art.height >= tile.height, "tile was upscaled from the source"
+    alpha = logo.getchannel("A")
+    # The crop must have left no transparent margin, and the result must keep the
+    # lockup's own proportions. Note that ink coverage is NOT a usable tightness
+    # test here: the robot is a thick outline around a white face, so the
+    # artwork is only ~28% of its own bounding box and always has been.
+    inner = alpha.point(lambda v: 255 if v > 8 else 0).getbbox()
+    assert inner == (0, 0, logo.width, logo.height), \
+        f"visible content sits inside the frame at {inner}, not cropped tight"
+    aspect = logo.width / logo.height
+    assert 0.80 < aspect < 0.90, (
+        f"aspect {aspect:.3f} is not the lockup's 0.85: the logo has been padded "
+        f"out to a shape it should not be")
+    # The wordmark must survive as solid, fully opaque brand blue. A
+    # luminance-based alpha would have quietly made it translucent. Only
+    # already-opaque pixels are considered: un-premultiplying an antialiased
+    # edge can push a nearly transparent pixel to a fully saturated colour, so
+    # "the most blue pixel" is not the same as "the blue of the wordmark".
+    px = np.asarray(logo, dtype=np.int16)
+    solid = px[px[:, :, 3] > 200]
+    assert solid.size > 0, "no opaque pixels: the logo is a ghost"
+    blue_score = solid[:, 2] - np.maximum(solid[:, 0], solid[:, 1])
+    assert blue_score.max() > 60, "the blue wordmark is gone"
+    # The wordmark is a solid run of colour, not a handful of stray pixels.
+    assert int((blue_score > 60).sum()) > 500, \
+        f"only {int((blue_score > 60).sum())} blue pixels: wordmark eroded"
+    # Never upscale past the source: a blurry logo is worse than a soft one.
+    assert art.height >= logo.height, "logo was upscaled from the source"
     return dst
 
 
@@ -182,7 +251,7 @@ def build_favicons(src: Path, sizes=(16, 32)) -> list[Path]:
     # Square tile with the same air the navbar tile gets, so the two read as
     # one family. The head art is 446x408, so padding off the long edge leaves
     # it centred with roughly equal space on all four sides.
-    square = flatten_to_white(pad_to_square(art, FAVICON_PADDING_RATIO), bg)
+    square = flatten_to_white(opaque_square(art, FAVICON_PADDING_RATIO), bg)
 
     # Squaring guarantees a white border on all four sides, so the mid-edge
     # points are background by construction. Probing the 16 px render instead
@@ -228,7 +297,7 @@ def build_ico(src: Path) -> Path:
     /assets/ has to change name instead.
     """
     art, bg = load_flat_art(src)
-    square = flatten_to_white(pad_to_square(art, FAVICON_PADDING_RATIO), bg)
+    square = flatten_to_white(opaque_square(art, FAVICON_PADDING_RATIO), bg)
 
     dst = ROOT / "favicon.ico"
     largest = rounded_icon(square, max(ICO_SIZES), FAVICON_CORNER_RATIO)
