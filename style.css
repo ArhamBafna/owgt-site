@@ -79,20 +79,6 @@
     --radius-md: 12px;
     --radius-card: 14px;
     --radius-pill: 300px;
-
-    /* ========================================================
-       HERO LOGO MANUAL CONTROLS:
-       Edit numbers below to adjust the robot inside 'O'!
-
-       - ROTATION: angle (e.g. 0deg, 15deg, -15deg)
-       - ZOOM:     1 = normal, 1.1 = 10% bigger, 0.9 = 10% smaller
-       - LEFT/RIGHT (X): 0px = center, 5px = right, -5px = left
-       - UP/DOWN (Y):    0px = center, -5px = up, 5px = down
-       ======================================================== */
-    --logo-rotate: -5deg;
-    --logo-zoom: 0.8;
-    --logo-x: 4px;
-    --logo-y: 0px;
 }
 
 /* Reset */
@@ -446,41 +432,6 @@ a {
 .hero-title-o {
     position: relative;
     display: inline-block;
-}
-
-.hero-title-o-char {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-logo-box {
-    position: absolute;
-    top: 44%;
-    left: 50.5%;
-    transform: translate(-50%, -50%);
-    width: 46%;
-    height: 74%;
-    border-radius: 50%;
-    background-color: #ffffff;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.hero-title-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(calc(-50% + var(--logo-x, 0px)), calc(-48.5% + var(--logo-y, 0px))) rotate(var(--logo-rotate, 0deg)) scale(var(--logo-zoom, var(--logo-scale, 1)));
-    transform-origin: center center;
-    width: 250%;
-    max-width: none;
-    height: auto;
-    display: block;
-    transition: transform 0.2s ease;
 }
 
 .hero-scroll-indicator {
