@@ -7,3 +7,6 @@ node_modules/
 graphify-out/
 raw-source-code/
 reference-images/
+
+.vercel
+.env*
