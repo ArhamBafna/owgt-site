@@ -1944,6 +1944,11 @@ a {
     .footer-meta-side {
         text-align: center;
     }
+
+    .footer-destroy,
+    .footer-social {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2060,13 +2065,27 @@ a {
     opacity: 0.85;
 }
 
-/* Three children now compete for .footer-container's space, so the social
-   row wraps onto its own line. */
 .footer-social {
-    order: 3;
-    flex-basis: 100%;
-    justify-content: center;
-    margin-top: 0.5rem;
+    margin-top: 0.85rem;
+    justify-content: flex-start;
+}
+
+/* Destroy badge in footer meta */
+.footer-destroy {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.75rem;
+}
+
+.footer-destroy a {
+    display: inline-block;
+    line-height: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-destroy a:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
 }
 
 /* Modal scroll lock, driven by assets/js/modal.js */
@@ -2097,7 +2116,8 @@ body.modal-open {
     .nav-rsvp-btn,
     .btn-rsvp,
     .rsvp-submit-btn,
-    .newsletter-section .sib-form-block__button {
+    .newsletter-section .sib-form-block__button,
+    .footer-destroy a {
         transition: none;
     }
 
@@ -2107,7 +2127,8 @@ body.modal-open {
     .nav-logo a:hover .nav-logo-img,
     .volunteer-image-wrapper:hover .volunteer-image,
     .chapter-image-card:hover .chapter-image,
-    .board-card:hover .board-photo {
+    .board-card:hover .board-photo,
+    .footer-destroy a:hover {
         transform: none;
     }
 }
