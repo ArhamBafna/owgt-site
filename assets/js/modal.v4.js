@@ -169,7 +169,6 @@
     const inlineContainer = document.getElementById('sib-container');
     const inlineForm = document.getElementById('sib-form');
     const inlineEmail = document.getElementById('EMAIL') || (inlineForm ? inlineForm.querySelector('input[name="EMAIL"]') : null);
-    const inlineErrorPanel = document.getElementById('error-message');
     const inlineSuccessPanel = document.getElementById('success-message');
     const inlineEntryError = inlineForm ? inlineForm.querySelector('.entry__error') : null;
     const inlineSubmitBtn = inlineForm ? inlineForm.querySelector('button[type="submit"]') : null;
@@ -187,23 +186,16 @@
     }
 
     function showInlineError(message, withEmailLink) {
-        if (inlineErrorPanel) {
-            const innerText = inlineErrorPanel.querySelector('.sib-form-message-panel__inner-text');
-            if (innerText) {
-                innerText.textContent = message + (withEmailLink ? ' ' : '');
-                if (withEmailLink) {
-                    const link = document.createElement('a');
-                    link.href = 'mailto:' + BREVO_FALLBACK_EMAIL;
-                    link.style.color = 'inherit';
-                    link.style.textDecoration = 'underline';
-                    link.textContent = BREVO_FALLBACK_EMAIL;
-                    innerText.appendChild(link);
-                }
-            }
-            inlineErrorPanel.style.display = 'block';
-        }
         if (inlineEntryError) {
-            inlineEntryError.textContent = message;
+            inlineEntryError.textContent = message + (withEmailLink ? ' ' : '');
+            if (withEmailLink) {
+                const link = document.createElement('a');
+                link.href = 'mailto:' + BREVO_FALLBACK_EMAIL;
+                link.style.color = 'inherit';
+                link.style.textDecoration = 'underline';
+                link.textContent = BREVO_FALLBACK_EMAIL;
+                inlineEntryError.appendChild(link);
+            }
             inlineEntryError.style.display = 'block';
         }
         if (inlineSuccessPanel) {
@@ -212,9 +204,6 @@
     }
 
     function clearInlineError() {
-        if (inlineErrorPanel) {
-            inlineErrorPanel.style.display = 'none';
-        }
         if (inlineEntryError) {
             inlineEntryError.textContent = '';
             inlineEntryError.style.display = 'none';
@@ -223,6 +212,11 @@
 
     if (inlineForm && inlineEmail) {
         setInlineState('idle');
+
+        inlineEmail.addEventListener('input', function () {
+            clearInlineError();
+            setInlineState('idle');
+        });
 
         inlineForm.addEventListener('submit', async function (e) {
             e.preventDefault();

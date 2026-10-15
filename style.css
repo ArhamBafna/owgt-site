@@ -1343,12 +1343,6 @@ a {
     text-align: center;
 }
 
-#error-message {
-    background-color: var(--clr-white);
-    border: 2px solid var(--clr-red-accent);
-    color: var(--clr-red-accent);
-}
-
 #success-message {
     background-color: var(--clr-white);
     border: 2px solid #0B7A34;
@@ -1378,10 +1372,6 @@ a {
 }
 
 [data-state="success"] #success-message {
-    display: block;
-}
-
-[data-state="error"] #error-message {
     display: block;
 }
 
