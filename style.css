@@ -1505,7 +1505,8 @@ a {
 .footer-copy-toast {
     position: absolute;
     bottom: calc(100% + 6px);
-    right: 0;
+    left: 0;
+    right: auto;
     background-color: #111111;
     color: #ffffff;
     font-size: 0.72rem;
@@ -1527,7 +1528,8 @@ a {
     content: '';
     position: absolute;
     top: 100%;
-    right: 12px;
+    left: 14px;
+    right: auto;
     border-width: 4px;
     border-style: solid;
     border-color: #111111 transparent transparent transparent;
@@ -2008,17 +2010,19 @@ a {
     }
 
     .footer-copy-toast {
-        right: 50%;
-        transform: translate(50%, 4px);
+        left: 0;
+        right: auto;
+        transform: translateY(4px);
     }
 
     .footer-copy-toast::after {
-        right: 50%;
-        margin-right: -4px;
+        left: 14px;
+        right: auto;
+        margin-right: 0;
     }
 
     .footer-copy-toast.is-shown {
-        transform: translate(50%, 0);
+        transform: translateY(0);
     }
 }
 
