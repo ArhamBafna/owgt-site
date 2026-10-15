@@ -5,50 +5,37 @@
     if (!btn) { return; }
 
     const toast = btn.querySelector('.footer-copy-toast');
-    const email = btn.getAttribute('data-email') || 'oneworldgreatertogether@gmail.com';
-    let timer = null;
+    const EMAIL = 'oneworldgreatertogether@gmail.com';
+    let hideTimer = null;
 
     function showToast() {
         if (!toast) { return; }
         toast.classList.add('is-shown');
-        if (timer) {
-            clearTimeout(timer);
-        }
-        timer = setTimeout(function () {
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function () {
             toast.classList.remove('is-shown');
-            timer = null;
         }, 2000);
+    }
+
+    function fallbackCopy() {
+        const input = document.createElement('input');
+        input.style.position = 'fixed';
+        input.style.opacity = '0';
+        input.value = EMAIL;
+        document.body.appendChild(input);
+        input.select();
+        try {
+            document.execCommand('copy');
+            showToast();
+        } catch (_) {}
+        input.remove();
     }
 
     function copyEmail() {
         if (navigator.clipboard && window.isSecureContext) {
-            navigator.clipboard.writeText(email)
-                .then(showToast)
-                .catch(function () {
-                    fallbackCopy(email);
-                });
+            navigator.clipboard.writeText(EMAIL).then(showToast).catch(fallbackCopy);
         } else {
-            fallbackCopy(email);
-        }
-    }
-
-    function fallbackCopy(text) {
-        try {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.left = '-9999px';
-            textarea.style.top = '0';
-            textarea.setAttribute('readonly', '');
-            document.body.appendChild(textarea);
-            textarea.select();
-            const successful = document.execCommand('copy');
-            document.body.removeChild(textarea);
-            if (successful) {
-                showToast();
-            }
-        } catch (err) {
-            // Silently fail if clipboard denied
+            fallbackCopy();
         }
     }
 

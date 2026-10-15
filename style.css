@@ -1488,12 +1488,10 @@ a {
     padding: 0;
     margin: 0;
     font: inherit;
-    font-size: inherit;
     cursor: pointer;
     position: relative;
     display: inline-flex;
     align-items: center;
-    text-align: inherit;
 }
 
 .footer-email-btn:focus-visible {
@@ -1506,7 +1504,6 @@ a {
     position: absolute;
     bottom: calc(100% + 6px);
     left: 0;
-    right: auto;
     background-color: #111111;
     color: #ffffff;
     font-size: 0.72rem;
@@ -1529,7 +1526,6 @@ a {
     position: absolute;
     top: 100%;
     left: 14px;
-    right: auto;
     border-width: 4px;
     border-style: solid;
     border-color: #111111 transparent transparent transparent;
@@ -2007,22 +2003,6 @@ a {
     .footer-destroy,
     .footer-social {
         justify-content: center;
-    }
-
-    .footer-copy-toast {
-        left: 0;
-        right: auto;
-        transform: translateY(4px);
-    }
-
-    .footer-copy-toast::after {
-        left: 14px;
-        right: auto;
-        margin-right: 0;
-    }
-
-    .footer-copy-toast.is-shown {
-        transform: translateY(0);
     }
 }
 
