@@ -1482,6 +1482,63 @@ a {
     color: #000000;
 }
 
+.footer-email-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    text-align: inherit;
+}
+
+.footer-email-btn:focus-visible {
+    outline: 2px solid var(--clr-red-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+.footer-copy-toast {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    right: 0;
+    background-color: #111111;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    z-index: 10;
+}
+
+.footer-copy-toast::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 12px;
+    border-width: 4px;
+    border-style: solid;
+    border-color: #111111 transparent transparent transparent;
+}
+
+.footer-copy-toast.is-shown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 /* ==========================================================================
    11. RSVP POPUP MODAL
    ========================================================================== */
@@ -1948,6 +2005,20 @@ a {
     .footer-destroy,
     .footer-social {
         justify-content: center;
+    }
+
+    .footer-copy-toast {
+        right: 50%;
+        transform: translate(50%, 4px);
+    }
+
+    .footer-copy-toast::after {
+        right: 50%;
+        margin-right: -4px;
+    }
+
+    .footer-copy-toast.is-shown {
+        transform: translate(50%, 0);
     }
 }
 

@@ -492,8 +492,13 @@
             </div>
             <div class="footer-meta-side">
                 <p class="footer-copyright">&copy; 2026 by OWGT</p>
-                <p class="footer-email"><a href="mailto:oneworldgreatertogether@gmail.com"
-                        class="email-link">oneworldgreatertogether@gmail.com</a></p>
+                <p class="footer-email">
+                    <button type="button" class="footer-email-btn email-link" id="footer-copy-email"
+                        aria-label="Copy email address" data-email="oneworldgreatertogether@gmail.com">
+                        <span class="footer-email-text">oneworldgreatertogether@gmail.com</span>
+                        <span class="footer-copy-toast" role="status" aria-live="polite">Copied!</span>
+                    </button>
+                </p>
                 <div class="footer-destroy">
                     <a href="https://destroy.spritefusion.com/?url=owgt.org" target="_blank" rel="noopener noreferrer">
                         <img src="https://destroy.spritefusion.com/badge.svg" alt="Destroy this website" width="180"
@@ -550,6 +555,7 @@
     <script defer src="assets/js/hero-mobile-observer.js"></script>
     <script defer src="assets/js/modal.js"></script>
     <script defer src="assets/js/brevo-globals.js"></script>
+    <script defer src="assets/js/copy-email.v1.js"></script>
     <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 </body>
 
