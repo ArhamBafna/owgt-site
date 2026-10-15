@@ -331,7 +331,7 @@
                         <div id="sib-container" class="sib-container--large sib-container--vertical" data-state="idle">
                             <form id="sib-form" method="POST"
                                 action="https://sibforms.com/serve/MUIFAFd-ELRb80KAFGK8Vzt-7DWyP7ieFIfLymcOXoiObnRsTS9d1pBMH9Ow1iVmZRCF2cij5ugrXvTAMonnYXnxHgcjYf3aVdfjFTrU1kqMRyQKEZhKXVNCz12FyHI77T7q2Nqh4pOETlvaT56-UWuwBSzuzvUVk6-UeiyQEnI9rIczo67djuwGEj371o-yRl5m5NJ0tz28ygIFZA=="
-                                data-type="subscription">
+                                data-type="subscription" novalidate>
                                 <!-- Wide Headline Container -->
                                 <div class="newsletter-headline-wrapper">
                                     <div class="sib-form-block newsletter-headline-block">
@@ -344,19 +344,15 @@
                                     <div class="newsletter-body-content">
                                         <div class="sib-form-block">
                                             <div class="sib-text-form-block newsletter-body-text">
-                                                <p>unless you get EVERYTHING YOU NEED TO KNOW delivered to your inbox.
+                                                <p>get EVERYTHING YOU NEED TO KNOW delivered to your inbox, once a week.
                                                     read
                                                     while having
-                                                    your morning coffee. once a week.</p>
+                                                    your morning coffee.</p>
                                                 <p><br></p>
-                                                <p>NEW: instantly get access to a <a target="_blank"
-                                                        href="https://rewards.owgt.org/" rel="nofollow noopener">library
-                                                        of
-                                                        <strong>390+ AI
-                                                            resources</strong></a><strong> </strong>(hand picked by us)
-                                                    for
-                                                    <strong>free
-                                                    </strong>upon signing up.
+                                                <p>includes access to our library of <a target="_blank"
+                                                        href="https://rewards.owgt.org/" rel="nofollow noopener">
+                                                        <strong>390+ curated AI
+                                                            resources</strong></a><strong> </strong>.
                                                 </p>
                                             </div>
                                         </div>
@@ -422,7 +418,7 @@
                                     </div>
                                 </div>
 
-                                <input type="text" name="email_address_check" value="" class="input--hidden">
+                                <input type="text" name="email_address_check" value="" class="input--hidden" hidden tabindex="-1" autocomplete="off" aria-hidden="true">
                                 <input type="hidden" name="locale" value="en">
                             </form>
                         </div>
@@ -444,8 +440,8 @@
                     Our registered EIN is 81-2908499.</p>
                 <nav class="footer-social" aria-label="OneWorldGreaterTogether on social media">
                     <a href="#welcome" title="OWGT website">
-                        <img src="assets/icons/social/website.png" alt="OWGT website" width="32" height="32" loading="lazy"
-                            decoding="async">
+                        <img src="assets/icons/social/website.png" alt="OWGT website" width="32" height="32"
+                            loading="lazy" decoding="async">
                     </a>
                     <a href="https://discord.gg/PBMJax829D" target="_blank" rel="noopener noreferrer"
                         title="OWGT on Discord">
@@ -462,15 +458,15 @@
                         <img src="assets/icons/social/youtube.png" alt="OWGT on YouTube" width="32" height="32"
                             loading="lazy" decoding="async">
                     </a>
-                    <a href="https://www.instagram.com/oneworldgreatertogether" target="_blank" rel="noopener noreferrer"
-                        title="OWGT on Instagram">
+                    <a href="https://www.instagram.com/oneworldgreatertogether" target="_blank"
+                        rel="noopener noreferrer" title="OWGT on Instagram">
                         <img src="assets/icons/social/instagram.png" alt="OWGT on Instagram" width="32" height="32"
                             loading="lazy" decoding="async">
                     </a>
                     <a href="https://www.tiktok.com/@oneworldgreatertogether" target="_blank" rel="noopener noreferrer"
                         title="OWGT on TikTok">
-                        <img src="assets/icons/social/tiktok.png" alt="OWGT on TikTok" width="32" height="32" loading="lazy"
-                            decoding="async">
+                        <img src="assets/icons/social/tiktok.png" alt="OWGT on TikTok" width="32" height="32"
+                            loading="lazy" decoding="async">
                     </a>
                     <a href="https://x.com/USOWGT" target="_blank" rel="noopener noreferrer" title="OWGT on X">
                         <img src="assets/icons/social/x.png" alt="OWGT on X" width="32" height="32" loading="lazy"
@@ -492,7 +488,8 @@
     </footer>
 
     <!-- RSVP Popup Modal -->
-    <div id="rsvp-modal" class="rsvp-modal-hidden" data-state="idle" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-title">
+    <div id="rsvp-modal" class="rsvp-modal-hidden" data-state="idle" role="dialog" aria-modal="true"
+        aria-labelledby="rsvp-modal-title">
         <div class="rsvp-modal-backdrop" data-rsvp-close></div>
         <div class="rsvp-modal-content">
             <button type="button" class="rsvp-close-icon" data-rsvp-close aria-label="Close modal">&times;</button>
@@ -503,7 +500,7 @@
                 <p class="rsvp-subtitle">be the first to know about upcoming workshops &amp; events</p>
                 <form id="rsvp-popup-form"
                     action="https://sibforms.com/serve/MUIFAFd-ELRb80KAFGK8Vzt-7DWyP7ieFIfLymcOXoiObnRsTS9d1pBMH9Ow1iVmZRCF2cij5ugrXvTAMonnYXnxHgcjYf3aVdfjFTrU1kqMRyQKEZhKXVNCz12FyHI77T7q2Nqh4pOETlvaT56-UWuwBSzuzvUVk6-UeiyQEnI9rIczo67djuwGEj371o-yRl5m5NJ0tz28ygIFZA=="
-                    method="POST">
+                    method="POST" novalidate>
                     <div class="rsvp-input-group">
                         <input type="email" id="rsvp-email" name="EMAIL" placeholder="email address" required
                             autocomplete="email" class="rsvp-email-input" aria-label="email address">
@@ -535,8 +532,7 @@
     <script defer src="assets/js/nav.v2.js"></script>
     <script defer src="assets/js/hero-canvas.v3.js"></script>
     <script defer src="assets/js/hero-mobile-observer.js"></script>
-    <script defer src="assets/js/modal.v2.js"></script>
+    <script defer src="assets/js/modal.v3.js"></script>
 </body>
 
 </html>
-

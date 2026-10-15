@@ -1398,6 +1398,10 @@ a {
     display: inline-block;
 }
 
+.input--hidden {
+    display: none !important;
+}
+
 .newsletter-headline-wrapper {
     padding: 6px 0 10px;
 }

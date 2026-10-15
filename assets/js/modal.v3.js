@@ -165,7 +165,8 @@
     // ==========================================================================
     // 2. INLINE NEWSLETTER FORM & STATE MACHINE
     // ==========================================================================
-    const inlineContainer = document.getElementById('sib-container') || document.getElementById('sib-form-container');
+    const inlineFormContainer = document.getElementById('sib-form-container');
+    const inlineContainer = document.getElementById('sib-container');
     const inlineForm = document.getElementById('sib-form');
     const inlineEmail = document.getElementById('EMAIL') || (inlineForm ? inlineForm.querySelector('input[name="EMAIL"]') : null);
     const inlineErrorPanel = document.getElementById('error-message');
@@ -174,6 +175,9 @@
     const inlineSubmitBtn = inlineForm ? inlineForm.querySelector('button[type="submit"]') : null;
 
     function setInlineState(state) {
+        if (inlineFormContainer) {
+            inlineFormContainer.setAttribute('data-state', state);
+        }
         if (inlineContainer) {
             inlineContainer.setAttribute('data-state', state);
         }
