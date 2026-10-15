@@ -1330,8 +1330,38 @@ a {
     letter-spacing: -0.01em;
 }
 
-:where(.sib-form-message-panel) {
+.sib-form-message-panel {
     display: none;
+}
+
+[data-state="idle"] .sib-form-message-panel,
+[data-state="loading"] .sib-form-message-panel {
+    display: none;
+}
+
+[data-state="success"] #sib-form {
+    display: none;
+}
+
+[data-state="success"] #success-message {
+    display: block;
+}
+
+[data-state="error"] #error-message {
+    display: block;
+}
+
+.progress-indicator__icon {
+    display: none;
+    width: 20px;
+    height: 20px;
+    animation: rsvp-spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+[data-state="loading"] .progress-indicator__icon {
+    display: inline-block;
 }
 
 :where(.sib-form-message-panel .sib-notification__icon) {
