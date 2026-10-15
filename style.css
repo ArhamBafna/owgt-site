@@ -267,6 +267,15 @@ a {
     transform: translateY(-2px);
 }
 
+.nav-rsvp-btn:active,
+.btn-rsvp:active,
+.btn-apply:active,
+.rsvp-submit-btn:active,
+.newsletter-section .sib-form-block__button:active {
+    transform: translateY(1px);
+    transition: transform 0.05s ease;
+}
+
 /* ==========================================================================
    3. HERO SECTION
    ========================================================================== */
@@ -2000,7 +2009,6 @@ a {
         text-align: center;
     }
 
-    .footer-destroy,
     .footer-social {
         justify-content: center;
     }
@@ -2100,6 +2108,11 @@ a {
     transform: translateY(-2px);
 }
 
+.btn-apply:active {
+    transform: translateY(1px);
+    transition: transform 0.05s ease;
+}
+
 /* Footer social row */
 .footer-social {
     display: flex;
@@ -2109,7 +2122,11 @@ a {
 }
 
 .footer-social a {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     line-height: 0;
     border-radius: 50%;
     transition: transform 0.2s ease, opacity 0.2s ease;
@@ -2123,24 +2140,6 @@ a {
 .footer-social {
     margin-top: 0.85rem;
     justify-content: flex-start;
-}
-
-/* Destroy badge in footer meta */
-.footer-destroy {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 0.75rem;
-}
-
-.footer-destroy a {
-    display: inline-block;
-    line-height: 0;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.footer-destroy a:hover {
-    transform: translateY(-2px);
-    opacity: 0.85;
 }
 
 /* Modal scroll lock, driven by assets/js/modal.js */
